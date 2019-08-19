@@ -1,0 +1,231 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository.Test\\CrazyFood.Repository.Test.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.DomainModel\\CrazyFood.DomainModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.DomainModel\\CrazyFood.DomainModel.csproj",
+        "projectName": "CrazyFood.DomainModel",
+        "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.DomainModel\\CrazyFood.DomainModel.csproj",
+        "packagesPath": "C:\\Users\\rahulmondal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.DomainModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rahulmondal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.All": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository.Test\\CrazyFood.Repository.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository.Test\\CrazyFood.Repository.Test.csproj",
+        "projectName": "CrazyFood.Repository.Test",
+        "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository.Test\\CrazyFood.Repository.Test.csproj",
+        "packagesPath": "C:\\Users\\rahulmondal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rahulmondal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository\\CrazyFood.Repository.csproj": {
+                "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository\\CrazyFood.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository\\CrazyFood.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository\\CrazyFood.Repository.csproj",
+        "projectName": "CrazyFood.Repository",
+        "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository\\CrazyFood.Repository.csproj",
+        "packagesPath": "C:\\Users\\rahulmondal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rahulmondal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.DomainModel\\CrazyFood.DomainModel.csproj": {
+                "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.DomainModel\\CrazyFood.DomainModel.csproj"
+              },
+              "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Util\\CrazyFood.Util.csproj": {
+                "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Util\\CrazyFood.Util.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Util\\CrazyFood.Util.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Util\\CrazyFood.Util.csproj",
+        "projectName": "CrazyFood.Util",
+        "projectPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Util\\CrazyFood.Util.csproj",
+        "packagesPath": "C:\\Users\\rahulmondal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rahulmondal\\source\\repos\\CarzyFood\\CrazyFood.Util\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rahulmondal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

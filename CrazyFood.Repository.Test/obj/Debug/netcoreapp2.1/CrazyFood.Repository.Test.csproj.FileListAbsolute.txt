@@ -1,0 +1,16 @@
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Repository.Test.deps.json
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Repository.Test.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Repository.Test.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Repository.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Util.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Repository.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\bin\Debug\netcoreapp2.1\CrazyFood.Util.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.csprojAssemblyReference.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.csproj.CoreCompileInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.AssemblyInfoInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.AssemblyInfo.cs
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.csproj.CopyComplete
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository.Test\obj\Debug\netcoreapp2.1\CrazyFood.Repository.Test.pdb

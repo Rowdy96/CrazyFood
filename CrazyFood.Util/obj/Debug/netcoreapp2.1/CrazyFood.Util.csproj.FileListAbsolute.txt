@@ -1,0 +1,8 @@
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\bin\Debug\netcoreapp2.1\CrazyFood.Util.deps.json
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\bin\Debug\netcoreapp2.1\CrazyFood.Util.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\bin\Debug\netcoreapp2.1\CrazyFood.Util.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.csproj.CoreCompileInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.AssemblyInfoInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.AssemblyInfo.cs
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.pdb

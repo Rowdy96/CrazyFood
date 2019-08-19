@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CrazyFood.DomainModel\CrazyFood.DomainModel.csproj" />
+    <ProjectReference Include="..\CrazyFood.Util\CrazyFood.Util.csproj" />
+  </ItemGroup>
+
+</Project>
