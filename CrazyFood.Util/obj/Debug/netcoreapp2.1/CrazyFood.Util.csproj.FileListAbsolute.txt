@@ -6,3 +6,4 @@ C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.AssemblyInfo.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Util\obj\Debug\netcoreapp2.1\CrazyFood.Util.csprojAssemblyReference.cache

@@ -19,8 +19,24 @@ namespace CrazyFood.DomainModel.Data
 
         }
 
-        public DbSet<Restaurant> Restaurant { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Cuisine> Cuisines { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<MenuCategory> MenuCategories { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<ReviewComment> ReviewComments { get; set; }
+        public DbSet<ReviewLike> ReviewLikes { get; set; }
+        public DbSet<AverageRating> AverageRatings { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Follow> Follows { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
 
     }
 }
