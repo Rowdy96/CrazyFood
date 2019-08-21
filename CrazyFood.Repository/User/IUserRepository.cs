@@ -1,10 +1,18 @@
-﻿using System;
+﻿using CrazyFood.DomainModel.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CrazyFood.Repository.User
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
+        IEnumerable<Users> GetAllUser();
+        Task<Users> GetUserById(int? userId);
+        Task CreateUser(Users user);
+        Task UpdateUser(Users user);
+        Task DeleteUser(int id);
+
     }
 }
