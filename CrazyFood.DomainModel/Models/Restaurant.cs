@@ -6,6 +6,7 @@ namespace CrazyFood.DomainModel.Models
 {
     public class Restaurant
     {
+        #region Public Propertry
         public int Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
@@ -15,11 +16,13 @@ namespace CrazyFood.DomainModel.Models
         public string RestaurantLocation { get; set; }
         public bool HasOnlineBooking { get; set; }
 
+        #region Navigation Propertry
         public int CityId { get; set; }
       
         // public int CuisineId { get; set; }
 
         public City City { get; set; }
-
+        #endregion
+        #endregion
     }
 }

@@ -8,11 +8,13 @@ namespace CrazyFood.Repository.Reviews
 {
     public interface IReviewRepository
     {
+        #region Methods
         Task<IEnumerable<Review>> GetAllReviewsOfRestaurant(int restaurantId);
         Task<IEnumerable<Review>> GetAllReviewsOfUser(int userId);
         Task<Review> GetReviewById(int? reviewId);
         Task AddReview(Review review);
         Task UpdateDish(Review review);
         Task DeleteDish(int reviewId);
+        #endregion
     }
 }

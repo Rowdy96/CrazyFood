@@ -8,7 +8,9 @@ namespace CrazyFood.Repository.Follow
 {
     public interface IFollowRepository
     {
+        #region Methods
         Task<IEnumerable<Users>> GetAllFollowers(int followingId);
         Task<int> GetTotalNumberOfFollowers(int followingId);
+        #endregion
     }
 }

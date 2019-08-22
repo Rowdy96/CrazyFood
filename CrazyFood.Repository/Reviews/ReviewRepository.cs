@@ -8,6 +8,7 @@ namespace CrazyFood.Repository.Reviews
 {
     public class ReviewRepository : IReviewRepository
     {
+        #region Public methods
         public Task AddReview(Review review)
         {
             throw new NotImplementedException();
@@ -37,5 +38,6 @@ namespace CrazyFood.Repository.Reviews
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

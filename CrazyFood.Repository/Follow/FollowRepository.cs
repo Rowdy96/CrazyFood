@@ -6,8 +6,10 @@ using CrazyFood.DomainModel.Models;
 
 namespace CrazyFood.Repository.Follow
 {
-    class FollowRepository : IFollowRepository
+    public class FollowRepository : IFollowRepository
     {
+
+        #region Public methods
         public Task<IEnumerable<Users>> GetAllFollowers(int followingId)
         {
             throw new NotImplementedException();
@@ -17,7 +19,7 @@ namespace CrazyFood.Repository.Follow
         {
             throw new NotImplementedException();
         }
-
+        #endregion
 
     }
 }

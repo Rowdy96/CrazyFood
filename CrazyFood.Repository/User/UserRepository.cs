@@ -8,6 +8,7 @@ namespace CrazyFood.Repository.User
 {
     public class UserRepository : IUserRepository
     {
+        #region Public Propertry
         public Task CreateUser(Users user)
         {
             throw new NotImplementedException();
@@ -32,5 +33,6 @@ namespace CrazyFood.Repository.User
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

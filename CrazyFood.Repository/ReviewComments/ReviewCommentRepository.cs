@@ -8,6 +8,7 @@ namespace CrazyFood.Repository.ReviewComments
 {
     class ReviewCommentRepository : IReviewCommentRepository
     {
+        #region Public methods
         public Task AddReviewComment(int userId,int reviewId, ReviewComment reviewComment)
         {
             throw new NotImplementedException();
@@ -32,5 +33,6 @@ namespace CrazyFood.Repository.ReviewComments
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

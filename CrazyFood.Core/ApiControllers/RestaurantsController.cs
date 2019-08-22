@@ -13,19 +13,28 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class RestaurantsController : ControllerBase
     {
-        private IUnitOfWork _unitOfWork;
+        #region Private Variables
 
+        #region Dependencies
+        private IUnitOfWork _unitOfWork;
+        #endregion
+
+        #endregion
+
+        #region Constructor
         public RestaurantsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         // GET: api/Restaurant
         [HttpGet]
         public async Task<IEnumerable<Restaurant>> GetAllRestaurants()
         {
-            var Tests = _unitOfWork.RestaurantRepository.GetAllRestaurants();
-            return await Tests;
+            var tests = _unitOfWork.RestaurantRepository.GetAllRestaurants();
+            return await tests;
         }
 
         // GET: api/Restaurant/5
@@ -105,8 +114,8 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            var Restaurant = await _unitOfWork.RestaurantRepository.GetRestaurantById(id);
-            if (Restaurant == null)
+            var restaurant = await _unitOfWork.RestaurantRepository.GetRestaurantById(id);
+            if (restaurant == null)
             {
                 return NotFound();
             }
@@ -114,9 +123,11 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.RestaurantRepository.DeleteRestaurant(id);
             await _unitOfWork.Save();
 
-            return Ok(Restaurant);
+            return Ok(restaurant);
         }
+        #endregion
 
+        #region Private Methods
         private bool RestaurantExists(int id)
         {
             if (_unitOfWork.RestaurantRepository.GetRestaurantById(id) != null)
@@ -128,7 +139,7 @@ namespace CrazyFood.Core.ApiControllers
                 return false;
             }
         }
-
+        #endregion
 
     }
 }

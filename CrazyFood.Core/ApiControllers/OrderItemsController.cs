@@ -12,13 +12,20 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class OrderItemsController : ControllerBase
     {
+        #region Priavate Varibables
+        #region Dependencies
         private readonly IUnitOfWork _unitOfWork;
+        #endregion
+        #endregion
 
+        #region Controllers
         public OrderItemsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         [HttpGet("{orderId}")]
         public async Task<IEnumerable<OrderItem>> GetOrderItemsOfOrder([FromRoute] int orderId)
         {
@@ -36,6 +43,6 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.Save();
             return Ok(orderItem);
         }
-
+        #endregion
     }
 }

@@ -8,7 +8,9 @@ namespace CrazyFood.Repository.AverageRatings
 {
     public interface IAverageRatingRepository
     {
+        #region Methods
         Task<AverageRating> GetAverageRatingOfRestaurant(int? restaurantId);
-        int CalaculateAverageRating(int restaurantId);      
+        int CalaculateAverageRating(int restaurantId);
+        #endregion
     }
 }

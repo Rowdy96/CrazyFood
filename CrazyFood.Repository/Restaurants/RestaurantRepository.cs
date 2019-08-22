@@ -8,6 +8,7 @@ namespace CrazyFood.Repository.Restaurants
 {
     public class RestaurantRepository : IRestaurantRepository
     {
+        #region Public Methods
         public Task CreateRestaurant(Restaurant restaurant)
         {
             throw new NotImplementedException();
@@ -32,5 +33,7 @@ namespace CrazyFood.Repository.Restaurants
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

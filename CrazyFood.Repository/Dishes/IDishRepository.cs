@@ -8,10 +8,12 @@ namespace CrazyFood.Repository.Dishes
 {
     public interface IDishRepository
     {
+        #region methods
         Task<IEnumerable<Dish>> GetAllDishes(int menuCategoryId);
         Task<Dish> GetDishById(int? dishId);
         Task CreateDish(Dish dish);
         Task UpdateDish(Dish dish);
         Task DeleteDish(int id);
+        #endregion
     }
 }

@@ -8,6 +8,8 @@ namespace CrazyFood.Repository.AverageRatings
 {
     public class AverageRatingRepository : IAverageRatingRepository
     {
+
+        #region Public methods
         public int CalaculateAverageRating(int restaurantId)
         {
             throw new NotImplementedException();
@@ -17,5 +19,7 @@ namespace CrazyFood.Repository.AverageRatings
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

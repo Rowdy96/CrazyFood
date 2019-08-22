@@ -19,6 +19,7 @@ namespace CrazyFood.Repository.UnitOfWork
 {
     public interface IUnitOfWork
     {
+        #region Propertry
         IRestaurantRepository RestaurantRepository { get; set; }
         IMenuCategoryRepository MenuCategoryRepository { get; set; }
         IDishRepository DishRepository { get; set; }
@@ -34,7 +35,10 @@ namespace CrazyFood.Repository.UnitOfWork
         IFollowRepository FollowRepository { get; set; }
 
         IAverageRatingRepository AverageRatingRepository { get; set; }
+        #endregion
 
+        #region Method
         Task Save();
+        #endregion
     }
 }

@@ -8,6 +8,7 @@ namespace CrazyFood.Repository.MenuCategories
 {
     public class MenuCategoryRepository : IMenuCategoryRepository
     {
+        #region Public Methods
         public Task CreateMenuCategory(MenuCategory menuCategory)
         {
             throw new NotImplementedException();
@@ -32,5 +33,6 @@ namespace CrazyFood.Repository.MenuCategories
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

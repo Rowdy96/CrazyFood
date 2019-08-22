@@ -12,8 +12,15 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class AverageRatingsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        #region Private Controllers
 
+        #region Dependencies
+        private readonly IUnitOfWork _unitOfWork;
+        #endregion
+
+        #endregion
+
+        #region Public Methods
         public AverageRatingsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
@@ -24,6 +31,7 @@ namespace CrazyFood.Core.ApiControllers
         {
             return await _unitOfWork.AverageRatingRepository.GetAverageRatingOfRestaurant(restaurantId);
         }
-        
+
+        #endregion
     }
 }

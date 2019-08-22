@@ -18,6 +18,7 @@ namespace CrazyFood.Repository.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
+        #region Public propertry
         public IRestaurantRepository RestaurantRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IMenuCategoryRepository MenuCategoryRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IDishRepository DishRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -29,10 +30,13 @@ namespace CrazyFood.Repository.UnitOfWork
         public IUserRepository UserRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IFollowRepository FollowRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IAverageRatingRepository AverageRatingRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        #endregion
 
+        #region Public Method
         public Task Save()
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

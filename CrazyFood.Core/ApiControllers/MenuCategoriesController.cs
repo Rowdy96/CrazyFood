@@ -13,14 +13,23 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class MenuCategoriesController :ControllerBase
     {
+        #region Private Variables
+
+        #region Dependencies
         private IUnitOfWork _unitOfWork;
 
+        #endregion
+
+        #endregion
+
+        #region Controllers
         public MenuCategoriesController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
-
+        #region Public Methods
         [HttpGet("{restaurantId}")]
         public async Task<IEnumerable<MenuCategory>> GetMenuCategories([FromRoute]int restaurantId)
         {
@@ -35,14 +44,14 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            var MenuCategory = await _unitOfWork.MenuCategoryRepository.GetMenuCategory(categoryId);
+            var menuCategory = await _unitOfWork.MenuCategoryRepository.GetMenuCategory(categoryId);
 
-            if (MenuCategory == null)
+            if (menuCategory == null)
             {
                 return NotFound();
             }
 
-            return Ok(MenuCategory);
+            return Ok(menuCategory);
         }
 
         [HttpPost("{restaurantId}")]
@@ -103,9 +112,9 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            var MenuCategory = await _unitOfWork.MenuCategoryRepository.GetMenuCategory(menuCategoryID);
+            var menuCategory = await _unitOfWork.MenuCategoryRepository.GetMenuCategory(menuCategoryID);
 
-            if(MenuCategory == null)
+            if(menuCategory == null)
             {
                 return NotFound();
             }
@@ -113,10 +122,11 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.MenuCategoryRepository.DeleteMenuCategory(menuCategoryID);
             await _unitOfWork.Save();
 
-            return Ok(MenuCategory);
+            return Ok(menuCategory);
         }
+        #endregion
 
-
+        #region Private Variables
         private bool MenuCategoryExist(int menuCategoryID)
         {
             if (_unitOfWork.MenuCategoryRepository.GetMenuCategory(menuCategoryID) == null)
@@ -126,5 +136,6 @@ namespace CrazyFood.Core.ApiControllers
 
             return true;
         }
+        #endregion
     }
 }

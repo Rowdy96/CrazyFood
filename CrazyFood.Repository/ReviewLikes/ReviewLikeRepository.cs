@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace CrazyFood.Repository.ReviewLikes
 {
     public class ReviewLikeRepository : IReviewLikeRepository
-    { 
+    {
+        #region Public methods
         Task IReviewLikeRepository.AddLikeToReview(int reviewId, int userId, ReviewLike reviewLike)
         {
             throw new NotImplementedException();
@@ -17,7 +18,7 @@ namespace CrazyFood.Repository.ReviewLikes
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        
     }
 }

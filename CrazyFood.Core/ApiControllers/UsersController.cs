@@ -13,13 +13,22 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        #region Private Variables
+        
         private readonly IUnitOfWork _unitOfWork;
+
+        #endregion
+
+        #region Constructors
 
         public UsersController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
 
+        #endregion
+
+        #region Public Mrthods
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
@@ -105,7 +114,9 @@ namespace CrazyFood.Core.ApiControllers
 
             return Ok(User);
         }
+        #endregion
 
+        #region Private Methods
         private bool UserExists(int id)
         {
             if (_unitOfWork.UserRepository.GetUserById(id) != null)
@@ -115,7 +126,6 @@ namespace CrazyFood.Core.ApiControllers
 
             return false;
         }
-
-
+        #endregion
     }
 }

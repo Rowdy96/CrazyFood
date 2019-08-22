@@ -12,13 +12,20 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class ReviewLikesContoller : ControllerBase
     {
+        #region Private Variables
+        #region Dependencies
         private readonly IUnitOfWork _unitOfWork;
+        #endregion
+        #endregion
 
+        #region Controlllers
         public ReviewLikesContoller(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         [HttpGet("{reviewId}")]
         public async Task<int> GetAllLikes([FromRoute]int reviewId)
         {
@@ -39,6 +46,7 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.Save();
             return Ok(reviewLike);
         }
+        #endregion
 
     }
 }

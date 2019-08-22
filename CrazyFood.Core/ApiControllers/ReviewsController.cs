@@ -12,13 +12,22 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class ReviewsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        #region Private Variables
 
+        #region Dependencies
+        private readonly IUnitOfWork _unitOfWork;
+        #endregion
+
+        #endregion
+
+        #region Controllers
         public ReviewsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         [HttpGet("{restaurantId}")]
         public async Task<IEnumerable<Review>> GetReviewsOfRestaurant([FromRoute] int restaurantId)
         {
@@ -71,5 +80,7 @@ namespace CrazyFood.Core.ApiControllers
 
             return Ok(review);
         }
+
+        #endregion
     }
 }

@@ -9,10 +9,12 @@ namespace CrazyFood.Repository.MenuCategories
 {
     public interface IMenuCategoryRepository
     {
+        #region methods
         Task<IEnumerable<MenuCategory>> GetMenuCategories(int restaurantId);
         Task<MenuCategory> GetMenuCategory(int? id);
         Task CreateMenuCategory(MenuCategory menuCategory);
         Task UpdateMenuCategory(MenuCategory menuCategory);
         Task DeleteMenuCategory(int id);
+        #endregion
     }
 }

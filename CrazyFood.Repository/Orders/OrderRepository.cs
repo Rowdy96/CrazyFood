@@ -8,6 +8,7 @@ namespace CrazyFood.Repository.Orders
 {
     public class OrderRepository : IOrderRepository
     {
+        #region Public Methods
         public Task AddOrder(int userId, int restaurantId, Order order)
         {
             throw new NotImplementedException();
@@ -37,5 +38,7 @@ namespace CrazyFood.Repository.Orders
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

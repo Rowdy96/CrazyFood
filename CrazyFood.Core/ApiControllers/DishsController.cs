@@ -13,13 +13,22 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class DishsController:ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        #region Private Variables
 
+        #region Dependencies
+        private readonly IUnitOfWork _unitOfWork;
+        #endregion
+
+        #endregion
+
+        #region Controllers
         public DishsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         [HttpGet("{menuCategoryId}")]
         public async Task<IEnumerable<Dish>> GetDishesOfMenu([FromRoute]int menuCategoryId)
         {
@@ -34,13 +43,13 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            var Dish = await _unitOfWork.DishRepository.GetDishById(dishId);
-            if(Dish == null)
+            var dish = await _unitOfWork.DishRepository.GetDishById(dishId);
+            if(dish == null)
             {
                 return NotFound();
             }
 
-            return Ok(Dish);
+            return Ok(dish);
         }
 
         [HttpPost("{menuCategoryId}")]
@@ -110,7 +119,9 @@ namespace CrazyFood.Core.ApiControllers
 
             return Ok(Dish);
         }
+#endregion
 
+        #region Private Variables
         private bool DishExists(int id)
         {
             if (_unitOfWork.DishRepository.GetDishById(id) == null)
@@ -120,5 +131,6 @@ namespace CrazyFood.Core.ApiControllers
 
             return true;
         }
+        #endregion
     }
 }

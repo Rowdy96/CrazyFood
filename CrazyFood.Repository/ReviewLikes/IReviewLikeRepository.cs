@@ -8,7 +8,9 @@ namespace CrazyFood.Repository.ReviewLikes
 {
     public interface IReviewLikeRepository
     {
+        #region methods
         Task<int> GetAllLikesOfReview(int reviewId);
         Task AddLikeToReview(int reviewId, int userId,ReviewLike reviewLike);
+        #endregion
     }
 }
