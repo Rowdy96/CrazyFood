@@ -28,6 +28,20 @@ namespace CrazyFood.Core.ApiControllers
         }
         #endregion
 
+        #region Private Methods
+        private bool RestaurantExists(int id)
+        {
+            if (_unitOfWork.RestaurantRepository.GetRestaurantById(id) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
         #region Public Methods
         // GET: api/Restaurant
         [HttpGet]
@@ -127,19 +141,6 @@ namespace CrazyFood.Core.ApiControllers
         }
         #endregion
 
-        #region Private Methods
-        private bool RestaurantExists(int id)
-        {
-            if (_unitOfWork.RestaurantRepository.GetRestaurantById(id) != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        #endregion
 
     }
 }

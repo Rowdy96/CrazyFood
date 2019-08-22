@@ -29,6 +29,18 @@ namespace CrazyFood.Core.ApiControllers
         }
         #endregion
 
+        #region Private Variables
+        private bool MenuCategoryExist(int menuCategoryID)
+        {
+            if (_unitOfWork.MenuCategoryRepository.GetMenuCategory(menuCategoryID) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
+
         #region Public Methods
         [HttpGet("{restaurantId}")]
         public async Task<IEnumerable<MenuCategory>> GetMenuCategories([FromRoute]int restaurantId)
@@ -126,16 +138,5 @@ namespace CrazyFood.Core.ApiControllers
         }
         #endregion
 
-        #region Private Variables
-        private bool MenuCategoryExist(int menuCategoryID)
-        {
-            if (_unitOfWork.MenuCategoryRepository.GetMenuCategory(menuCategoryID) == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-        #endregion
     }
 }

@@ -28,7 +28,20 @@ namespace CrazyFood.Core.ApiControllers
 
         #endregion
 
-        #region Public Mrthods
+        #region Private Methods
+        private bool UserExists(int id)
+        {
+            if (_unitOfWork.UserRepository.GetUserById(id) != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region Public Methods
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
@@ -116,16 +129,6 @@ namespace CrazyFood.Core.ApiControllers
         }
         #endregion
 
-        #region Private Methods
-        private bool UserExists(int id)
-        {
-            if (_unitOfWork.UserRepository.GetUserById(id) != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        #endregion
+        
     }
 }
