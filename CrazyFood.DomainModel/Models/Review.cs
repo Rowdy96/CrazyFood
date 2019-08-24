@@ -14,6 +14,7 @@ namespace CrazyFood.DomainModel.Models
         #region Navigation Propertry
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
+
         public Users User { get; set; }
         public Restaurant Restaurant { get; set; }
 

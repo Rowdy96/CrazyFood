@@ -14,7 +14,7 @@ namespace CrazyFood.DomainModel.Models
         public string Address { get; set; }
 
         #region Navigation Propertry
-        public string RoleId { get; set; }
+        public int RoleId { get; set; }
         public UserRole Role { get; set; }
         #endregion
         #endregion

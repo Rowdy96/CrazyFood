@@ -12,7 +12,7 @@ namespace CrazyFood.DomainModel.Models
         public string Price { get; set; }
         #region Navigation Propertry
         public int MenuCategoryId { get; set; }
-        public MenuCategory MenuCategory { get; set; }
+        
         #endregion
         #endregion
     }

@@ -25,7 +25,7 @@ namespace CrazyFood.DomainModel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AverageUserRating");
+                    b.Property<float>("AverageUserRating");
 
                     b.Property<string>("RatingText");
 
@@ -35,9 +35,10 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId");
+                    b.HasIndex("RestaurantId")
+                        .IsUnique();
 
-                    b.ToTable("AverageRatings");
+                    b.ToTable("AverageRating");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.City", b =>
@@ -50,7 +51,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Cuisine", b =>
@@ -67,7 +68,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("Cuisines");
+                    b.ToTable("Cuisine");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Dish", b =>
@@ -84,9 +85,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuCategoryId");
-
-                    b.ToTable("Dishes");
+                    b.ToTable("Dish");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Follow", b =>
@@ -101,7 +100,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Follows");
+                    b.ToTable("Follow");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.MenuCategory", b =>
@@ -118,9 +117,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId");
-
-                    b.ToTable("MenuCategories");
+                    b.ToTable("MenuCategory");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Order", b =>
@@ -145,7 +142,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.OrderItem", b =>
@@ -166,7 +163,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Restaurant", b =>
@@ -195,7 +192,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Restaurants");
+                    b.ToTable("Restaurant");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Review", b =>
@@ -218,7 +215,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.ReviewComment", b =>
@@ -237,7 +234,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("ReviewId");
 
-                    b.ToTable("ReviewComments");
+                    b.ToTable("ReviewComment");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.ReviewLike", b =>
@@ -254,7 +251,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasIndex("ReviewId");
 
-                    b.ToTable("ReviewLikes");
+                    b.ToTable("ReviewLike");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.UserRole", b =>
@@ -267,7 +264,7 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRole");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Users", b =>
@@ -284,42 +281,24 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<string>("PhoneNumber");
 
-                    b.Property<string>("RoleId");
-
-                    b.Property<int?>("RoleId1");
+                    b.Property<int>("RoleId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId1");
+                    b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.AverageRating", b =>
                 {
                     b.HasOne("CrazyFood.DomainModel.Models.Restaurant", "Restaurant")
-                        .WithMany()
-                        .HasForeignKey("RestaurantId")
+                        .WithOne("AverageRating")
+                        .HasForeignKey("CrazyFood.DomainModel.Models.AverageRating", "RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Cuisine", b =>
-                {
-                    b.HasOne("CrazyFood.DomainModel.Models.Restaurant", "Restaurant")
-                        .WithMany()
-                        .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CrazyFood.DomainModel.Models.Dish", b =>
-                {
-                    b.HasOne("CrazyFood.DomainModel.Models.MenuCategory", "MenuCategory")
-                        .WithMany()
-                        .HasForeignKey("MenuCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CrazyFood.DomainModel.Models.MenuCategory", b =>
                 {
                     b.HasOne("CrazyFood.DomainModel.Models.Restaurant", "Restaurant")
                         .WithMany()
@@ -359,7 +338,7 @@ namespace CrazyFood.DomainModel.Migrations
             modelBuilder.Entity("CrazyFood.DomainModel.Models.Review", b =>
                 {
                     b.HasOne("CrazyFood.DomainModel.Models.Restaurant", "Restaurant")
-                        .WithMany()
+                        .WithMany("Reviews")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -389,7 +368,8 @@ namespace CrazyFood.DomainModel.Migrations
                 {
                     b.HasOne("CrazyFood.DomainModel.Models.UserRole", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId1");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

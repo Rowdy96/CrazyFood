@@ -8,34 +8,30 @@ namespace CrazyFood.DomainModel.Data
 {
     public class CrazyFoodContext :DbContext
     {
-        public CrazyFoodContext()
-        {
-                
-        }
 
         public CrazyFoodContext(DbContextOptions<CrazyFoodContext> options) 
             : base(options)
         {
-
+            
         }
 
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Cuisine> Cuisines { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<MenuCategory> MenuCategories { get; set; }
-        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Cuisine> Cuisine { get; set; }
+        public DbSet<Restaurant> Restaurant { get; set; }
+        public DbSet<MenuCategory> MenuCategory { get; set; }
+        public DbSet<Dish> Dish { get; set; }
 
-        public DbSet<Review> Reviews { get; set; }
-        public DbSet<ReviewComment> ReviewComments { get; set; }
-        public DbSet<ReviewLike> ReviewLikes { get; set; }
-        public DbSet<AverageRating> AverageRatings { get; set; }
+        public DbSet<Review> Review { get; set; }
+        public DbSet<ReviewComment> ReviewComment { get; set; }
+        public DbSet<ReviewLike> ReviewLike { get; set; }
+        public DbSet<AverageRating> AverageRating { get; set; }
 
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
 
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Follow> Follows { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Users> User { get; set; }
+        public DbSet<Follow> Follow { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
 
 
     }

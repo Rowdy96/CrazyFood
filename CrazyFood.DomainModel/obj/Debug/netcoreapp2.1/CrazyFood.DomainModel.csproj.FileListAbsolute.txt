@@ -1,4 +1,3 @@
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.csprojAssemblyReference.cache
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.csproj.CoreCompileInputs.cache
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.AssemblyInfoInputs.cache
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.AssemblyInfo.cs
