@@ -17,7 +17,7 @@ namespace CrazyFood.DomainModel.Models
         #region Navigation Propertry
         public int UserId { get; set; }
         public Users User { get; set; }
-        public ICollection<OrderItem> OrderItems { get; set; }
+        //public ICollection<OrderItem> OrderItems { get; set; }
         #endregion
         #endregion
     }

@@ -12,7 +12,7 @@ namespace CrazyFood.DomainModel.Models
 
         #region Navigation Propertry
         public int ReviewId { get; set; }
-        public Review Review{ get; set; }
+        //public Review Review{ get; set; }
         // public Users User { get; set; } 
         #endregion
         #endregion

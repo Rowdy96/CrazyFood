@@ -3,15 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using CrazyFood.Repository.ListOfRestaurants;
+using CrazyFood.Repository.Restaurants;
+using CrazyFood.Repository.Menu;
+using CrazyFood.Repository.Dishes;
+using CrazyFood.Repository.Reviews;
+using CrazyFood.Repository.Orders;
+using CrazyFood.Repository.Users;
 
 namespace CrazyFood.Repository.UnitOfWork
 {
     public interface IUnitOfWork
     {
         #region Propertry
-        IListOfRestaurantRepositary ListOfRestaurantRepositary { get; }
-       
+        IRestaurantRepositary restaurant { get; }
+        IMenuRepository Menu { get; }
+        IDishRepository Dish { get; }
+        IReviewRepository Review { get; }
+        IOrderRepository OrderRepository { get; }
+        IUserRepository UserRepository { get;  }
         #endregion
 
         #region Method

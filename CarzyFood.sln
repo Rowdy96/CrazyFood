@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFood.Repository.Test",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFood.Util", "CrazyFood.Util\CrazyFood.Util.csproj", "{54787DE2-6623-4B6C-BBE0-837824FB429E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyFood.Web", "CrazyFood.Web\CrazyFood.Web.csproj", "{E1C20F4E-5F3C-4045-8AB4-2091E0FA53D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFood.Web", "CrazyFood.Web\CrazyFood.Web.csproj", "{E1C20F4E-5F3C-4045-8AB4-2091E0FA53D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

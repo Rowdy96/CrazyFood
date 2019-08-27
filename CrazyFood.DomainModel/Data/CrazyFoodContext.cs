@@ -1,4 +1,5 @@
 ﻿using CrazyFood.DomainModel.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace CrazyFood.DomainModel.Data
 {
-    public class CrazyFoodContext :DbContext
+    public class CrazyFoodContext :IdentityDbContext
     {
 
         public CrazyFoodContext(DbContextOptions<CrazyFoodContext> options) 

@@ -76,6 +76,7 @@ namespace CrazyFood.DomainModel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRole", x => x.Id);
+                    
                 });
 
             migrationBuilder.CreateTable(
