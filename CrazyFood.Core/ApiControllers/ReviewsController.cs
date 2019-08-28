@@ -28,7 +28,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Reviews/GetReviewsOfUser/1
         [HttpGet("{userId}")]
-        public async Task<IEnumerable<ReviewAC>> GetReviewsOfUser([FromRoute] int userId)
+        public async Task<IEnumerable<ReviewAC>> GetReviewsOfUser([FromRoute] string userId)
         {
             return await _unitOfWork.Review.GetAllReviewOfUser(userId);
         }

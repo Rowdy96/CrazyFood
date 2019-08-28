@@ -14,11 +14,62 @@ namespace CrazyFood.Repository.Menu
     public class MenuRepository : IMenuRepository
     {
         private readonly CrazyFoodContext _context;
-        public List<MenuDishAC> MenuOfRestaurant = new List<MenuDishAC>();
+        public List<MenuAC> MenuList = new List<MenuAC>();
 
         public MenuRepository(CrazyFoodContext context)
         {
             this._context = context;
+        }
+
+        public async Task<IEnumerable<MenuAC>> MenusOfRestaurant(int id)
+        {
+            var menusOfRestaurant = await _context
+                            .MenuCategory
+                            .Where(m => m.RestaurantId == id)
+                            .ToListAsync();
+            foreach (var menu in menusOfRestaurant)
+            {
+
+                MenuAC menuAC = new MenuAC();
+                menuAC.MenuCategoryName = menu.MenuCategoryName;
+                var Dishes = await _context
+                                          .Dish
+                                          .Where(d => d.MenuCategoryId == menu.Id)
+                                          .ToListAsync();
+
+                List<DishAC> DishesOfMenu = new List<DishAC>();
+
+                foreach (var dish in Dishes)
+                {
+                    DishAC dishAC = new DishAC();
+                    dishAC.DishName = dish.DishName;
+                    dishAC.DishPrice = dish.Price;
+                    DishesOfMenu.Add(dishAC);
+                }
+                menuAC.Dishes = DishesOfMenu;
+                MenuList.Add(menuAC);
+            }
+
+            return MenuList;
+        }
+
+        public async Task<MenuAC> GetMenu(int menuId)
+        {
+            var category = await _context.MenuCategory.FindAsync(menuId);
+            var dishes = await _context.Dish.Where(d => d.MenuCategoryId == menuId).ToListAsync();
+
+            MenuAC menuAC = new MenuAC();
+            menuAC.MenuCategoryName = category.MenuCategoryName;
+            List<DishAC> dishACs = new List<DishAC>();
+            foreach (var d in dishes)
+            {
+                DishAC dish = new DishAC();
+                dish.DishName = d.DishName;
+                dish.DishPrice = d.Price;
+                dishACs.Add(dish);
+            }
+            menuAC.Dishes = dishACs;
+            return menuAC;
         }
 
         public async  Task CreateMenu(int restaurantId ,MenuCategory menu)
@@ -34,40 +85,6 @@ namespace CrazyFood.Repository.Menu
 
         }
 
-        public async Task<MenuDishAC> GetMenu(int menuId)
-        {
-            MenuDishAC menuDishAC = new MenuDishAC();
-            menuDishAC.MenuCategory = await _context.MenuCategory.FindAsync(menuId);
-            menuDishAC.MenuCategory.TotalDishes = CountTotalDishes(menuId);
-            menuDishAC.Dishes = await _context
-                                      .Dish
-                                      .Where(d => d.MenuCategoryId == menuId)
-                                      .ToListAsync();
-
-            return menuDishAC;
-        }
-
-        public async Task<IEnumerable<MenuDishAC>> GetMenuOfRestaurant(int restaurantId)
-        {
-            var menusOfRestaurant = await _context
-                            .MenuCategory
-                            .Where(m => m.RestaurantId == restaurantId)
-                            .ToListAsync();
-            foreach (var menu in menusOfRestaurant)
-            {
-                MenuDishAC menuDishAC = new MenuDishAC();
-                menuDishAC.MenuCategory = menu;
-                menuDishAC.MenuCategory.TotalDishes = CountTotalDishes(menu.Id);
-                menuDishAC.Dishes = await _context
-                                          .Dish
-                                          .Where(d => d.MenuCategoryId == menu.Id)
-                                          .ToListAsync();
-                MenuOfRestaurant.Add(menuDishAC);
-            }
-
-            return MenuOfRestaurant;
-        }
-
         public void UpdateMenu(MenuCategory menu)
         {
              menu.TotalDishes = CountTotalDishes(menu.Id);
@@ -81,5 +98,7 @@ namespace CrazyFood.Repository.Menu
                    .Where(d => d.MenuCategoryId == menuId)
                    .Count();
         }
+
+        
     }
 }

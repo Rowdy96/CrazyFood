@@ -20,7 +20,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Orders/GetAllOrdersOfUser/1002
         [HttpGet("{userId}")]
-        public async Task<IEnumerable<OrderAC>> GetAllOrdersOfUser([FromRoute]int userId)
+        public async Task<IEnumerable<OrderAC>> GetAllOrdersOfUser([FromRoute]string userId)
         {
             return await _unitOfWork.OrderRepository.GetAllOrderOfUser(userId);
         }

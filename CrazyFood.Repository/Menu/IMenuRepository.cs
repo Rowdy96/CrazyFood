@@ -9,8 +9,8 @@ namespace CrazyFood.Repository.Menu
 {
     public interface IMenuRepository
     {
-        Task<IEnumerable<MenuDishAC>> GetMenuOfRestaurant(int restaurantId);
-        Task<MenuDishAC> GetMenu(int menuId);
+        Task<IEnumerable<MenuAC>> MenusOfRestaurant(int id);
+        Task<MenuAC> GetMenu(int menuId);
         Task CreateMenu(int restaurantId,MenuCategory menu);
         void UpdateMenu(MenuCategory menu);
         Task DeleteMenu(int id);

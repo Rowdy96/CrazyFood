@@ -11,7 +11,7 @@ namespace CrazyFood.Repository.Reviews
     public interface IReviewRepository
     {
         Task<IEnumerable<ReviewAC>> GetAllReviewOfRestaurant(int restaurantId);
-        Task<IEnumerable<ReviewAC>> GetAllReviewOfUser(int userId);
+        Task<IEnumerable<ReviewAC>> GetAllReviewOfUser(string userId);
         Task AddReview(int restaurantId, ReviewAC review);
         Task AddReviewComment(int reviewId, ReviewAC reviewComment);
         Task AddLike(int reviewId, ReviewAC reviewLike);

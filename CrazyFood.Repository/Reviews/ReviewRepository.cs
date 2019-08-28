@@ -56,6 +56,12 @@ namespace CrazyFood.Repository.Reviews
             await _context.ReviewComment.AddAsync(reviewComment.Comment);
         }
 
+        public void UpdateReview(Review review)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public async Task<IEnumerable<ReviewAC>> GetAllReviewOfRestaurant(int restaurantId)
         {
             var reviews = await _context
@@ -65,9 +71,10 @@ namespace CrazyFood.Repository.Reviews
                                 .Include( r => r.User)
                                 .Where(r => r.RestaurantId==restaurantId)
                                 .ToListAsync();
+
            foreach(var review in reviews)
             {
-                var reviewComment = await _context
+                var reviewComments = await _context
                                           .ReviewComment
                                           .Where(rc => rc.ReviewId == review.Id)
                                           .ToListAsync();
@@ -76,10 +83,33 @@ namespace CrazyFood.Repository.Reviews
                                   .Where(rl => rl.ReviewId == review.Id)
                                   .Count();
 
+                List<ReviewCommentAC> ListOfComment = new List<ReviewCommentAC>();
+
+                foreach (var reviewCommnet in reviewComments)
+                {
+                    ReviewCommentAC reviewCommentAC = new ReviewCommentAC();
+                    reviewCommentAC.ReviewCommentId = reviewCommnet.Id;
+                    reviewCommentAC.ReviewCommentText = reviewCommnet.CommentText;
+                    reviewCommentAC.UserId = reviewCommnet.UserId;
+                    reviewCommentAC.UserName = reviewCommnet.User.UserName;
+
+                    ListOfComment.Add(reviewCommentAC);
+                }
+
                 ReviewAC reviewAC = new ReviewAC();
-                reviewAC.Review = review;
-                reviewAC.ReviewComment = reviewComment;
+                UserAC user = new UserAC();
+                user.Id = review.User.Id;
+                user.Name = review.User.UserName;
+                user.Phone = review.User.PhoneNumber;
+                user.Email = review.User.Email;
+                user.Address = review.User.Address;
+
+                reviewAC.ReviewId = review.Id;
+                reviewAC.ReviewText = review.ReviewText;
+                reviewAC.userAC = user;
+                reviewAC.ReviewCommnets = ListOfComment;
                 reviewAC.TotalLike = reviewLikes;
+                reviewAC.RestaurantId = restaurantId;
 
                 AllReviews.Add(reviewAC);
             }
@@ -87,7 +117,7 @@ namespace CrazyFood.Repository.Reviews
             return AllReviews;
         }
 
-        public async Task<IEnumerable<ReviewAC>> GetAllReviewOfUser(int userId)
+        public async Task<IEnumerable<ReviewAC>> GetAllReviewOfUser(string userId)
         {
             var reviews = await _context
                               .Review
@@ -96,10 +126,12 @@ namespace CrazyFood.Repository.Reviews
                               .Include(r => r.User)
                               .Where(r => r.UserId == userId)
                               .ToListAsync();
+
             foreach (var review in reviews)
             {
-                var reviewComment = await _context
+                var reviewComments = await _context
                                           .ReviewComment
+                                          .Include(r=> r.User)
                                           .Where(rc => rc.ReviewId == review.Id)
                                           .ToListAsync();
                 var reviewLikes = _context
@@ -107,10 +139,33 @@ namespace CrazyFood.Repository.Reviews
                                   .Where(rl => rl.ReviewId == review.Id)
                                   .Count();
 
+                List<ReviewCommentAC> ListOfComment = new List<ReviewCommentAC>();
+
+                foreach (var reviewCommnet in reviewComments)
+                {
+                    ReviewCommentAC reviewCommentAC = new ReviewCommentAC();
+                    reviewCommentAC.ReviewCommentId = reviewCommnet.Id;
+                    reviewCommentAC.ReviewCommentText = reviewCommnet.CommentText;
+                    reviewCommentAC.UserId = reviewCommnet.UserId;
+                    reviewCommentAC.UserName = reviewCommnet.User.UserName;
+
+                    ListOfComment.Add(reviewCommentAC);
+                }
+
                 ReviewAC reviewAC = new ReviewAC();
-                reviewAC.Review = review;
-                reviewAC.ReviewComment = reviewComment;
+                UserAC user = new UserAC();
+                user.Id = review.User.Id;
+                user.Name = review.User.UserName;
+                user.Phone = review.User.PhoneNumber;
+                user.Email = review.User.Email;
+                user.Address = review.User.Address;
+
+                reviewAC.ReviewId = review.Id;
+                reviewAC.ReviewText = review.ReviewText;
+                reviewAC.userAC = user;
+                reviewAC.ReviewCommnets = ListOfComment;
                 reviewAC.TotalLike = reviewLikes;
+                reviewAC.RestaurantId = review.RestaurantId;
 
                 ReviewsOfUser.Add(reviewAC);
             }
@@ -123,11 +178,7 @@ namespace CrazyFood.Repository.Reviews
             return await _context.ReviewComment.FindAsync(commentId);
         }
 
-        public void UpdateReview(Review review)
-        {
-            throw new NotImplementedException();
-        }
-
+       
       
     }
 }

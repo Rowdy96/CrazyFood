@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ApplicationClasses\MenuDishAC.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CrazyFood.DomainModel\CrazyFood.DomainModel.csproj" />
     <ProjectReference Include="..\CrazyFood.Util\CrazyFood.Util.csproj" />
   </ItemGroup>

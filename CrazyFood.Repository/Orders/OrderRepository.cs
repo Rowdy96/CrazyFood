@@ -29,7 +29,7 @@ namespace CrazyFood.Repository.Orders
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<OrderAC>> GetAllOrderOfUser(int userId)
+        public async Task<IEnumerable<OrderAC>> GetAllOrderOfUser(string userId)
         {
             var orders = await _context
                              .Order

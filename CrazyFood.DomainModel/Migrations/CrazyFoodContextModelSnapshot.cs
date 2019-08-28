@@ -140,13 +140,11 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<DateTime>("OrderTime");
 
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -213,15 +211,13 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<string>("ReviewText");
 
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Review");
                 });
@@ -236,9 +232,11 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<int>("ReviewId");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ReviewComment");
                 });
@@ -251,9 +249,11 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<int>("ReviewId");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ReviewLike");
                 });
@@ -484,7 +484,7 @@ namespace CrazyFood.DomainModel.Migrations
                 {
                     b.HasOne("CrazyFood.DomainModel.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.OrderItem", b =>
@@ -512,7 +512,21 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.HasOne("CrazyFood.DomainModel.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("CrazyFood.DomainModel.Models.ReviewComment", b =>
+                {
+                    b.HasOne("CrazyFood.DomainModel.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("CrazyFood.DomainModel.Models.ReviewLike", b =>
+                {
+                    b.HasOne("CrazyFood.DomainModel.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -14,8 +14,8 @@ namespace CrazyFood.Repository.Restaurants
     {
         private readonly CrazyFoodContext _context;
 
-        public List<ListOfRestaurant> AllRestaurants = new List<ListOfRestaurant>();
-        public List<ListOfRestaurant> RestaurantsOfCity = new List<ListOfRestaurant>();
+        public List<RestaurantAC> AllRestaurants = new List<RestaurantAC>();
+        public List<RestaurantAC> RestaurantsOfCity = new List<RestaurantAC>();
 
         public RestaurantRepositary(CrazyFoodContext context)
         {
@@ -38,13 +38,13 @@ namespace CrazyFood.Repository.Restaurants
             _context.Restaurant.Update(restaurant);
         }
 
-        public async Task<IEnumerable<ListOfRestaurant>> Restaurants()
+        public async Task<IEnumerable<RestaurantAC>> Restaurants()
         {
 
             var restaurants = await _context.Restaurant.Include(r => r.City).ToListAsync();
             foreach (var restaurant in restaurants)
             {
-                ListOfRestaurant restaurantinfo = new ListOfRestaurant();
+                RestaurantAC restaurantinfo = new RestaurantAC();
                 restaurantinfo.Restaurant = restaurant;
                 restaurantinfo.Restaurant.AverageRating = _context
                                                     .AverageRating
@@ -56,7 +56,7 @@ namespace CrazyFood.Repository.Restaurants
             return AllRestaurants;
         }
 
-        public async Task<IEnumerable<ListOfRestaurant>> GetRestaurantsOfACity(int cityId)
+        public async Task<IEnumerable<RestaurantAC>> GetRestaurantsOfACity(int cityId)
         {
             var restaurants = await _context
                                     .Restaurant
@@ -66,7 +66,7 @@ namespace CrazyFood.Repository.Restaurants
 
             foreach (var restaurant in restaurants)
             {
-                ListOfRestaurant restaurantinfo = new ListOfRestaurant();
+                RestaurantAC restaurantinfo = new RestaurantAC();
                 restaurantinfo.Restaurant = restaurant;
                 restaurantinfo.Restaurant.AverageRating = _context
                                                     .AverageRating
@@ -78,9 +78,9 @@ namespace CrazyFood.Repository.Restaurants
             return RestaurantsOfCity;
         }
 
-        public async Task<ListOfRestaurant> GetRestaurantById(int restaurantId)
+        public async Task<RestaurantAC> GetRestaurantById(int restaurantId)
         {
-            ListOfRestaurant restaurant = new ListOfRestaurant();
+            RestaurantAC restaurant = new RestaurantAC();
             restaurant.Restaurant = await _context.Restaurant.Include(r => r.City).FirstOrDefaultAsync(r => r.Id == restaurantId);
             restaurant.Restaurant.AverageRating = _context
                                                    .AverageRating

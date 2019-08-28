@@ -13,7 +13,7 @@ namespace CrazyFood.DomainModel.Models
         public int Likes { get; set; }
 
         #region Navigation Propertry
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int RestaurantId { get; set; }
 
         public Users User { get; set; }

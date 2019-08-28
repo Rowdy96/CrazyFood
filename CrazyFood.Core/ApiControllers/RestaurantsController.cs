@@ -23,7 +23,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Restaurants/GetAll
         [HttpGet]
-        public async Task<IEnumerable<ListOfRestaurant>> GetAll()
+        public async Task<IEnumerable<RestaurantAC>> GetAll()
         {
             return await _unitOfWork
                         .restaurant
@@ -32,7 +32,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Restaurants/RestaurantsOfCity/1
         [HttpGet("{cityId}")]
-        public async Task<IEnumerable<ListOfRestaurant>> RestaurantsOfCity([FromRoute] int cityId)
+        public async Task<IEnumerable<RestaurantAC>> RestaurantsOfCity([FromRoute] int cityId)
         {
             return await _unitOfWork
                         .restaurant
@@ -41,7 +41,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Restaurants/GetRestaurant/1
         [HttpGet("{restaurantId}")]
-        public async Task<ListOfRestaurant> GetRestaurant([FromRoute] int restaurantId)
+        public async Task<RestaurantAC> GetRestaurant([FromRoute] int restaurantId)
         {
             return await _unitOfWork
                         .restaurant

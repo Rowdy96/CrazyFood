@@ -20,16 +20,17 @@ namespace CrazyFood.Core.ApiControllers
             this._unitOfWork = unitOfWork;
         }
 
-        //api/Menus/AllMenuOfRestaurant/1
-        [HttpGet("{restaurantId}")]
-        public async Task<IEnumerable<MenuDishAC>> AllMenuOfRestaurant([FromRoute] int restaurantId)
+        //api/Menus/MenuList/1
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<MenuAC>> MenuList([FromRoute] int id)
         {
-            return await _unitOfWork.Menu.GetMenuOfRestaurant(restaurantId);
+            return await _unitOfWork.Menu.MenusOfRestaurant(id);
         }
+
 
         //api/Menus/MenuOfRestaurant/1
         [HttpGet("{menuId}")]
-        public async Task<MenuDishAC> MenuOfRestaurant([FromRoute] int menuId)
+        public async Task<MenuAC> MenuOfRestaurant([FromRoute] int menuId)
         {
             return await _unitOfWork.Menu.GetMenu(menuId);
         }

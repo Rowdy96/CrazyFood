@@ -1,9 +1,12 @@
-﻿using CrazyFood.DomainModel.Models;
+﻿using CrazyFood.DomainModel.Data;
+using CrazyFood.DomainModel.Models;
 using CrazyFood.Repository.ApplicationClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,14 +15,18 @@ namespace CrazyFood.Core.ApiControllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
+       
         private UserManager<Users> _userManager { get; set; }
         private SignInManager<Users> _signInManager { get; set; }
+        private RoleManager<IdentityRole> _roleManager { get; set; }
 
         public AccountController(UserManager<Users> userManager,
-                                 SignInManager<Users> signInManager)
+                                 SignInManager<Users> signInManager,
+                                 RoleManager<IdentityRole> roleManager)
         {
-            this._userManager = userManager;
-            this._signInManager = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         //api/Account
         [HttpGet]
@@ -34,8 +41,11 @@ namespace CrazyFood.Core.ApiControllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Users { UserName = model.Email, Email = model.Email };
-                var result = await this._userManager.CreateAsync(user, model.Password);
+                var user = new Users { UserName = model.Name,
+                                       Email = model.Email,
+                                       PhoneNumber=model.Phone,
+                                       Address=model.Address};
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
@@ -76,7 +86,6 @@ namespace CrazyFood.Core.ApiControllers
                     return RedirectToAction("Register","Account");
                 }
 
-
                 ModelState.AddModelError("", "Invalid Login Attempt");
 
             }
@@ -87,13 +96,28 @@ namespace CrazyFood.Core.ApiControllers
 
         [Route("Logout")]
         [HttpPost]
-        public async Task<IActionResult> Logout(LoginAC model)
+        public async Task<IActionResult> Logout()
         {
-
-        
-                 await _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Register", "Account");
+        }
 
+
+        //api/Account/id
+        [Route("GetUserById")]
+        [HttpGet("{userId}")]
+        public async Task<Users> GetUserById([FromRoute]string userId)
+        {
+            Users user =await _userManager.FindByIdAsync(userId);
+            return user;
+        }
+
+        [Route("EditUser")]
+        [HttpPut]
+        [Authorize]
+        public async Task EditUser([FromBody]Users user)
+        {
+            await _userManager.UpdateAsync(user);
         }
 
     }
