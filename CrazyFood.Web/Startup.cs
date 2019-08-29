@@ -41,6 +41,7 @@ namespace CrazyFood.Web
             services.AddDbContext<CrazyFoodContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("CrazyFoodContext")));
             services.AddIdentity<Users, IdentityRole>().AddEntityFrameworkStores<CrazyFoodContext>();
+            services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
@@ -57,6 +58,9 @@ namespace CrazyFood.Web
                 app.UseHsts();
             }
 
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

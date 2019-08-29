@@ -1,0 +1,29 @@
+<div *ngIf="!RestaurantList">
+  No data found..wait..
+</div>
+
+
+<div class="col-md-6" *ngFor="let restaurant of RestaurantList">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title"><a routerLink="/Restaurant/{{restaurant.restaurant.id}}">{{restaurant.restaurant.name}}</a></h2>
+      <div class="card-text">
+        {{restaurant.restaurant.restaurantLocation}}<br>
+        City:{{restaurant.restaurant.city.cityName}}<br>
+        Email:{{restaurant.restaurant.emailId}}<br>
+        <hr>
+        COST FOR TWO : {{restaurant.restaurant.averageCost}}<br>
+        OPENING HOURS: {{restaurant.restaurant.openingHours}}
+      </div>
+      <hr>
+      <div class="btn-group-justified">
+        <a href="#" class="btn btn-success">Phone</a>
+        <a href="#" class="btn btn-success">Menu</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br>
+
+
