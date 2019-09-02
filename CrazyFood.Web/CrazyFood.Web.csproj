@@ -2,17 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="bin\**" />
+    <Compile Remove="CrazyFoodClient\**" />
     <Compile Remove="obj\**" />
+    <Compile Remove="wwwroot\app\**" />
     <Content Remove="bin\**" />
+    <Content Remove="CrazyFoodClient\**" />
     <Content Remove="obj\**" />
+    <Content Remove="wwwroot\app\**" />
     <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="CrazyFoodClient\**" />
     <EmbeddedResource Remove="obj\**" />
+    <EmbeddedResource Remove="wwwroot\app\**" />
     <None Remove="bin\**" />
+    <None Remove="CrazyFoodClient\**" />
     <None Remove="obj\**" />
+    <None Remove="wwwroot\app\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +45,10 @@
     <Content Update="Views\Account\_ValidationScriptsPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App\dist\" />
   </ItemGroup>
 
 </Project>

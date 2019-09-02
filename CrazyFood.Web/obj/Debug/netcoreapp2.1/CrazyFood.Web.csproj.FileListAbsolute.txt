@@ -28,7 +28,6 @@ C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\About.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\Contact.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\Error.g.cshtml.cs
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\Index.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\Privacy.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\_ViewImports.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\_ViewStart.g.cshtml.cs
@@ -44,3 +43,7 @@ C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_ValidationScriptsPartial.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Views\Account\_Layout.g.cshtml.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Pages\_Index.g.cshtml.cs
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.g.cshtml.cs
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\App\dist\app\Index.g.cshtml.cs
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Web\obj\Debug\netcoreapp2.1\Razor\wwwroot\dist\app\Index.g.cshtml.cs

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CrazyFood.Core.ApiControllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     public class AccountController : Controller
     {
        
@@ -36,7 +36,7 @@ namespace CrazyFood.Core.ApiControllers
         }
 
    
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterAC model)
         {
             if (ModelState.IsValid)
@@ -63,14 +63,14 @@ namespace CrazyFood.Core.ApiControllers
         }
 
 
-        [Route("Login")]
+        //[Route("Login")]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [Route("Login")]
+        
         [HttpPost]
         public async Task<IActionResult> Login(LoginAC model)
         {
@@ -83,7 +83,7 @@ namespace CrazyFood.Core.ApiControllers
                                                                       ,false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Register","Account");
+                    return View("Index");
                 }
 
                 ModelState.AddModelError("", "Invalid Login Attempt");
