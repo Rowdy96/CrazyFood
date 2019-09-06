@@ -1,0 +1,50 @@
+<div class="col-md-12">
+    <h2>Reviews</h2>
+    <div *ngFor="let review of ReviwList">
+
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <h4><a>{{review.userAC.name}}</a></h4>
+          <h5>Rated:{{review.rating}}/ 5</h5>
+          <h5>Review: {{review.reviewText}}</h5>
+
+          <div>
+            <a href="#">
+              <span class="glyphicon glyphicon-thumbs-up" style="font-size:40px;"></span>
+            </a>
+            <a (click)="toggle(review)">
+              <span class="glyphicon glyphicon-comment" style="font-size:40px;"></span>
+            </a>
+          </div>
+        </div>
+      <div *ngIf="review.showComment">
+          <div *ngIf="review.reviewCommnets">
+            <div *ngFor="let comment of review.reviewCommnets">
+              <div class="panel panel-primary">
+                <div class="panel-heading">{{comment.userName}}</div>
+                <div class="panel-body">
+                  <h5>{{comment.reviewCommentText}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+          <div>
+            <form>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Write Comment">
+                <div class="input-group-btn">
+                  <button class="btn btn-success" type="submit">
+                    Add Comment
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+ </div>
+
+
+

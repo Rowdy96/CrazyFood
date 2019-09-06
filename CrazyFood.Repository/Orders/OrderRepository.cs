@@ -21,6 +21,12 @@ namespace CrazyFood.Repository.Orders
         public async Task AddOrder(OrderAC order)
         {
             await _context.Order.AddAsync(order.Order);
+
+            foreach(var item in order.OrderItem)
+            {
+                item.Order = order.Order;
+            }
+
             await _context.OrderItem.AddRangeAsync(order.OrderItem);
         }
 

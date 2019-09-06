@@ -1,11 +1,11 @@
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.deps.json
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.runtimeconfig.json
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.runtimeconfig.dev.json
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.dll
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.csprojAssemblyReference.cache
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.csproj.CoreCompileInputs.cache
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.AssemblyInfoInputs.cache
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.AssemblyInfo.cs
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.deps.json
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.dll
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.pdb
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.pdb
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.runtimeconfig.json
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.runtimeconfig.dev.json
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.DomainModel\obj\Debug\netcoreapp2.1\CrazyFood.DomainModel.csprojAssemblyReference.cache

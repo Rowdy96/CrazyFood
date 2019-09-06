@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CrazyFood.Core.ApiControllers
 {
-    //[Route("api/[controller]")]
+    
     public class AccountController : Controller
     {
        
@@ -28,20 +28,27 @@ namespace CrazyFood.Core.ApiControllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-        //api/Account
-        [HttpGet]
+        //api/Account/Register
+        [HttpGet("Register")]
         public IActionResult Register()
         {
             return View();
         }
 
-   
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterAC model)
         {
             if (ModelState.IsValid)
             {
-                var user = new Users { UserName = model.Name,
+                var user = new Users { UserName = model.Email,
+                                       Name = model.Name,
                                        Email = model.Email,
                                        PhoneNumber=model.Phone,
                                        Address=model.Address};
@@ -83,7 +90,7 @@ namespace CrazyFood.Core.ApiControllers
                                                                       ,false);
                 if (result.Succeeded)
                 {
-                    return View("Index");
+                    return RedirectToAction("Index");
                 }
 
                 ModelState.AddModelError("", "Invalid Login Attempt");
@@ -103,12 +110,12 @@ namespace CrazyFood.Core.ApiControllers
         }
 
 
-        //api/Account/id
-        [Route("GetUserById")]
-        [HttpGet("{userId}")]
-        public async Task<Users> GetUserById([FromRoute]string userId)
+        [Route("GetCurrentUser")]
+        [HttpGet("GetCurrentUser")]
+        public async Task<Users> GetCurrentUser()
         {
-            Users user =await _userManager.FindByIdAsync(userId);
+            var username = User.Identity.Name;
+            Users user = await _userManager.FindByNameAsync(username);
             return user;
         }
 

@@ -25,6 +25,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="App\src\app\Models\Dish.ts" />
+    <None Remove="App\src\app\Models\DishAC.ts" />
+    <None Remove="App\src\app\Models\MenuAC.ts" />
+    <None Remove="App\src\app\Models\OrderAC.ts" />
+    <None Remove="App\src\app\Models\OrderItem.ts" />
+    <None Remove="App\src\app\Models\OrderMenuAC.ts" />
+    <None Remove="App\src\app\Models\ReviewAC.ts" />
+    <None Remove="App\src\app\Models\ReviewCommentAC.ts" />
+    <None Remove="App\src\app\Models\UserAC.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Pages\Shared\_CookieConsentPartial.cshtml" />
     <None Include="Pages\Shared\_Layout.cshtml" />
     <None Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
@@ -49,6 +61,24 @@
 
   <ItemGroup>
     <Folder Include="App\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="App\src\app\Models\Dish.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\DishAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\MenuAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\OrderAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\OrderItem.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\OrderMenuAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\ReviewAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\ReviewCommentAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\UserAC.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App\src\app\Models\Order.ts">
+      <SubType>Code</SubType>
+    </None>
   </ItemGroup>
 
 </Project>

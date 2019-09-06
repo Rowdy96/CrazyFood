@@ -18,5 +18,6 @@ namespace CrazyFood.Repository.Reviews
         Task AddRating(int restaurantId, ReviewAC review);
         void UpdateReview(Review review);
         Task<ReviewComment> GetComment(int commentId);
+        Task<ReviewAC> GetReview(int reviewId);
     }
 }

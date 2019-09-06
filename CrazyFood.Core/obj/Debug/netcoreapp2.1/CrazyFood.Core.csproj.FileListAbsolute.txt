@@ -1,7 +1,3 @@
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.csprojAssemblyReference.cache
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.csproj.CoreCompileInputs.cache
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.AssemblyInfoInputs.cache
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.AssemblyInfo.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2.1\CrazyFood.Core.deps.json
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2.1\CrazyFood.Core.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2.1\CrazyFood.Core.pdb
@@ -11,6 +7,10 @@ C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2.1\CrazyFood.Repository.pdb
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.pdb
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\bin\Debug\netcoreapp2.1\CrazyFood.Util.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.csprojAssemblyReference.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.csproj.CoreCompileInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.AssemblyInfoInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.AssemblyInfo.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.csproj.CopyComplete
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Core\obj\Debug\netcoreapp2.1\CrazyFood.Core.pdb

@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace CrazyFood.Web
 {
@@ -42,7 +44,14 @@ namespace CrazyFood.Web
             {
                 configuration.RootPath = "wwwroot/app";
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .AddJsonOptions(options => {
+                        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    });
+
             services.AddDbContext<CrazyFoodContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("CrazyFoodContext")));
             services.AddIdentity<Users, IdentityRole>().AddEntityFrameworkStores<CrazyFoodContext>();
@@ -87,14 +96,13 @@ namespace CrazyFood.Web
             {
                 routes.MapRoute(name: "default",
                 template: "{controller}/{action}",
-                defaults: new { controller = "Account", action = "Login" });
-                
+                defaults: new { controller = "Account", action = "Index" });
+
+                routes.MapSpaFallbackRoute(
+                   name: "spa-fallback",
+                   defaults: new { controller = "Account", action = "Index" });
             });
-            //app.UseSpa(spa =>
-            //{
-            //    spa.Options.SourcePath = "App";
-            //    spa.UseAngularCliServer(npmScript: "start");
-            //});
+           
 
         }
     }

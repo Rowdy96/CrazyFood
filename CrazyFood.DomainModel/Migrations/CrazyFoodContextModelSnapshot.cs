@@ -130,15 +130,11 @@ namespace CrazyFood.DomainModel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DeliveryTime");
-
                     b.Property<bool>("IsOderPreparing");
 
                     b.Property<bool>("IsOnTheWay");
 
                     b.Property<bool>("IsOrderDelivered");
-
-                    b.Property<DateTime>("OrderTime");
 
                     b.Property<string>("UserId");
 
@@ -164,6 +160,8 @@ namespace CrazyFood.DomainModel.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DishId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderItem");
                 });
@@ -443,6 +441,8 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<string>("Name");
+
                     b.ToTable("Users");
 
                     b.HasDiscriminator().HasValue("Users");
@@ -492,6 +492,11 @@ namespace CrazyFood.DomainModel.Migrations
                     b.HasOne("CrazyFood.DomainModel.Models.Dish", "Dish")
                         .WithMany()
                         .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CrazyFood.DomainModel.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

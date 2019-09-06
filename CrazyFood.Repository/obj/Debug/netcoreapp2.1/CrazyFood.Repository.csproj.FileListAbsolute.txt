@@ -1,7 +1,3 @@
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.csprojAssemblyReference.cache
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.csproj.CoreCompileInputs.cache
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.AssemblyInfoInputs.cache
-C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.AssemblyInfo.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netcoreapp2.1\CrazyFood.Repository.deps.json
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netcoreapp2.1\CrazyFood.Repository.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netcoreapp2.1\CrazyFood.Repository.pdb
@@ -9,6 +5,10 @@ C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netco
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netcoreapp2.1\CrazyFood.Util.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netcoreapp2.1\CrazyFood.DomainModel.pdb
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\bin\Debug\netcoreapp2.1\CrazyFood.Util.pdb
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.csprojAssemblyReference.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.csproj.CoreCompileInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.AssemblyInfoInputs.cache
+C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.AssemblyInfo.cs
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.csproj.CopyComplete
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.dll
 C:\Users\rahulmondal\source\repos\CarzyFood\CrazyFood.Repository\obj\Debug\netcoreapp2.1\CrazyFood.Repository.pdb

@@ -33,6 +33,13 @@ namespace CrazyFood.Core.ApiControllers
             return await _unitOfWork.Review.GetAllReviewOfUser(userId);
         }
 
+        //api/Reviews/GetReview/1
+        [HttpGet("{reviewId}")]
+        public async Task<ReviewAC> GetReview([FromRoute] int reviewId)
+        {
+            return await _unitOfWork.Review.GetReview(reviewId);
+        }
+
         //api/Reviews/AddReviw/1
         [HttpPost("{restaurantId}")]
         public async Task<IActionResult> AddReviw([FromRoute] int restaurantId

@@ -25,6 +25,7 @@ namespace CrazyFood.Repository.Menu
         {
             var menusOfRestaurant = await _context
                             .MenuCategory
+                            .Include(m=>m.Restaurant)
                             .Where(m => m.RestaurantId == id)
                             .ToListAsync();
             foreach (var menu in menusOfRestaurant)
@@ -32,6 +33,12 @@ namespace CrazyFood.Repository.Menu
 
                 MenuAC menuAC = new MenuAC();
                 menuAC.MenuCategoryName = menu.MenuCategoryName;
+                menuAC.Id = menu.Id;
+                menuAC.TotalDishes = menu.TotalDishes;
+                menuAC.RestaurantId = menu.RestaurantId;
+                menuAC.RestaurantName = menu.Restaurant.Name;
+                menuAC.PhoneNumber = menu.Restaurant.PhoneNumber;
+                menuAC.EmailId = menu.Restaurant.EmailId;
                 var Dishes = await _context
                                           .Dish
                                           .Where(d => d.MenuCategoryId == menu.Id)
@@ -42,8 +49,10 @@ namespace CrazyFood.Repository.Menu
                 foreach (var dish in Dishes)
                 {
                     DishAC dishAC = new DishAC();
+                    dishAC.Id = dish.Id;
                     dishAC.DishName = dish.DishName;
                     dishAC.DishPrice = dish.Price;
+                    dishAC.MenuCategoryId = dish.MenuCategoryId;
                     DishesOfMenu.Add(dishAC);
                 }
                 menuAC.Dishes = DishesOfMenu;

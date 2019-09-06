@@ -8,6 +8,7 @@ namespace CrazyFood.DomainModel.Models
     public class Users : IdentityUser
     {
         #region Public Propertry
+        public string Name { get; set; }
         public string Address { get; set; }
 
         //#region Navigation Propertry

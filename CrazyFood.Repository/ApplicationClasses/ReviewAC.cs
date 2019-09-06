@@ -14,12 +14,15 @@ namespace CrazyFood.Repository.ApplicationClasses
 
         //************************************************************
         public int ReviewId { get; set; }
+        public int Rating { get; set; }
         public string ReviewText { get; set; }
         public int TotalLike { get; set; }
         public UserAC userAC { get; set; }
         public ICollection<ReviewCommentAC> ReviewCommnets { get; set; }
         public int RestaurantId { get; set; }
-        
-        
+        //public bool ShowComment = false;
+
+
+
     }
 }
