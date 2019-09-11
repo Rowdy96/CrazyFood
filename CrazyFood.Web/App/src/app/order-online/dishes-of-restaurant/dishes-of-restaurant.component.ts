@@ -7,6 +7,9 @@ import { Dish } from '../../Models/Dish';
 import { OrderItem } from '../../Models/OrderItem';
 import { Order } from '../../Models/Order';
 import { OrderAC } from '../../Models/OrderAC';
+import { UserService } from 'src/app/user.service';
+import { UserAC } from 'src/app/Models/UserAC';
+import { RestaurantDetailsService } from '../../restaurant-details/restaurant-details.service';
 
 
 @Component({
@@ -18,19 +21,26 @@ export class DishesOfRestaurantComponent implements OnInit {
 
   Id: number = 0;
   OrderMenuList: OrderMenuAC[];
-  UserId: string = "1";
   RestaurantDetails: RestaurantAC;
   SelectedItemList: Dish[] = new Array();
-
-  Order: OrderAC = new OrderAC();
-  OrderItemList: OrderItem[] = new Array();
+  totalPrice: number = 0;
+  user: UserAC = new UserAC();
 
   constructor(private service : OrderOnlineService
-             ,private route: ActivatedRoute) { }
+             ,private route: ActivatedRoute
+             ,private userService: UserService
+             , private restaurantService: RestaurantDetailsService) { }
 
   ngOnInit() {
     this.GetRestaurant();
     this.getMenuOfRestaurant();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.userService.GetLoggedInUser().subscribe(res => {
+      this.user= res;
+    });
   }
 
   getMenuOfRestaurant():void { 
@@ -42,7 +52,6 @@ export class DishesOfRestaurantComponent implements OnInit {
         }
       }
     });
-    debugger;
   }
 
   GetRestaurant(): void{
@@ -72,21 +81,11 @@ export class DishesOfRestaurantComponent implements OnInit {
     else {
       this.SelectedItemList.push(dish);
       console.log(this.SelectedItemList);
+      this.totalPrice = this.totalPrice + dish.itemCount * dish.dishPrice;
     }
   }
 
-  proceed() {
-    for (var selectedItem of this.SelectedItemList) {
-      var item = new OrderItem();
-      item.dishId = selectedItem.id;
-      item.itemCount = selectedItem.itemCount;
-      this.OrderItemList.push(item);
-    }
-    //this.Order.Order.userId = this.UserId;
-    this.Order.OrderItems = this.OrderItemList
-
-    console.log(this.Order);
-  }
+  
 
 
 }

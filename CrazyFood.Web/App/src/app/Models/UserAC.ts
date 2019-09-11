@@ -5,4 +5,5 @@ export class UserAC {
   phone: string;
   address: string;
   email: string;
+  roles: string[];
 }

@@ -1,0 +1,6 @@
+<div *ngFor="let order of Orders">
+  {{order.order.id}}
+  <div *ngFor="let item of order.orderItem">
+    {{item.itemCount}} {{item.dish.dishName}} {{item.dish.price}} {{item.dish.menuCategory.restaurantId}}
+  </div>
+</div>

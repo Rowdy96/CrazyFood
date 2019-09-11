@@ -1,6 +1,7 @@
 ﻿using CrazyFood.DomainModel.Models;
 using CrazyFood.Repository.ApplicationClasses;
 using CrazyFood.Repository.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,12 +31,14 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Menus/MenuOfRestaurant/1
         [HttpGet("{menuId}")]
+
         public async Task<MenuAC> MenuOfRestaurant([FromRoute] int menuId)
         {
             return await _unitOfWork.Menu.GetMenu(menuId);
         }
 
         [HttpPost("{restaurantId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMenuCategory([FromRoute] int restaurantId
                                                             , [FromBody] MenuCategory menuCategory)
         {
@@ -49,6 +52,7 @@ namespace CrazyFood.Core.ApiControllers
         }
 
         [HttpPut("{menuId}")]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> UpdateMenuCategory([FromRoute] int menuId
                                                             , [FromBody] MenuCategory menuCategory)
         {

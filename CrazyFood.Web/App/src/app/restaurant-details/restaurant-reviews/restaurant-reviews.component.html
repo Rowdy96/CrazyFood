@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="container col-md-12">
     <h2>Reviews</h2>
     <div *ngFor="let review of ReviwList">
 
@@ -30,15 +30,15 @@
           </div>
       </div>
 
-          <div>
-            <form>
+          <div >
+            <form [formGroup]="commentForm" (ngSubmit)="addComment(review.reviewId)">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Write Comment">
-                <div class="input-group-btn">
-                  <button class="btn btn-success" type="submit">
-                    Add Comment
-                  </button>
-                </div>
+                  <input type="text" class="form-control" placeholder="Write Comment" formControlName="commentText">
+                    <div class="input-group-btn">
+                      <button class="btn btn-success" type="submit" >
+                        Add Comment
+                      </button>
+                    </div> 
               </div>
             </form>
           </div>

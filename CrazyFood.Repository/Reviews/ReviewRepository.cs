@@ -44,9 +44,9 @@ namespace CrazyFood.Repository.Reviews
             await _context.Review.AddAsync(reviewRating.Review);
         }
 
-        public async Task AddReview(int restaurantId, ReviewAC review)
+        public async Task AddReview(ReviewAC review)
         {
-            review.Review.RestaurantId = restaurantId;
+           /// review.Review.RestaurantId = restaurantId;
             await _context.Review.AddAsync(review.Review);
         }
 
@@ -69,7 +69,7 @@ namespace CrazyFood.Repository.Reviews
                                 .Include(r => r.Restaurant)
                                 .ThenInclude(c => c.City)
                                 .Include( r => r.User)
-                                .Where(r => r.RestaurantId==restaurantId)
+                                .Where(r => r.RestaurantId == restaurantId && r.ReviewText != null)
                                 .ToListAsync();
 
            foreach(var review in reviews)
@@ -125,7 +125,7 @@ namespace CrazyFood.Repository.Reviews
                               .Include(r => r.Restaurant)
                               .ThenInclude(c => c.City)
                               .Include(r => r.User)
-                              .Where(r => r.UserId == userId)
+                              .Where(r => r.UserId == userId && r.ReviewText!=null).Reverse()
                               .ToListAsync();
 
             foreach (var review in reviews)

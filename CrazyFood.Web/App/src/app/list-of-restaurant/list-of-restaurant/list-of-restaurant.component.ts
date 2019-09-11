@@ -4,6 +4,8 @@ import { ListOfRestaurantService } from '../list-of-restaurant.service';
 import { Restaurant } from '../../Models/Restaurant';
 import { Route, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserAC } from '../../Models/UserAC';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-list-of-restaurant',
@@ -15,18 +17,28 @@ export class ListOfRestaurantComponent implements OnInit {
   RestaurantList: RestaurantAC[];
   restaurant = new Restaurant();
   cityId: number;
-
+  user: UserAC;
+  
   cityForm = new FormGroup({
     city: new FormControl('')
   });
 
   constructor(private service: ListOfRestaurantService,
-              private router: Router) { }
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.GetRestaurants();
-   
+    this.GetCurrentUSer();
   }
+  GetCurrentUSer() {
+    this.userService.GetLoggedInUser().subscribe(res => {
+      this.user = res
+    },
+      err => {
+        console.log(err)
+      });
+   }
 
   GetRestaurants(): void{
 
@@ -51,7 +63,9 @@ export class ListOfRestaurantComponent implements OnInit {
   GoToMenu(id: number) {
     this.router.navigateByUrl('/RestaurantDetails/'+id+'/Menu');
   }
-
+  GoToOrder(id: number) {
+    this.router.navigateByUrl('/RestaurantDetails/' + id + '/Order/' + id);
+  }
   onSubmit(){
     this.cityId = this.cityForm.value.city;
     debugger;

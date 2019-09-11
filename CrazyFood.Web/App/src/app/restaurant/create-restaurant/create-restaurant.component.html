@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-horizontal" [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name">Name Of Restaurant:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Name" placeholder="Enter Restaurant Name" formControlName="Name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Email">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="Email" placeholder="Enter Email" formControlName="Email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Phone">Phone:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="Phone" placeholder="Enter Phone" formControlName="Phone">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="City">City:</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="City" name="City" formControlName="City">
+              <option selected>--Select City--</option>
+              <option value="1">Vadodara</option>
+              <option value="2">Ahmedabad</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Cost">Has Online Delivery:</label>
+          <div class="col-sm-10">
+            <div class="radio">
+              <label><input type="radio" name="OnlineBooking" value="true" formControlName="OnlineBooking" checked >Yes</label>
+              <label><input type="radio" name="OnlineBooking" value="false" formControlName="OnlineBooking">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Cost">Average Cost:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Cost" placeholder="Enter Average Cost" formControlName="Cost">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Time">Opening Hours:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Time" placeholder="Enter Opening Hours" formControlName="Time">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Address">Address:</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" id="Address" placeholder="Enter Address" formControlName="Address"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

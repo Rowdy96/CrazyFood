@@ -12,7 +12,7 @@ namespace CrazyFood.Repository.Reviews
     {
         Task<IEnumerable<ReviewAC>> GetAllReviewOfRestaurant(int restaurantId);
         Task<IEnumerable<ReviewAC>> GetAllReviewOfUser(string userId);
-        Task AddReview(int restaurantId, ReviewAC review);
+        Task AddReview( ReviewAC review);
         Task AddReviewComment(int reviewId, ReviewAC reviewComment);
         Task AddLike(int reviewId, ReviewAC reviewLike);
         Task AddRating(int restaurantId, ReviewAC review);

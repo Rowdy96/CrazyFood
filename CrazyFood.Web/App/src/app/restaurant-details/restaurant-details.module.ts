@@ -7,6 +7,7 @@ import { DetailsPageComponent } from './details-page/details-page.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import { RestaurantReviewsComponent } from './restaurant-reviews/restaurant-reviews.component';
 import { OrderOnlineModule } from '../order-online/order-online.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { OrderOnlineModule } from '../order-online/order-online.module';
   imports: [
     CommonModule,
     RestaurantDetailsRoutingModule,
-    OrderOnlineModule
+    OrderOnlineModule,
+    ReactiveFormsModule
   ]
 })
 export class RestaurantDetailsModule { }

@@ -1,5 +1,6 @@
 ﻿using CrazyFood.Repository.ApplicationClasses;
 using CrazyFood.Repository.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,15 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Orders/GetAllOrdersOfUser/1002
         [HttpGet("{userId}")]
+        [Authorize(Roles = "Admin, Customer")]
         public async Task<IEnumerable<OrderAC>> GetAllOrdersOfUser([FromRoute]string userId)
         {
             return await _unitOfWork.OrderRepository.GetAllOrderOfUser(userId);
         }
 
+        //api/Orders/AddOrder
         [HttpPost]
+       // [Authorize(Roles = "Admin, Customer")]
         public async Task<IActionResult> AddOrder([FromBody] OrderAC order)
         {
             if (!ModelState.IsValid)

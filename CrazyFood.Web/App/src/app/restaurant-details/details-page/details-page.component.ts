@@ -24,9 +24,7 @@ export class DetailsPageComponent implements OnInit {
   GetRestaurant(): void {
     this.restaurantId = +this.route.snapshot.paramMap.get("restaurantId");
     this.service.GetRestaurant(this.restaurantId).subscribe(res => {
-     
       this.RestaurantDetails = res;
-      
     });
   }
 

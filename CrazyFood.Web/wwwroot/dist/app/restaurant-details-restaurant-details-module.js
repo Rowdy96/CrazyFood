@@ -29,7 +29,7 @@ module.exports = "\r\n  <div class=\"panel panel-primary\">\r\n    <div class=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel panel-footer\">Your Order</div>\r\n  <div class=\"panel panel-body\">\r\n    <table class=\"table table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>Name Of The Dish</th>\r\n          <th>Price</th>\r\n          <th>Total</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr>\r\n          <td>dish.dishName</td>\r\n          <td>dish.dishPrice</td>\r\n          <td>0</td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  <div class=\"panel panel-footer\">\r\n    <button>Proceed</button>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel panel-footer\">Your Order</div>\r\n  <div class=\"panel panel-body\">\r\n    <table class=\"table table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>Name Of The Dish</th>\r\n          <th>Item Count</th>\r\n          <th>Price</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor =\"let item of ItemList\">\r\n          <td>{{item.dishName}}</td>\r\n          <td>{{item.itemCount}} </td>\r\n          <td>{{item.dishPrice}}</td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n\r\n    <h4 *ngIf=\"totalOrderPrice\">TotalPrice: {{totalOrderPrice}}</h4>\r\n  </div>\r\n  <div class=\"panel panel-footer\" (click)=\"proceed()\">\r\n    <button>Proceed</button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -40,7 +40,7 @@ module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel pa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">{{RestaurantDetails?.restaurant?.name}}</div>\r\n        <div class=\"panel-body\">\r\n          <h5>Average Rating: {{RestaurantDetails?.restaurant?.averageRating?.averageUserRating}}/5</h5>\r\n          <h5>Average Review: {{RestaurantDetails?.restaurant?.averageRating?.ratingText}}</h5>\r\n        </div>\r\n      </div>\r\n\r\n    <div class=\"panel panel-primary\">\r\n      <div class=\"panel-body\">\r\n        <div class=\"col-md-8\">\r\n          <div *ngFor=\"let menu of OrderMenuList\">\r\n            <div class=\"panel panel-primary\">\r\n              <div class=\"panel-heading\">{{menu.menuCategoryName}}</div>\r\n              <div class=\"panel-body\">\r\n                <table class=\"table table-striped\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th>Name Of The Dish</th>\r\n                      <th>Price</th>\r\n                      <th>Item count</th>\r\n                      <th>Add Item</th>\r\n                      <th>Remove Item</th>\r\n                      <th>Select</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <tbody>\r\n\r\n                    <tr *ngFor=\"let dish of menu.dishes\">\r\n                      \r\n                        <td>{{dish.dishName}}</td>\r\n                        <td>{{dish.dishPrice}}</td>\r\n                        <td>{{dish.itemCount}}</td>\r\n                        <td><button type=\"button\" (click)=\"onAdd(dish)\"><span class=\"glyphicon glyphicon-plus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"onRemove(dish)\"><span class=\"glyphicon glyphicon-minus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"addToOrder(dish)\"><span class=\"glyphicon glyphicon-ok-sign\"></span></button></td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div><button (click)=\"proceed()\">Add To Order</button></div>\r\n        </div>\r\n\r\n        <div class=\"col-md-4\">\r\n          <app-customer-order >\r\n\r\n          </app-customer-order>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">{{RestaurantDetails?.restaurant?.name}}</div>\r\n        <div class=\"panel-body\">\r\n          <h5>Average Rating: {{RestaurantDetails?.restaurant?.averageRating?.averageUserRating}}/5</h5>\r\n          <h5>Average Review: {{RestaurantDetails?.restaurant?.averageRating?.ratingText}}</h5>\r\n        </div>\r\n      </div>\r\n\r\n    <div class=\"panel panel-primary\">\r\n      <div class=\"panel-body\">\r\n        <div class=\"col-md-8\">\r\n          <div *ngFor=\"let menu of OrderMenuList\">\r\n            <div class=\"panel panel-primary\">\r\n              <div class=\"panel-heading\">{{menu.menuCategoryName}}</div>\r\n              <div class=\"panel-body\">\r\n                <table class=\"table table-striped\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th>Name Of The Dish</th>\r\n                      <th>Price</th>\r\n                      <th>Item count</th>\r\n                      <th>Add Item</th>\r\n                      <th>Remove Item</th>\r\n                      <th>Select</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <tbody>\r\n\r\n                    <tr *ngFor=\"let dish of menu.dishes\">\r\n                      \r\n                        <td>{{dish.dishName}}</td>\r\n                        <td>{{dish.dishPrice}}</td>\r\n                        <td>{{dish.itemCount}}</td>\r\n                        <td><button type=\"button\" (click)=\"onAdd(dish)\"><span class=\"glyphicon glyphicon-plus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"onRemove(dish)\"><span class=\"glyphicon glyphicon-minus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"addToOrder(dish)\"><span class=\"glyphicon glyphicon-ok-sign\"></span></button></td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"col-md-4\">\r\n          <app-customer-order [ItemList]=\"SelectedItemList\" [totalOrderPrice]=\"totalPrice\" [CurrentUser]=\"user\">\r\n\r\n          </app-customer-order>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -73,7 +73,7 @@ module.exports = "<div class=\"panel panel-primary\">\r\n    <div class=\"panel-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div class=\"col-md-6\">\r\n    <h2>Menu List</h2>\r\n\r\n    <div *ngFor=\"let menu of MenuOfRestaurant\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">{{menu.menuCategoryName}}</div>\r\n        <div class=\"panel-body\">\r\n            <table class=\"table table-striped\">\r\n                <thead>\r\n                  <tr>\r\n                    <th>Name Of The Dish</th>\r\n                    <th>Price</th>\r\n                  </tr>\r\n                </thead>\r\n              <tbody>\r\n                <tr *ngFor=\"let dish of menu.dishes\">\r\n                  <td>{{dish.dishName}}</td>\r\n                  <td>{{dish.dishPrice}}</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\" >\r\n\r\n  <div class=\"col-md-8\">\r\n    <div *ngFor=\"let menu of MenuOfRestaurant\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">{{menu.menuCategoryName}}</div>\r\n        <div class=\"panel-body\">\r\n          <table class=\"table table-striped\">\r\n            <thead>\r\n              <tr>\r\n                <th>Name Of The Dish</th>\r\n                <th>Price</th>\r\n              </tr>\r\n            </thead>\r\n            <tbody>\r\n              <tr *ngFor=\"let dish of menu.dishes\">\r\n                <td>{{dish.dishName}}</td>\r\n                <td>{{dish.dishPrice}}</td>\r\n              </tr>\r\n            </tbody>\r\n          </table>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-md-4 \" *ngIf=\"CurrentUser?.roles?.includes('Admin')\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel panel-heading\">Add Menu To List</div>\r\n        <div class=\"panel-body\">\r\n          \r\n            <div class=\"input-group\">\r\n              <input type=\"text\" class=\"form-control\" placeholder=\"Add Menu Category\">\r\n              <div class=\"input-group-btn\">\r\n                <button class=\"btn btn-success\" type=\"submit\">\r\n                  Add Category\r\n                </button>\r\n              </div>\r\n            </div>\r\n          \r\n        </div>\r\n      </div>\r\n    \r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -84,7 +84,39 @@ module.exports = "<div class=\"container\">\r\n\r\n  <div class=\"col-md-6\">\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-12\">\r\n    <h2>Reviews</h2>\r\n    <div *ngFor=\"let review of ReviwList\">\r\n\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n          <h4><a>{{review.userAC.name}}</a></h4>\r\n          <h5>Rated:{{review.rating}}/ 5</h5>\r\n          <h5>Review: {{review.reviewText}}</h5>\r\n\r\n          <div>\r\n            <a href=\"#\">\r\n              <span class=\"glyphicon glyphicon-thumbs-up\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n            <a (click)=\"toggle(review)\">\r\n              <span class=\"glyphicon glyphicon-comment\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n          </div>\r\n        </div>\r\n      <div *ngIf=\"review.showComment\">\r\n          <div *ngIf=\"review.reviewCommnets\">\r\n            <div *ngFor=\"let comment of review.reviewCommnets\">\r\n              <div class=\"panel panel-primary\">\r\n                <div class=\"panel-heading\">{{comment.userName}}</div>\r\n                <div class=\"panel-body\">\r\n                  <h5>{{comment.reviewCommentText}}</h5>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n      </div>\r\n\r\n          <div>\r\n            <form>\r\n              <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Write Comment\">\r\n                <div class=\"input-group-btn\">\r\n                  <button class=\"btn btn-success\" type=\"submit\">\r\n                    Add Comment\r\n                  </button>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n </div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"container col-md-12\">\r\n    <h2>Reviews</h2>\r\n    <div *ngFor=\"let review of ReviwList\">\r\n\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n          <h4><a>{{review.userAC.name}}</a></h4>\r\n          <h5>Rated:{{review.rating}}/ 5</h5>\r\n          <h5>Review: {{review.reviewText}}</h5>\r\n\r\n          <div>\r\n            <a href=\"#\">\r\n              <span class=\"glyphicon glyphicon-thumbs-up\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n            <a (click)=\"toggle(review)\">\r\n              <span class=\"glyphicon glyphicon-comment\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n          </div>\r\n        </div>\r\n      <div *ngIf=\"review.showComment\">\r\n          <div *ngIf=\"review.reviewCommnets\">\r\n            <div *ngFor=\"let comment of review.reviewCommnets\">\r\n              <div class=\"panel panel-primary\">\r\n                <div class=\"panel-heading\">{{comment.userName}}</div>\r\n                <div class=\"panel-body\">\r\n                  <h5>{{comment.reviewCommentText}}</h5>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n      </div>\r\n\r\n          <div >\r\n            <form [formGroup]=\"commentForm\" (ngSubmit)=\"addComment(review.reviewId)\">\r\n              <div class=\"input-group\">\r\n                  <input type=\"text\" class=\"form-control\" placeholder=\"Write Comment\" formControlName=\"commentText\">\r\n                    <div class=\"input-group-btn\">\r\n                      <button class=\"btn btn-success\" type=\"submit\" >\r\n                        Add Comment\r\n                      </button>\r\n                    </div> \r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n </div>\r\n\r\n\r\n\r\n"
+
+/***/ }),
+
+/***/ "./src/app/Models/Comment.ts":
+/*!***********************************!*\
+  !*** ./src/app/Models/Comment.ts ***!
+  \***********************************/
+/*! exports provided: Comment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Comment", function() { return Comment; });
+class Comment {
+}
+
+
+/***/ }),
+
+/***/ "./src/app/Models/Order.ts":
+/*!*********************************!*\
+  !*** ./src/app/Models/Order.ts ***!
+  \*********************************/
+/*! exports provided: Order */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Order", function() { return Order; });
+class Order {
+}
+
 
 /***/ }),
 
@@ -139,6 +171,22 @@ class RestaurantAC {
 
 /***/ }),
 
+/***/ "./src/app/Models/Review.ts":
+/*!**********************************!*\
+  !*** ./src/app/Models/Review.ts ***!
+  \**********************************/
+/*! exports provided: Review */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Review", function() { return Review; });
+class Review {
+}
+
+
+/***/ }),
+
 /***/ "./src/app/add-review/add-rating/add-rating.component.css":
 /*!****************************************************************!*\
   !*** ./src/app/add-review/add-rating/add-rating.component.css ***!
@@ -163,21 +211,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var src_app_Models_Review__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Models/Review */ "./src/app/Models/Review.ts");
+/* harmony import */ var src_app_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _review_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../review.service */ "./src/app/add-review/review.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
 
 
 
 let AddRatingComponent = class AddRatingComponent {
-    constructor() {
+    constructor(userService, reviewService, router, route) {
+        this.userService = userService;
+        this.reviewService = reviewService;
+        this.router = router;
+        this.route = route;
+        this.Review = new src_app_Models_Review__WEBPACK_IMPORTED_MODULE_3__["Review"]();
         this.ratingForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             rating: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('')
         });
     }
     ngOnInit() {
+        this.userService.GetLoggedInUser().subscribe(res => {
+            this.user = res;
+            debugger;
+        });
     }
     onSubmit() {
         alert(this.ratingForm.value.rating);
+        if (this.user == undefined) {
+            alert("You are not Logged In");
+        }
+        else {
+            this.Review.rating = this.ratingForm.value.rating;
+            this.Review.userId = this.user.id;
+            this.Review.restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
+            debugger;
+            this.reviewService.AddReview(this.Review, this.Review.restaurantId).subscribe(res => {
+                this.router.navigate(['']);
+            }, err => {
+                console.log("error");
+            });
+        }
     }
 };
+AddRatingComponent.ctorParameters = () => [
+    { type: src_app_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] },
+    { type: _review_service__WEBPACK_IMPORTED_MODULE_5__["ReviewService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] }
+];
 AddRatingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-add-rating',
@@ -298,22 +383,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _Models_Review__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/Review */ "./src/app/Models/Review.ts");
+/* harmony import */ var _review_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../review.service */ "./src/app/add-review/review.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
 
 
 
 let AddReviewComponent = class AddReviewComponent {
-    constructor() {
+    constructor(router, userService, reviewService, route) {
+        this.router = router;
+        this.userService = userService;
+        this.reviewService = reviewService;
+        this.route = route;
         this.reviewForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             rating: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
             review: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('')
         });
+        this.Review = new _Models_Review__WEBPACK_IMPORTED_MODULE_4__["Review"]();
     }
     ngOnInit() {
+        this.userService.GetLoggedInUser().subscribe(res => {
+            this.user = res;
+            debugger;
+        });
     }
     onSubmit() {
-        alert("Your Review : " + this.reviewForm.value.rating + "  " + this.reviewForm.value.review);
+        if (this.user == undefined) {
+            alert("You are not Logged In");
+        }
+        else {
+            this.Review.rating = this.reviewForm.value.rating;
+            this.Review.reviewText = this.reviewForm.value.review;
+            this.Review.userId = this.user.id;
+            this.Review.restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
+            debugger;
+            this.reviewService.AddReview(this.Review, this.Review.restaurantId).subscribe(res => {
+                this.router.navigate(['']);
+            }, err => {
+                console.log("error");
+            });
+        }
     }
 };
+AddReviewComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
+    { type: _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
+    { type: _review_service__WEBPACK_IMPORTED_MODULE_5__["ReviewService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] }
+];
 AddReviewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-add-review',
@@ -321,6 +443,51 @@ AddReviewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [__webpack_require__(/*! ./add-review.component.css */ "./src/app/add-review/add-review/add-review.component.css")]
     })
 ], AddReviewComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/add-review/review.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/add-review/review.service.ts ***!
+  \**********************************************/
+/*! exports provided: ReviewService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewService", function() { return ReviewService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
+
+let ReviewService = class ReviewService {
+    constructor(http) {
+        this.http = http;
+        this.rootUrl = "https://localhost:44303/";
+    }
+    AddReview(review, restaurantId) {
+        var url = this.rootUrl + "api/Reviews/AddReviw/" + restaurantId;
+        debugger;
+        return this.http.post(url, review);
+        debugger;
+    }
+    AddComment(comment, reviewId) {
+        var url = this.rootUrl + "api/Reviews/AddComment/" + reviewId;
+        return this.http.post(url, comment);
+    }
+};
+ReviewService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+ReviewService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], ReviewService);
 
 
 
@@ -349,13 +516,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerOrderComponent", function() { return CustomerOrderComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _Models_OrderAC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Models/OrderAC */ "./src/app/Models/OrderAC.ts");
+/* harmony import */ var _Models_OrderItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Models/OrderItem */ "./src/app/Models/OrderItem.ts");
+/* harmony import */ var _Models_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/Order */ "./src/app/Models/Order.ts");
+/* harmony import */ var _order_online_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../order-online.service */ "./src/app/order-online/order-online.service.ts");
+
+
+
+
 
 
 let CustomerOrderComponent = class CustomerOrderComponent {
-    constructor() { }
+    constructor(orderService) {
+        this.orderService = orderService;
+        this.ItemList = new Array();
+        this.order = new _Models_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
+        this.OrderAC = new _Models_OrderAC__WEBPACK_IMPORTED_MODULE_2__["OrderAC"]();
+        this.OrderItemList = new Array();
+    }
     ngOnInit() {
     }
+    proceed() {
+        this.order.userId = this.CurrentUser.id;
+        this.order.isOnTheWay = false;
+        this.order.isOderPreparing = false;
+        this.order.isOrderDelivered = false;
+        for (var selectedItem of this.ItemList) {
+            var item = new _Models_OrderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
+            item.dishId = selectedItem.id;
+            item.itemCount = selectedItem.itemCount;
+            this.OrderItemList.push(item);
+        }
+        this.OrderAC.Order = this.order;
+        this.OrderAC.OrderItem = this.OrderItemList;
+        console.log(this.OrderAC);
+        this.orderService.AddOrder(this.OrderAC).subscribe(res => {
+            alert("order Added successfully");
+        }, err => {
+            console.log(err);
+        });
+    }
 };
+CustomerOrderComponent.ctorParameters = () => [
+    { type: _order_online_service__WEBPACK_IMPORTED_MODULE_5__["OrderOnlineService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], CustomerOrderComponent.prototype, "ItemList", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], CustomerOrderComponent.prototype, "totalOrderPrice", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], CustomerOrderComponent.prototype, "CurrentUser", void 0);
 CustomerOrderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-customer-order',
@@ -393,8 +606,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _order_online_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../order-online.service */ "./src/app/order-online/order-online.service.ts");
-/* harmony import */ var _Models_OrderItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/OrderItem */ "./src/app/Models/OrderItem.ts");
-/* harmony import */ var _Models_OrderAC__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/OrderAC */ "./src/app/Models/OrderAC.ts");
+/* harmony import */ var src_app_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/user.service */ "./src/app/user.service.ts");
+/* harmony import */ var src_app_Models_UserAC__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/Models/UserAC */ "./src/app/Models/UserAC.ts");
+/* harmony import */ var _restaurant_details_restaurant_details_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../restaurant-details/restaurant-details.service */ "./src/app/restaurant-details/restaurant-details.service.ts");
+
 
 
 
@@ -402,18 +617,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DishesOfRestaurantComponent = class DishesOfRestaurantComponent {
-    constructor(service, route) {
+    constructor(service, route, userService, restaurantService) {
         this.service = service;
         this.route = route;
+        this.userService = userService;
+        this.restaurantService = restaurantService;
         this.Id = 0;
-        this.UserId = "1";
         this.SelectedItemList = new Array();
-        this.Order = new _Models_OrderAC__WEBPACK_IMPORTED_MODULE_5__["OrderAC"]();
-        this.OrderItemList = new Array();
+        this.totalPrice = 0;
+        this.user = new src_app_Models_UserAC__WEBPACK_IMPORTED_MODULE_5__["UserAC"]();
     }
     ngOnInit() {
         this.GetRestaurant();
         this.getMenuOfRestaurant();
+        this.getCurrentUser();
+    }
+    getCurrentUser() {
+        this.userService.GetLoggedInUser().subscribe(res => {
+            this.user = res;
+        });
     }
     getMenuOfRestaurant() {
         this.service.GetMenuListOfRestaurant(this.Id).subscribe(res => {
@@ -424,7 +646,6 @@ let DishesOfRestaurantComponent = class DishesOfRestaurantComponent {
                 }
             }
         });
-        debugger;
     }
     GetRestaurant() {
         this.Id = +this.route.snapshot.paramMap.get('restaurantId');
@@ -448,23 +669,15 @@ let DishesOfRestaurantComponent = class DishesOfRestaurantComponent {
         else {
             this.SelectedItemList.push(dish);
             console.log(this.SelectedItemList);
+            this.totalPrice = this.totalPrice + dish.itemCount * dish.dishPrice;
         }
-    }
-    proceed() {
-        for (var selectedItem of this.SelectedItemList) {
-            var item = new _Models_OrderItem__WEBPACK_IMPORTED_MODULE_4__["OrderItem"]();
-            item.dishId = selectedItem.id;
-            item.itemCount = selectedItem.itemCount;
-            this.OrderItemList.push(item);
-        }
-        //this.Order.Order.userId = this.UserId;
-        this.Order.OrderItems = this.OrderItemList;
-        console.log(this.Order);
     }
 };
 DishesOfRestaurantComponent.ctorParameters = () => [
     { type: _order_online_service__WEBPACK_IMPORTED_MODULE_3__["OrderOnlineService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: src_app_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] },
+    { type: _restaurant_details_restaurant_details_service__WEBPACK_IMPORTED_MODULE_6__["RestaurantDetailsService"] }
 ];
 DishesOfRestaurantComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -581,6 +794,9 @@ let OrderOnlineService = class OrderOnlineService {
     }
     GetMenuById(dishId) {
         return this.http.get('https://localhost:44303/api/Dishs/GetDish/' + dishId);
+    }
+    AddOrder(order) {
+        return this.http.post('https://localhost:44303/api/Orders/AddOrder', order);
     }
 };
 OrderOnlineService.ctorParameters = () => [
@@ -752,6 +968,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _restaurant_menu_restaurant_menu_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./restaurant-menu/restaurant-menu.component */ "./src/app/restaurant-details/restaurant-menu/restaurant-menu.component.ts");
 /* harmony import */ var _restaurant_reviews_restaurant_reviews_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./restaurant-reviews/restaurant-reviews.component */ "./src/app/restaurant-details/restaurant-reviews/restaurant-reviews.component.ts");
 /* harmony import */ var _order_online_order_online_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../order-online/order-online.module */ "./src/app/order-online/order-online.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+
 
 
 
@@ -769,7 +987,8 @@ RestaurantDetailsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _restaurant_details_routing_module__WEBPACK_IMPORTED_MODULE_3__["RestaurantDetailsRoutingModule"],
-            _order_online_order_online_module__WEBPACK_IMPORTED_MODULE_8__["OrderOnlineModule"]
+            _order_online_order_online_module__WEBPACK_IMPORTED_MODULE_8__["OrderOnlineModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_9__["ReactiveFormsModule"]
         ]
     })
 ], RestaurantDetailsModule);
@@ -912,28 +1131,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _restaurant_details_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../restaurant-details.service */ "./src/app/restaurant-details/restaurant-details.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _Models_UserAC__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/UserAC */ "./src/app/Models/UserAC.ts");
+
+
 
 
 
 
 let RestaurantMenuComponent = class RestaurantMenuComponent {
-    constructor(service, route) {
+    constructor(service, route, userService) {
         this.service = service;
         this.route = route;
+        this.userService = userService;
+        this.CurrentUser = new _Models_UserAC__WEBPACK_IMPORTED_MODULE_5__["UserAC"]();
     }
     ngOnInit() {
         this.GetMenu();
+        this.userService.GetLoggedInUser().subscribe(res => {
+            this.CurrentUser = res;
+        }, err => {
+            this.CurrentUser = null;
+        });
     }
     GetMenu() {
         const id = +this.route.snapshot.params['restaurantId'];
-        this.service.GetMenuOfRestaurant(1).subscribe(res => {
+        const restaurantId = 1;
+        this.service.GetMenuOfRestaurant(restaurantId).subscribe(res => {
             this.MenuOfRestaurant = res;
         });
     }
 };
 RestaurantMenuComponent.ctorParameters = () => [
     { type: _restaurant_details_service__WEBPACK_IMPORTED_MODULE_2__["RestaurantDetailsService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
+    { type: _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] }
 ];
 RestaurantMenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -972,22 +1204,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _restaurant_details_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../restaurant-details.service */ "./src/app/restaurant-details/restaurant-details.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_app_add_review_review_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/add-review/review.service */ "./src/app/add-review/review.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _Models_Comment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Models/Comment */ "./src/app/Models/Comment.ts");
+
+
+
+
 
 
 
 
 let RestaurantReviewsComponent = class RestaurantReviewsComponent {
-    constructor(service, route) {
+    constructor(service, userService, reviewService, route) {
         this.service = service;
+        this.userService = userService;
+        this.reviewService = reviewService;
         this.route = route;
         this.Show = false;
+        this.comment = new _Models_Comment__WEBPACK_IMPORTED_MODULE_7__["Comment"]();
+        this.commentForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormGroup"]({
+            commentText: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('')
+        });
     }
     ngOnInit() {
+        this.userService.GetLoggedInUser().subscribe(res => {
+            this.user = res;
+            debugger;
+        });
         this.GetReviews();
     }
     GetReviews() {
-        const id = +this.route.snapshot.paramMap.get("restaurantId");
-        this.service.GetReviewsOfRestaurant(1).subscribe(res => {
+        const restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
+        console.log(">>>> " + restaurantId);
+        this.service.GetReviewsOfRestaurant(restaurantId).subscribe(res => {
             this.ReviwList = res;
         });
     }
@@ -999,9 +1250,30 @@ let RestaurantReviewsComponent = class RestaurantReviewsComponent {
             review.showComment = false;
         }
     }
+    addComment(reviewId) {
+        debugger;
+        if (this.user == null) {
+            debugger;
+            alert("You are not Logged In");
+        }
+        else {
+            debugger;
+            console.log(this.user.email + reviewId + "  " + this.commentForm.value.commentText);
+            this.comment.commentText = this.commentForm.value.commentText;
+            this.comment.reviewId = reviewId;
+            this.comment.userId = this.user.id;
+            this.reviewService.AddComment(this.comment, reviewId).subscribe(res => {
+                console.log("success");
+            }, err => {
+                console.log("error");
+            });
+        }
+    }
 };
 RestaurantReviewsComponent.ctorParameters = () => [
     { type: _restaurant_details_service__WEBPACK_IMPORTED_MODULE_2__["RestaurantDetailsService"] },
+    { type: _user_service__WEBPACK_IMPORTED_MODULE_6__["UserService"] },
+    { type: src_app_add_review_review_service__WEBPACK_IMPORTED_MODULE_4__["ReviewService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
 ];
 RestaurantReviewsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

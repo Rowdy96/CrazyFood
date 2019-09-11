@@ -1,6 +1,7 @@
 ﻿using CrazyFood.DomainModel.Models;
 using CrazyFood.Repository.ApplicationClasses;
 using CrazyFood.Repository.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,10 +16,16 @@ namespace CrazyFood.Core.ApiControllers
     public class RestaurantsController:ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private UserManager<Users> _userManager { get; set; }
+        private SignInManager<Users> _signInManager { get; set; }
 
-        public RestaurantsController(IUnitOfWork unitOfWork)
+        public RestaurantsController(IUnitOfWork unitOfWork,
+                                     UserManager<Users> userManager,
+                                     SignInManager<Users> signInManager)
         {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         //api/Restaurants/GetAll
@@ -117,6 +124,17 @@ namespace CrazyFood.Core.ApiControllers
 
             return Ok(updatedRestaurant);
         }
+
+        //api/Restaurants/GetCurrentUser
+        [HttpGet]
+        public async Task<Users> GetCurrentUser()
+        {
+            var username = User.Identity.Name;
+            Users user = await _userManager.FindByNameAsync(username);
+            return user;
+        }
+
+       
 
         private bool RestaurantExists(int restaurantID)
         {

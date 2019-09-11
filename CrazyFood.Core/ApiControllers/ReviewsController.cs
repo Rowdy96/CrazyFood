@@ -1,6 +1,7 @@
 ﻿using CrazyFood.DomainModel.Models;
 using CrazyFood.Repository.ApplicationClasses;
 using CrazyFood.Repository.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Reviews/GetReviewsOfRestaurant/1
         [HttpGet("{restaurantId}")]
+        [AllowAnonymous]
         public async Task<IEnumerable<ReviewAC>> GetReviewsOfRestaurant([FromRoute] int restaurantId)
         {
             return await _unitOfWork.Review.GetAllReviewOfRestaurant(restaurantId);
@@ -28,6 +30,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Reviews/GetReviewsOfUser/1
         [HttpGet("{userId}")]
+        [AllowAnonymous]
         public async Task<IEnumerable<ReviewAC>> GetReviewsOfUser([FromRoute] string userId)
         {
             return await _unitOfWork.Review.GetAllReviewOfUser(userId);
@@ -35,15 +38,17 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Reviews/GetReview/1
         [HttpGet("{reviewId}")]
+        [AllowAnonymous]
         public async Task<ReviewAC> GetReview([FromRoute] int reviewId)
         {
             return await _unitOfWork.Review.GetReview(reviewId);
         }
 
         //api/Reviews/AddReviw/1
+        [Authorize]
         [HttpPost("{restaurantId}")]
-        public async Task<IActionResult> AddReviw([FromRoute] int restaurantId
-                                                  ,[FromBody] Review review )
+        [Authorize(Roles = "Customer")]
+        public async Task<IActionResult> AddReviw([FromBody] Review review )
         {
             if (!ModelState.IsValid)
             {
@@ -51,13 +56,15 @@ namespace CrazyFood.Core.ApiControllers
             }
             ReviewAC reviewAc = new ReviewAC();
             reviewAc.Review = review;
-            await _unitOfWork.Review.AddReview(restaurantId, reviewAc);
+            await _unitOfWork.Review.AddReview(reviewAc);
             await _unitOfWork.Save();
             return Ok(review);
         }
 
         //api/Reviews/AddComment/1
+        [Authorize]
         [HttpPost("{reviewId}")]
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> AddComment([FromRoute] int reviewId
                                                   , [FromBody] ReviewComment reviewComment)
         {
@@ -75,13 +82,16 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Reviews/GetComment/1
         [HttpGet("{commentId}")]
+        [AllowAnonymous]
         public async Task<ReviewComment> GetComment([FromRoute]int commentId)
         {
             return await _unitOfWork.Review.GetComment(commentId);
         }
 
         //api/Reviews/AddLike/1
+        [Authorize]
         [HttpPost("reviewId")]
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> AddLike([FromRoute] int reviewId
                                                 ,[FromBody] ReviewLike reviewLike)
         {
@@ -100,7 +110,9 @@ namespace CrazyFood.Core.ApiControllers
         }
 
         //api/Reviews/AddRating/1
+        [Authorize]
         [HttpPost("{reviewId}")]
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> AddRating([FromRoute] int restaurantId,
                                                    [FromBody] Review reviewRating)
         {

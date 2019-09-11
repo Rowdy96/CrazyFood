@@ -53,6 +53,8 @@ namespace CrazyFood.Core.ApiControllers
                                        PhoneNumber=model.Phone,
                                        Address=model.Address};
                 var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "Customer");
+
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);

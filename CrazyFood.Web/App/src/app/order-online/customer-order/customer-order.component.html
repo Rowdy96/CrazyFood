@@ -5,20 +5,22 @@
       <thead>
         <tr>
           <th>Name Of The Dish</th>
+          <th>Item Count</th>
           <th>Price</th>
-          <th>Total</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>dish.dishName</td>
-          <td>dish.dishPrice</td>
-          <td>0</td>
+        <tr *ngFor ="let item of ItemList">
+          <td>{{item.dishName}}</td>
+          <td>{{item.itemCount}} </td>
+          <td>{{item.dishPrice}}</td>
         </tr>
       </tbody>
     </table>
+
+    <h4 *ngIf="totalOrderPrice">TotalPrice: {{totalOrderPrice}}</h4>
   </div>
-  <div class="panel panel-footer">
+  <div class="panel panel-footer" (click)="proceed()">
     <button>Proceed</button>
   </div>
 </div>

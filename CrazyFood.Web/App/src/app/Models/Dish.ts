@@ -2,7 +2,7 @@ export class Dish {
 
   id: number;
   dishName: string;
-  price: number;
+  dishPrice: number;
   menuCategoryId: number;
   itemCount: number = 0;
 }

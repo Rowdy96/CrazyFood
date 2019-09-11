@@ -4,6 +4,6 @@ import { Restaurant } from './Restaurant';
 
 export class OrderAC {
   Order: Order;
-  OrderItems: OrderItem[];
+  OrderItem: OrderItem[];
   Restaurant: Restaurant;
 }

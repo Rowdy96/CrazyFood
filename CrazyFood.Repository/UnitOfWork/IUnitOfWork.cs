@@ -8,7 +8,7 @@ using CrazyFood.Repository.Menu;
 using CrazyFood.Repository.Dishes;
 using CrazyFood.Repository.Reviews;
 using CrazyFood.Repository.Orders;
-using CrazyFood.Repository.Users;
+using CrazyFood.Repository.User;
 
 namespace CrazyFood.Repository.UnitOfWork
 {

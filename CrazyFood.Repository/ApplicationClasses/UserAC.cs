@@ -1,4 +1,6 @@
-﻿namespace CrazyFood.Repository.ApplicationClasses
+﻿using System.Collections.Generic;
+
+namespace CrazyFood.Repository.ApplicationClasses
 {
     public class UserAC
     {
@@ -7,5 +9,6 @@
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
+        public ICollection<string> Roles { get; set; }
     }
 }

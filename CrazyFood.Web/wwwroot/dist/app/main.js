@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\r\n  <div class=\"container\">\r\n      <div class=\"navbar-header\">\r\n          <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n              <span class=\"sr-only\">Toggle navigation</span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n          </button>\r\n          <a routerLink=\"/Restaurants\" class=\"navbar-brand\">CrazyFood.Web</a>\r\n      </div>\r\n      <div class=\"navbar-collapse collapse\">\r\n        <ul class=\"nav navbar-nav\">\r\n          <li><a routerLink=\"/Restaurants\">Home</a></li>\r\n        </ul>\r\n          \r\n          <ul class=\"nav navbar-nav ml-auto\">\r\n              <li><a >Register</a></li>\r\n              <li><a href=\"https://localhost:44303/Account/Login\">Login</a></li>\r\n              <li><a href=\"https://localhost:44303/Account/Logout\">Logout</a></li>\r\n          </ul>\r\n          \r\n      </div>\r\n  </div>\r\n</nav>\r\n\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\r\n  <div class=\"container\">\r\n      <div class=\"navbar-header\">\r\n          <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n              <span class=\"sr-only\">Toggle navigation</span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n          </button>\r\n          <a routerLink=\"/\" class=\"navbar-brand\" >CrazyFood.Web</a>\r\n      </div>\r\n      <div class=\"navbar-collapse collapse\">\r\n        <ul class=\"nav navbar-nav\">\r\n          <li><a routerLink=\"/\">Home</a></li>\r\n        </ul>\r\n        <ul *ngIf=\"user\" class=\"nav navbar-nav ml-auto\">\r\n          <li><a routerLink=\"/Customer/{{user.id}}\">{{user.email}}</a>\r\n          <li><a (click)=\"Logout()\">Logout</a></li>\r\n        </ul>\r\n        \r\n        <ul *ngIf=\"user==null\" class=\"nav navbar-nav ml-auto\">\r\n              <li><a >Register</a></li>\r\n              <li><a href=\"https://localhost:44303/Account/Login\">Login</a></li>\r\n        </ul>\r\n          \r\n      </div>\r\n  </div>\r\n</nav>\r\n\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -53,11 +53,19 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        loadChildren: () => __webpack_require__.e(/*! import() | list-of-restaurant-list-of-restaurant-module */ "list-of-restaurant-list-of-restaurant-module").then(__webpack_require__.bind(null, /*! ./list-of-restaurant/list-of-restaurant.module */ "./src/app/list-of-restaurant/list-of-restaurant.module.ts")).then(mod => mod.ListOfRestaurantModule)
+        loadChildren: () => Promise.all(/*! import() | list-of-restaurant-list-of-restaurant-module */[__webpack_require__.e("common"), __webpack_require__.e("list-of-restaurant-list-of-restaurant-module")]).then(__webpack_require__.bind(null, /*! ./list-of-restaurant/list-of-restaurant.module */ "./src/app/list-of-restaurant/list-of-restaurant.module.ts")).then(mod => mod.ListOfRestaurantModule)
     },
     {
         path: 'RestaurantDetails/:restaurantId',
-        loadChildren: () => __webpack_require__.e(/*! import() | restaurant-details-restaurant-details-module */ "restaurant-details-restaurant-details-module").then(__webpack_require__.bind(null, /*! ./restaurant-details/restaurant-details.module */ "./src/app/restaurant-details/restaurant-details.module.ts")).then(mod => mod.RestaurantDetailsModule)
+        loadChildren: () => Promise.all(/*! import() | restaurant-details-restaurant-details-module */[__webpack_require__.e("common"), __webpack_require__.e("restaurant-details-restaurant-details-module")]).then(__webpack_require__.bind(null, /*! ./restaurant-details/restaurant-details.module */ "./src/app/restaurant-details/restaurant-details.module.ts")).then(mod => mod.RestaurantDetailsModule)
+    },
+    {
+        path: 'Customer/:customerId',
+        loadChildren: () => Promise.all(/*! import() | customer-customer-module */[__webpack_require__.e("common"), __webpack_require__.e("customer-customer-module")]).then(__webpack_require__.bind(null, /*! ./customer/customer.module */ "./src/app/customer/customer.module.ts")).then(mod => mod.CustomerModule)
+    },
+    {
+        path: 'Admin',
+        loadChildren: () => Promise.all(/*! import() | restaurant-restaurant-module */[__webpack_require__.e("common"), __webpack_require__.e("restaurant-restaurant-module")]).then(__webpack_require__.bind(null, /*! ./restaurant/restaurant.module */ "./src/app/restaurant/restaurant.module.ts")).then(mod => mod.RestaurantModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -96,19 +104,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 let AppComponent = class AppComponent {
-    constructor(http) {
-        this.http = http;
+    constructor(userService, router) {
+        this.userService = userService;
+        this.router = router;
         this.title = 'CrazyFood Corner';
-        this.loginUrl = "https://localhost:44303/Account/Login";
+        this.GetLoggedInUser();
+        //this.CheckUserRole();
+    }
+    GetLoggedInUser() {
+        this.userService.GetLoggedInUser().subscribe(res => {
+            this.user = res;
+            debugger;
+        });
+    }
+    //CheckUserRole() {
+    //  if (this.user.roles.includes('Admin')) {
+    //    this.router.navigateByUrl('/Admin');
+    //  }
+    //}
+    Logout() {
+        this.userService.Logout();
+        this.user = null;
+        debugger;
     }
 };
 AppComponent.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    { type: _user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -165,6 +194,53 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/user.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/user.service.ts ***!
+  \*********************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
+
+let UserService = class UserService {
+    constructor(http) {
+        this.http = http;
+        this.rootUrl = "https://localhost:44303/";
+    }
+    GetLoggedInUser() {
+        debugger;
+        return this.http.get(this.rootUrl + "api/Users/GetLoggedInUSer");
+    }
+    Logout() {
+        var url = this.rootUrl + "api/Users/Logout";
+        this.http.post(url, null).subscribe(res => {
+            console.log(res);
+        }, err => {
+            console.log(err);
+        });
+    }
+};
+UserService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], UserService);
 
 
 

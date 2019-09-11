@@ -60,7 +60,9 @@ namespace CrazyFood.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app
+                              ,IHostingEnvironment env
+                              ,IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -71,17 +73,7 @@ namespace CrazyFood.Web
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-            //app.Use(async (context, next) =>
-            //{
-            //    await next();
-            //    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
-            //    {
-
-            //        context.Request.Path = "/App/index.html";
-            //       // UseProxyToSpaDevelopmentServer("http://localhost:4200");
-            //        await next();
-            //    }
-            //});
+         
             app.UseCors(
                 options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
             );
@@ -91,19 +83,46 @@ namespace CrazyFood.Web
             app.UseDefaultFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-            //app.Map(new PathString("/api"), x => x.UseMvc());
+           
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default",
                 template: "{controller}/{action}",
                 defaults: new { controller = "Account", action = "Index" });
 
+                routes.MapRoute(name: "Register",
+                    template: "{controller}/{action}",
+                    defaults: new { controller = "Account", action = "Register" });
+
                 routes.MapSpaFallbackRoute(
                    name: "spa-fallback",
                    defaults: new { controller = "Account", action = "Index" });
             });
-           
 
+            CreateRoles(serviceProvider).Wait();
         }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider
+                              .GetRequiredService<RoleManager<IdentityRole>>();
+
+            string[] Roles = { "Admin", "Customer", "Restaurant", "DeliveryBoy" };
+            IdentityResult roleResult;
+
+            foreach (var roleName in Roles)
+            {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+
+                if (!roleExist)
+                { 
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+        }
+
+
+
+
     }
 }

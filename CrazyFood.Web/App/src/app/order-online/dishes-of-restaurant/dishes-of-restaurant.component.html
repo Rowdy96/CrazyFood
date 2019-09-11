@@ -41,11 +41,10 @@
               </div>
             </div>
           </div>
-          <div><button (click)="proceed()">Add To Order</button></div>
         </div>
 
         <div class="col-md-4">
-          <app-customer-order >
+          <app-customer-order [ItemList]="SelectedItemList" [totalOrderPrice]="totalPrice" [CurrentUser]="user">
 
           </app-customer-order>
         </div>
