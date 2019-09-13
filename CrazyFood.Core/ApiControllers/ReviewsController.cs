@@ -47,7 +47,7 @@ namespace CrazyFood.Core.ApiControllers
         //api/Reviews/AddReviw/1
         [Authorize]
         [HttpPost("{restaurantId}")]
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Customer,Admin")]
         public async Task<IActionResult> AddReviw([FromBody] Review review )
         {
             if (!ModelState.IsValid)
@@ -90,7 +90,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Reviews/AddLike/1
         [Authorize]
-        [HttpPost("reviewId")]
+        [HttpPost("{reviewId}")]
         [Authorize(Roles = "Customer")]
         public async Task<IActionResult> AddLike([FromRoute] int reviewId
                                                 ,[FromBody] ReviewLike reviewLike)

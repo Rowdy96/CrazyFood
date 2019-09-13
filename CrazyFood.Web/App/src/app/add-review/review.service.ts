@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Review } from '../Models/Review';
 import { Comment } from '../Models/Comment';
+import { ReviewLike } from '../Models/ReviewLike';
 
 
 @Injectable({
@@ -22,6 +23,13 @@ export class ReviewService {
 
   AddComment(comment: Comment, reviewId: number): Observable<Comment> {
     var url = this.rootUrl + "api/Reviews/AddComment/" + reviewId;
+    debugger;
     return this.http.post<Comment>(url, comment);
+  }
+
+  AddLike(like: ReviewLike, reviewId: number): Observable<ReviewLike> {
+    var url = this.rootUrl + "api/Reviews/AddLike/" + reviewId;
+    debugger;
+    return this.http.post<ReviewLike>(url, like);
   }
 }

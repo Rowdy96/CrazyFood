@@ -48,7 +48,7 @@ export class AddReviewComponent implements OnInit {
       this.Review.restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
       debugger;
       this.reviewService.AddReview(this.Review, this.Review.restaurantId).subscribe(res => {
-        this.router.navigate(['']);
+        this.router.navigateByUrl("/RestaurantDetails/" + this.Review.restaurantId + "/Reviews");
       },
         err => {
           console.log("error");

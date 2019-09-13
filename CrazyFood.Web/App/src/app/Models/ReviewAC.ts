@@ -12,6 +12,7 @@ export class ReviewAC {
   rating: number;
   reviewText: string;
   totalLike: number;
+  totalComment: number;
   userAC: UserAC;
   reviewCommnets: ReviewCommentAC[];
   restaurantId: number;

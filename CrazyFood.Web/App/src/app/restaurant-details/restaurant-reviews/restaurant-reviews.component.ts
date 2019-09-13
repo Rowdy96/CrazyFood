@@ -7,6 +7,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../../user.service';
 import { UserAC } from '../../Models/UserAC';
 import { Comment } from '../../Models/Comment';
+import { ReviewLike } from '../../Models/ReviewLike';
 
 @Component({
   selector: 'app-restaurant-reviews',
@@ -52,6 +53,25 @@ export class RestaurantReviewsComponent implements OnInit {
     
   }
 
+  addLike(review: ReviewAC) {
+    if (this.user == null) {
+      alert("You are not Logged In");
+    }
+    else {
+      var like = new ReviewLike()
+      like.reviewId = review.reviewId;
+      like.userId = this.user.id;
+      this.reviewService.AddLike(like, like.reviewId).subscribe(res => {
+
+        alert("Like Added");
+        window.location.reload();
+      }, err => {
+        alert("Error");
+      }
+      )
+    }
+  }
+
   addComment(reviewId: number) {
     if (this.user == null) {
       alert("You are not Logged In");
@@ -61,9 +81,11 @@ export class RestaurantReviewsComponent implements OnInit {
       this.comment.commentText = this.commentForm.value.commentText;
       this.comment.reviewId = reviewId;
       this.comment.userId = this.user.id;
+      debugger;
       this.reviewService.AddComment(this.comment, reviewId).subscribe(
         res => {
           console.log("success");
+          window.location.reload();
         }
         , err => {
           console.log("error");

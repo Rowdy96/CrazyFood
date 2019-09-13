@@ -9,12 +9,14 @@
           <h5>Review: {{review.reviewText}}</h5>
 
           <div>
-            <a href="#">
+            <a (click)="addLike(review)">
               <span class="glyphicon glyphicon-thumbs-up" style="font-size:40px;"></span>
             </a>
+            {{review.totalLike}}
             <a (click)="toggle(review)">
               <span class="glyphicon glyphicon-comment" style="font-size:40px;"></span>
             </a>
+            {{review.totalComment}}
           </div>
         </div>
       <div *ngIf="review.showComment">

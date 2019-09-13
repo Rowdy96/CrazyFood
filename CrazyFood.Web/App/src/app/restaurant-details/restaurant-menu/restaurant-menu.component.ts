@@ -36,7 +36,7 @@ export class RestaurantMenuComponent implements OnInit {
               private route: ActivatedRoute,
               private userService: UserService,
               private restaurantService: RestuarantService,
-              private modelService: ModalService
+             
               ){ }
 
   ngOnInit() {
@@ -71,6 +71,7 @@ export class RestaurantMenuComponent implements OnInit {
       .AddCategory(this.Id, this.NewCategory)
       .subscribe(res => {
         alert("New Category added Successfully");
+        window.location.reload();
       },
         err => {
           alert("error");

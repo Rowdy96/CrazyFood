@@ -50,7 +50,9 @@ namespace CrazyFood.Repository.Restaurants
                                                     .AverageRating
                                                     .Where(r => r.RestaurantId == restaurant.Id)
                                                     .FirstOrDefault();
+                
                 AllRestaurants.Add(restaurantinfo);
+                
             }
 
             return AllRestaurants;
@@ -88,5 +90,7 @@ namespace CrazyFood.Repository.Restaurants
                                                    .FirstOrDefault();
             return restaurant;
         }
+
+       
     }
 }

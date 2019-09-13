@@ -20,6 +20,8 @@ export class UserService {
     return this.http.get<UserAC>(this.rootUrl + "api/Users/GetLoggedInUSer");
   }
 
+
+
   Logout() {
 
     var url = this.rootUrl + "api/Users/Logout";

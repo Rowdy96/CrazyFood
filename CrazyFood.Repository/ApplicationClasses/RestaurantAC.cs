@@ -8,6 +8,5 @@ namespace CrazyFood.Repository.ApplicationClasses
     public class RestaurantAC
     {
         public Restaurant Restaurant { get; set; }
-       // public AverageRating AverageRating { get; set; }
     }
 }

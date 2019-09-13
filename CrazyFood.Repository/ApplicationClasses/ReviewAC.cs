@@ -17,6 +17,7 @@ namespace CrazyFood.Repository.ApplicationClasses
         public int Rating { get; set; }
         public string ReviewText { get; set; }
         public int TotalLike { get; set; }
+        public int TotalComment { get; set; }
         public UserAC userAC { get; set; }
         public ICollection<ReviewCommentAC> ReviewCommnets { get; set; }
         public int RestaurantId { get; set; }

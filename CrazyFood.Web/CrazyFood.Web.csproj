@@ -37,6 +37,7 @@
     <None Remove="App\src\app\Models\Review.ts" />
     <None Remove="App\src\app\Models\ReviewAC.ts" />
     <None Remove="App\src\app\Models\ReviewCommentAC.ts" />
+    <None Remove="App\src\app\Models\ReviewLike.ts" />
     <None Remove="App\src\app\Models\UserAC.ts" />
   </ItemGroup>
 
@@ -80,6 +81,7 @@
     <TypeScriptCompile Include="App\src\app\Models\Review.ts" />
     <TypeScriptCompile Include="App\src\app\Models\ReviewAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\ReviewCommentAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\ReviewLike.ts" />
     <TypeScriptCompile Include="App\src\app\Models\UserAC.ts" />
   </ItemGroup>
 

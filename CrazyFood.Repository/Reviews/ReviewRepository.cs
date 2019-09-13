@@ -78,6 +78,10 @@ namespace CrazyFood.Repository.Reviews
                                           .ReviewComment
                                           .Where(rc => rc.ReviewId == review.Id)
                                           .ToListAsync();
+                var totalReviewComments =  _context
+                                          .ReviewComment
+                                          .Where(r => r.ReviewId == review.Id)
+                                          .Count();
                 var reviewLikes = _context
                                   .ReviewLike
                                   .Where(rl => rl.ReviewId == review.Id)
@@ -110,6 +114,7 @@ namespace CrazyFood.Repository.Reviews
                 reviewAC.userAC = user;
                 reviewAC.ReviewCommnets = ListOfComment;
                 reviewAC.TotalLike = reviewLikes;
+                reviewAC.TotalComment = totalReviewComments;
                 reviewAC.RestaurantId = restaurantId;
 
                 AllReviews.Add(reviewAC);
@@ -231,5 +236,7 @@ namespace CrazyFood.Repository.Reviews
 
             return reviewAC;
         }
+
+       
     }
 }

@@ -8,6 +8,11 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Update="App\src\app\Models\ReviewLike.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
     <TypeScriptCompile Update="App\src\app\Models\NewDish.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

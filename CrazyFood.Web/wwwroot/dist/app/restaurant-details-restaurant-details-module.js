@@ -84,7 +84,7 @@ module.exports = " <div class=\"col-md-8\">\r\n    <div *ngFor=\"let menu of Men
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container col-md-12\">\r\n    <h2>Reviews</h2>\r\n    <div *ngFor=\"let review of ReviwList\">\r\n\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n          <h4><a>{{review.userAC.name}}</a></h4>\r\n          <h5>Rated:{{review.rating}}/ 5</h5>\r\n          <h5>Review: {{review.reviewText}}</h5>\r\n\r\n          <div>\r\n            <a href=\"#\">\r\n              <span class=\"glyphicon glyphicon-thumbs-up\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n            <a (click)=\"toggle(review)\">\r\n              <span class=\"glyphicon glyphicon-comment\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n          </div>\r\n        </div>\r\n      <div *ngIf=\"review.showComment\">\r\n          <div *ngIf=\"review.reviewCommnets\">\r\n            <div *ngFor=\"let comment of review.reviewCommnets\">\r\n              <div class=\"panel panel-primary\">\r\n                <div class=\"panel-heading\">{{comment.userName}}</div>\r\n                <div class=\"panel-body\">\r\n                  <h5>{{comment.reviewCommentText}}</h5>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n      </div>\r\n\r\n          <div >\r\n            <form [formGroup]=\"commentForm\" (ngSubmit)=\"addComment(review.reviewId)\">\r\n              <div class=\"input-group\">\r\n                  <input type=\"text\" class=\"form-control\" placeholder=\"Write Comment\" formControlName=\"commentText\">\r\n                    <div class=\"input-group-btn\">\r\n                      <button class=\"btn btn-success\" type=\"submit\" >\r\n                        Add Comment\r\n                      </button>\r\n                    </div> \r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n </div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"container col-md-12\">\r\n    <h2>Reviews</h2>\r\n    <div *ngFor=\"let review of ReviwList\">\r\n\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n          <h4><a>{{review.userAC.name}}</a></h4>\r\n          <h5>Rated:{{review.rating}}/ 5</h5>\r\n          <h5>Review: {{review.reviewText}}</h5>\r\n\r\n          <div>\r\n            <a (click)=\"addLike(review)\">\r\n              <span class=\"glyphicon glyphicon-thumbs-up\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n            {{review.totalLike}}\r\n            <a (click)=\"toggle(review)\">\r\n              <span class=\"glyphicon glyphicon-comment\" style=\"font-size:40px;\"></span>\r\n            </a>\r\n            {{review.totalComment}}\r\n          </div>\r\n        </div>\r\n      <div *ngIf=\"review.showComment\">\r\n          <div *ngIf=\"review.reviewCommnets\">\r\n            <div *ngFor=\"let comment of review.reviewCommnets\">\r\n              <div class=\"panel panel-primary\">\r\n                <div class=\"panel-heading\">{{comment.userName}}</div>\r\n                <div class=\"panel-body\">\r\n                  <h5>{{comment.reviewCommentText}}</h5>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n      </div>\r\n\r\n          <div >\r\n            <form [formGroup]=\"commentForm\" (ngSubmit)=\"addComment(review.reviewId)\">\r\n              <div class=\"input-group\">\r\n                  <input type=\"text\" class=\"form-control\" placeholder=\"Write Comment\" formControlName=\"commentText\">\r\n                    <div class=\"input-group-btn\">\r\n                      <button class=\"btn btn-success\" type=\"submit\" >\r\n                        Add Comment\r\n                      </button>\r\n                    </div> \r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n </div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -203,6 +203,22 @@ class Review {
 
 /***/ }),
 
+/***/ "./src/app/Models/ReviewLike.ts":
+/*!**************************************!*\
+  !*** ./src/app/Models/ReviewLike.ts ***!
+  \**************************************/
+/*! exports provided: ReviewLike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewLike", function() { return ReviewLike; });
+class ReviewLike {
+}
+
+
+/***/ }),
+
 /***/ "./src/app/add-review/add-rating/add-rating.component.css":
 /*!****************************************************************!*\
   !*** ./src/app/add-review/add-rating/add-rating.component.css ***!
@@ -266,7 +282,7 @@ let AddRatingComponent = class AddRatingComponent {
             this.Review.restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
             debugger;
             this.reviewService.AddReview(this.Review, this.Review.restaurantId).subscribe(res => {
-                this.router.navigate(['']);
+                this.router.navigateByUrl("/RestaurantDetails/" + this.Review.restaurantId + "/Reviews");
             }, err => {
                 console.log("error");
             });
@@ -439,7 +455,7 @@ let AddReviewComponent = class AddReviewComponent {
             this.Review.restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
             debugger;
             this.reviewService.AddReview(this.Review, this.Review.restaurantId).subscribe(res => {
-                this.router.navigate(['']);
+                this.router.navigateByUrl("/RestaurantDetails/" + this.Review.restaurantId + "/Reviews");
             }, err => {
                 console.log("error");
             });
@@ -493,7 +509,13 @@ let ReviewService = class ReviewService {
     }
     AddComment(comment, reviewId) {
         var url = this.rootUrl + "api/Reviews/AddComment/" + reviewId;
+        debugger;
         return this.http.post(url, comment);
+    }
+    AddLike(like, reviewId) {
+        var url = this.rootUrl + "api/Reviews/AddLike/" + reviewId;
+        debugger;
+        return this.http.post(url, like);
     }
 };
 ReviewService.ctorParameters = () => [
@@ -504,53 +526,6 @@ ReviewService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: 'root'
     })
 ], ReviewService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/modal.service.ts":
-/*!**********************************!*\
-  !*** ./src/app/modal.service.ts ***!
-  \**********************************/
-/*! exports provided: ModalService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return ModalService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let ModalService = class ModalService {
-    constructor() {
-        this.modals = [];
-    }
-    add(modal) {
-        // add modal to array of active modals
-        this.modals.push(modal);
-    }
-    remove(id) {
-        // remove modal from array of active modals
-        this.modals = this.modals.filter(x => x.id !== id);
-    }
-    open(id) {
-        // open modal specified by id
-        let modal = this.modals.filter(x => x.id === id)[0];
-        modal.open();
-    }
-    close(id) {
-        // close modal specified by id
-        let modal = this.modals.filter(x => x.id === id)[0];
-        modal.close();
-    }
-};
-ModalService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
-], ModalService);
 
 
 
@@ -1165,8 +1140,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Models_MenuCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Models/MenuCategory */ "./src/app/Models/MenuCategory.ts");
 /* harmony import */ var _restaurant_restuarant_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../restaurant/restuarant.service */ "./src/app/restaurant/restuarant.service.ts");
 /* harmony import */ var _Models_NewDish__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Models/NewDish */ "./src/app/Models/NewDish.ts");
-/* harmony import */ var _modal_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../modal.service */ "./src/app/modal.service.ts");
-
 
 
 
@@ -1178,12 +1151,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let RestaurantMenuComponent = class RestaurantMenuComponent {
-    constructor(service, route, userService, restaurantService, modelService) {
+    constructor(service, route, userService, restaurantService) {
         this.service = service;
         this.route = route;
         this.userService = userService;
         this.restaurantService = restaurantService;
-        this.modelService = modelService;
         this.CurrentUser = new _Models_UserAC__WEBPACK_IMPORTED_MODULE_5__["UserAC"]();
         this.CategoryForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormGroup"]({
             Category: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('')
@@ -1221,6 +1193,7 @@ let RestaurantMenuComponent = class RestaurantMenuComponent {
             .AddCategory(this.Id, this.NewCategory)
             .subscribe(res => {
             alert("New Category added Successfully");
+            window.location.reload();
         }, err => {
             alert("error");
         });
@@ -1230,8 +1203,7 @@ RestaurantMenuComponent.ctorParameters = () => [
     { type: _restaurant_details_service__WEBPACK_IMPORTED_MODULE_2__["RestaurantDetailsService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
     { type: _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] },
-    { type: _restaurant_restuarant_service__WEBPACK_IMPORTED_MODULE_8__["RestuarantService"] },
-    { type: _modal_service__WEBPACK_IMPORTED_MODULE_10__["ModalService"] }
+    { type: _restaurant_restuarant_service__WEBPACK_IMPORTED_MODULE_8__["RestuarantService"] }
 ];
 RestaurantMenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1274,6 +1246,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
 /* harmony import */ var _Models_Comment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Models/Comment */ "./src/app/Models/Comment.ts");
+/* harmony import */ var _Models_ReviewLike__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Models/ReviewLike */ "./src/app/Models/ReviewLike.ts");
+
 
 
 
@@ -1314,6 +1288,22 @@ let RestaurantReviewsComponent = class RestaurantReviewsComponent {
             review.showComment = false;
         }
     }
+    addLike(review) {
+        if (this.user == null) {
+            alert("You are not Logged In");
+        }
+        else {
+            var like = new _Models_ReviewLike__WEBPACK_IMPORTED_MODULE_8__["ReviewLike"]();
+            like.reviewId = review.reviewId;
+            like.userId = this.user.id;
+            this.reviewService.AddLike(like, like.reviewId).subscribe(res => {
+                alert("Like Added");
+                window.location.reload();
+            }, err => {
+                alert("Error");
+            });
+        }
+    }
     addComment(reviewId) {
         if (this.user == null) {
             alert("You are not Logged In");
@@ -1322,8 +1312,10 @@ let RestaurantReviewsComponent = class RestaurantReviewsComponent {
             this.comment.commentText = this.commentForm.value.commentText;
             this.comment.reviewId = reviewId;
             this.comment.userId = this.user.id;
+            debugger;
             this.reviewService.AddComment(this.comment, reviewId).subscribe(res => {
                 console.log("success");
+                window.location.reload();
             }, err => {
                 console.log("error");
             });
