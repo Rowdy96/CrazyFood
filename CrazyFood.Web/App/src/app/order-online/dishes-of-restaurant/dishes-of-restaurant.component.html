@@ -22,7 +22,6 @@
                       <th>Item count</th>
                       <th>Add Item</th>
                       <th>Remove Item</th>
-                      <th>Select</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -34,7 +33,6 @@
                         <td>{{dish.itemCount}}</td>
                         <td><button type="button" (click)="onAdd(dish)"><span class="glyphicon glyphicon-plus-sign"></span></button></td>
                         <td><button type="button" (click)="onRemove(dish)"><span class="glyphicon glyphicon-minus-sign"></span></button></td>
-                        <td><button type="button" (click)="addToOrder(dish)"><span class="glyphicon glyphicon-ok-sign"></span></button></td>
                     </tr>
                   </tbody>
                 </table>

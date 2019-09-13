@@ -4,6 +4,7 @@ import { UserAC } from './Models/UserAC';
 import { Observable } from 'rxjs';
 import { error } from 'protractor';
 import { Window } from 'selenium-webdriver';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,10 +14,9 @@ export class UserService {
 
   //currentUser: UserAC;
   rootUrl = "https://localhost:44303/";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   GetLoggedInUser(): Observable<UserAC> {
-    debugger;
     return this.http.get<UserAC>(this.rootUrl + "api/Users/GetLoggedInUSer");
   }
 
@@ -25,8 +25,7 @@ export class UserService {
     var url = this.rootUrl + "api/Users/Logout";
     this.http.post(url, null).subscribe(
       res => {
-        window.location.reload();
-
+        this.router.navigateByUrl("/");
       },
       err => {
         console.log(err);

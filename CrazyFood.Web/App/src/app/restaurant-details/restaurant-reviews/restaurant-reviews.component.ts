@@ -32,7 +32,6 @@ export class RestaurantReviewsComponent implements OnInit {
   ngOnInit() {
     this.userService.GetLoggedInUser().subscribe(res => {
       this.user = res;
-      debugger;
     });
     this.GetReviews();
   }
@@ -54,15 +53,11 @@ export class RestaurantReviewsComponent implements OnInit {
   }
 
   addComment(reviewId: number) {
-    debugger;
     if (this.user == null) {
-      debugger;
       alert("You are not Logged In");
     }
     else
     {
-      debugger;
-      console.log(this.user.email + reviewId + "  " + this.commentForm.value.commentText);
       this.comment.commentText = this.commentForm.value.commentText;
       this.comment.reviewId = reviewId;
       this.comment.userId = this.user.id;

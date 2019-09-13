@@ -4,9 +4,6 @@ import { OrderOnlineService } from '../order-online.service';
 import { RestaurantAC } from 'src/app/Models/RestaurantAC';
 import { OrderMenuAC } from '../../Models/OrderMenuAC';
 import { Dish } from '../../Models/Dish';
-import { OrderItem } from '../../Models/OrderItem';
-import { Order } from '../../Models/Order';
-import { OrderAC } from '../../Models/OrderAC';
 import { UserService } from 'src/app/user.service';
 import { UserAC } from 'src/app/Models/UserAC';
 import { RestaurantDetailsService } from '../../restaurant-details/restaurant-details.service';
@@ -28,8 +25,7 @@ export class DishesOfRestaurantComponent implements OnInit {
 
   constructor(private service : OrderOnlineService
              ,private route: ActivatedRoute
-             ,private userService: UserService
-             , private restaurantService: RestaurantDetailsService) { }
+             ,private userService: UserService) { }
 
   ngOnInit() {
     this.GetRestaurant();
@@ -62,30 +58,33 @@ export class DishesOfRestaurantComponent implements OnInit {
   }
 
   onAdd(dish: Dish) {
-    dish.itemCount = dish.itemCount + 1;
+    if (this.SelectedItemList.includes(dish)) {
+      dish.itemCount = dish.itemCount + 1;
+      this.totalPrice = this.totalPrice + dish.price * 1;
+    }
+    else {
+      dish.itemCount = dish.itemCount + 1;
+      this.totalPrice = this.totalPrice + dish.price * 1;
+      this.SelectedItemList.push(dish);
+    }
+    
   }
 
   onRemove(dish: Dish) {
-    if (dish.itemCount == 0) {
-      alert("To add Item Click + button")
-    }
-
-    dish.itemCount = dish.itemCount - 1;
-  }
-
-  addToOrder(dish: Dish) {
-
-    if (dish.itemCount == 0) {
+    if (!this.SelectedItemList.includes(dish)) {
       alert("To add Item Click + button")
     }
     else {
-      this.SelectedItemList.push(dish);
-      console.log(this.SelectedItemList);
-      this.totalPrice = this.totalPrice + dish.itemCount * dish.price;
-    }
+      if (this.SelectedItemList.includes(dish)) {
+        dish.itemCount = dish.itemCount - 1;
+        this.totalPrice = this.totalPrice - dish.price * 1;
+        if (dish.itemCount == 0) {
+          var index = this.SelectedItemList.indexOf(dish);
+          this.SelectedItemList.splice(index, 1);
+        }
+      }
+      
+    } 
   }
-
-  
-
 
 }

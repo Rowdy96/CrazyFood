@@ -212,30 +212,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 let UserService = class UserService {
-    constructor(http) {
+    constructor(http, router) {
         this.http = http;
+        this.router = router;
         //currentUser: UserAC;
         this.rootUrl = "https://localhost:44303/";
     }
     GetLoggedInUser() {
-        debugger;
         return this.http.get(this.rootUrl + "api/Users/GetLoggedInUSer");
     }
     Logout() {
         var url = this.rootUrl + "api/Users/Logout";
         this.http.post(url, null).subscribe(res => {
-            console.log(res);
+            this.router.navigateByUrl("/");
         }, err => {
             console.log(err);
         });
     }
 };
 UserService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

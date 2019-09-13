@@ -13,7 +13,7 @@ import { OrderOnlineService } from '../order-online.service';
 })
 export class CustomerOrderComponent implements OnInit {
 
-  @Input() ItemList: Dish[] = new Array();
+  @Input() ItemList: Dish[];
   @Input() totalOrderPrice: number;
   @Input() CurrentUser: UserAC;
   order: Order = new Order();
@@ -29,30 +29,37 @@ export class CustomerOrderComponent implements OnInit {
   
 
   proceed() {
+    if (this.ItemList==null) {
+      alert("Add Item"); 
+    }
+    else
+    {
+      this.order.userId = this.CurrentUser.id;
+      this.order.isOnTheWay = false;
+      this.order.isOderPreparing = false;
+      this.order.isOrderDelivered = false;
 
-    this.order.userId = this.CurrentUser.id;
-    this.order.isOnTheWay = false;
-    this.order.isOderPreparing = false;
-    this.order.isOrderDelivered = false;
+      for (var selectedItem of this.ItemList) {
+        var item = new OrderItem();
+        item.dishId = selectedItem.id;
+        item.itemCount = selectedItem.itemCount;
+        this.OrderItemList.push(item);
+      }
 
-   for (var selectedItem of this.ItemList) {
-      var item = new OrderItem();
-      item.dishId = selectedItem.id;
-      item.itemCount = selectedItem.itemCount;
-      this.OrderItemList.push(item);
-   }
+      this.OrderAC.Order = this.order;
+      this.OrderAC.OrderItem = this.OrderItemList;
 
-   this.OrderAC.Order = this.order;
-   this.OrderAC.OrderItem = this.OrderItemList;
+      console.log(this.OrderAC);
+      this.orderService.AddOrder(this.OrderAC).subscribe(res => {
+        alert("order Added successfully");
+      },
 
-    console.log(this.OrderAC);
-    this.orderService.AddOrder(this.OrderAC).subscribe(res => {
-      alert("order Added successfully");
-    },
+        err => {
+          console.log(err);
+        });
+    }
 
-      err => {
-        console.log(err);
-      });
-  }
+    }
+   
 
 }

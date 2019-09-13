@@ -40,7 +40,7 @@ module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel pa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">{{RestaurantDetails?.restaurant?.name}}</div>\r\n        <div class=\"panel-body\">\r\n          <h5>Average Rating: {{RestaurantDetails?.restaurant?.averageRating?.averageUserRating}}/5</h5>\r\n          <h5>Average Review: {{RestaurantDetails?.restaurant?.averageRating?.ratingText}}</h5>\r\n        </div>\r\n      </div>\r\n\r\n    <div class=\"panel panel-primary\">\r\n      <div class=\"panel-body\">\r\n        <div class=\"col-md-8\">\r\n          <div *ngFor=\"let menu of OrderMenuList\">\r\n            <div class=\"panel panel-primary\">\r\n              <div class=\"panel-heading\">{{menu.menuCategoryName}}</div>\r\n              <div class=\"panel-body\">\r\n                <table class=\"table table-striped\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th>Name Of The Dish</th>\r\n                      <th>Price</th>\r\n                      <th>Item count</th>\r\n                      <th>Add Item</th>\r\n                      <th>Remove Item</th>\r\n                      <th>Select</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <tbody>\r\n\r\n                    <tr *ngFor=\"let dish of menu.dishes\">\r\n                      \r\n                        <td>{{dish.dishName}}</td>\r\n                        <td>{{dish.price}}</td>\r\n                        <td>{{dish.itemCount}}</td>\r\n                        <td><button type=\"button\" (click)=\"onAdd(dish)\"><span class=\"glyphicon glyphicon-plus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"onRemove(dish)\"><span class=\"glyphicon glyphicon-minus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"addToOrder(dish)\"><span class=\"glyphicon glyphicon-ok-sign\"></span></button></td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"col-md-4\">\r\n          <app-customer-order [ItemList]=\"SelectedItemList\" [totalOrderPrice]=\"totalPrice\" [CurrentUser]=\"user\">\r\n\r\n          </app-customer-order>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n      <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">{{RestaurantDetails?.restaurant?.name}}</div>\r\n        <div class=\"panel-body\">\r\n          <h5>Average Rating: {{RestaurantDetails?.restaurant?.averageRating?.averageUserRating}}/5</h5>\r\n          <h5>Average Review: {{RestaurantDetails?.restaurant?.averageRating?.ratingText}}</h5>\r\n        </div>\r\n      </div>\r\n\r\n    <div class=\"panel panel-primary\">\r\n      <div class=\"panel-body\">\r\n        <div class=\"col-md-8\">\r\n          <div *ngFor=\"let menu of OrderMenuList\">\r\n            <div class=\"panel panel-primary\">\r\n              <div class=\"panel-heading\">{{menu.menuCategoryName}}</div>\r\n              <div class=\"panel-body\">\r\n                <table class=\"table table-striped\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th>Name Of The Dish</th>\r\n                      <th>Price</th>\r\n                      <th>Item count</th>\r\n                      <th>Add Item</th>\r\n                      <th>Remove Item</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <tbody>\r\n\r\n                    <tr *ngFor=\"let dish of menu.dishes\">\r\n                      \r\n                        <td>{{dish.dishName}}</td>\r\n                        <td>{{dish.price}}</td>\r\n                        <td>{{dish.itemCount}}</td>\r\n                        <td><button type=\"button\" (click)=\"onAdd(dish)\"><span class=\"glyphicon glyphicon-plus-sign\"></span></button></td>\r\n                        <td><button type=\"button\" (click)=\"onRemove(dish)\"><span class=\"glyphicon glyphicon-minus-sign\"></span></button></td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"col-md-4\">\r\n          <app-customer-order [ItemList]=\"SelectedItemList\" [totalOrderPrice]=\"totalPrice\" [CurrentUser]=\"user\">\r\n\r\n          </app-customer-order>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -592,7 +592,6 @@ __webpack_require__.r(__webpack_exports__);
 let CustomerOrderComponent = class CustomerOrderComponent {
     constructor(orderService) {
         this.orderService = orderService;
-        this.ItemList = new Array();
         this.order = new _Models_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
         this.OrderAC = new _Models_OrderAC__WEBPACK_IMPORTED_MODULE_2__["OrderAC"]();
         this.OrderItemList = new Array();
@@ -600,24 +599,29 @@ let CustomerOrderComponent = class CustomerOrderComponent {
     ngOnInit() {
     }
     proceed() {
-        this.order.userId = this.CurrentUser.id;
-        this.order.isOnTheWay = false;
-        this.order.isOderPreparing = false;
-        this.order.isOrderDelivered = false;
-        for (var selectedItem of this.ItemList) {
-            var item = new _Models_OrderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
-            item.dishId = selectedItem.id;
-            item.itemCount = selectedItem.itemCount;
-            this.OrderItemList.push(item);
+        if (this.ItemList == null) {
+            alert("Add Item");
         }
-        this.OrderAC.Order = this.order;
-        this.OrderAC.OrderItem = this.OrderItemList;
-        console.log(this.OrderAC);
-        this.orderService.AddOrder(this.OrderAC).subscribe(res => {
-            alert("order Added successfully");
-        }, err => {
-            console.log(err);
-        });
+        else {
+            this.order.userId = this.CurrentUser.id;
+            this.order.isOnTheWay = false;
+            this.order.isOderPreparing = false;
+            this.order.isOrderDelivered = false;
+            for (var selectedItem of this.ItemList) {
+                var item = new _Models_OrderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
+                item.dishId = selectedItem.id;
+                item.itemCount = selectedItem.itemCount;
+                this.OrderItemList.push(item);
+            }
+            this.OrderAC.Order = this.order;
+            this.OrderAC.OrderItem = this.OrderItemList;
+            console.log(this.OrderAC);
+            this.orderService.AddOrder(this.OrderAC).subscribe(res => {
+                alert("order Added successfully");
+            }, err => {
+                console.log(err);
+            });
+        }
     }
 };
 CustomerOrderComponent.ctorParameters = () => [
@@ -671,8 +675,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _order_online_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../order-online.service */ "./src/app/order-online/order-online.service.ts");
 /* harmony import */ var src_app_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/user.service */ "./src/app/user.service.ts");
 /* harmony import */ var src_app_Models_UserAC__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/Models/UserAC */ "./src/app/Models/UserAC.ts");
-/* harmony import */ var _restaurant_details_restaurant_details_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../restaurant-details/restaurant-details.service */ "./src/app/restaurant-details/restaurant-details.service.ts");
-
 
 
 
@@ -680,11 +682,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DishesOfRestaurantComponent = class DishesOfRestaurantComponent {
-    constructor(service, route, userService, restaurantService) {
+    constructor(service, route, userService) {
         this.service = service;
         this.route = route;
         this.userService = userService;
-        this.restaurantService = restaurantService;
         this.Id = 0;
         this.SelectedItemList = new Array();
         this.totalPrice = 0;
@@ -717,30 +718,36 @@ let DishesOfRestaurantComponent = class DishesOfRestaurantComponent {
         });
     }
     onAdd(dish) {
-        dish.itemCount = dish.itemCount + 1;
+        if (this.SelectedItemList.includes(dish)) {
+            dish.itemCount = dish.itemCount + 1;
+            this.totalPrice = this.totalPrice + dish.price * 1;
+        }
+        else {
+            dish.itemCount = dish.itemCount + 1;
+            this.totalPrice = this.totalPrice + dish.price * 1;
+            this.SelectedItemList.push(dish);
+        }
     }
     onRemove(dish) {
-        if (dish.itemCount == 0) {
-            alert("To add Item Click + button");
-        }
-        dish.itemCount = dish.itemCount - 1;
-    }
-    addToOrder(dish) {
-        if (dish.itemCount == 0) {
+        if (!this.SelectedItemList.includes(dish)) {
             alert("To add Item Click + button");
         }
         else {
-            this.SelectedItemList.push(dish);
-            console.log(this.SelectedItemList);
-            this.totalPrice = this.totalPrice + dish.itemCount * dish.price;
+            if (this.SelectedItemList.includes(dish)) {
+                dish.itemCount = dish.itemCount - 1;
+                this.totalPrice = this.totalPrice - dish.price * 1;
+                if (dish.itemCount == 0) {
+                    var index = this.SelectedItemList.indexOf(dish);
+                    this.SelectedItemList.splice(index, 1);
+                }
+            }
         }
     }
 };
 DishesOfRestaurantComponent.ctorParameters = () => [
     { type: _order_online_service__WEBPACK_IMPORTED_MODULE_3__["OrderOnlineService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-    { type: src_app_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] },
-    { type: _restaurant_details_restaurant_details_service__WEBPACK_IMPORTED_MODULE_6__["RestaurantDetailsService"] }
+    { type: src_app_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] }
 ];
 DishesOfRestaurantComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1290,7 +1297,6 @@ let RestaurantReviewsComponent = class RestaurantReviewsComponent {
     ngOnInit() {
         this.userService.GetLoggedInUser().subscribe(res => {
             this.user = res;
-            debugger;
         });
         this.GetReviews();
     }
@@ -1309,14 +1315,10 @@ let RestaurantReviewsComponent = class RestaurantReviewsComponent {
         }
     }
     addComment(reviewId) {
-        debugger;
         if (this.user == null) {
-            debugger;
             alert("You are not Logged In");
         }
         else {
-            debugger;
-            console.log(this.user.email + reviewId + "  " + this.commentForm.value.commentText);
             this.comment.commentText = this.commentForm.value.commentText;
             this.comment.reviewId = reviewId;
             this.comment.userId = this.user.id;
