@@ -39,7 +39,6 @@ export class RestaurantReviewsComponent implements OnInit {
 
   GetReviews() {
     const restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
-    console.log(">>>> "+restaurantId);
     this.service.GetReviewsOfRestaurant(restaurantId).subscribe(res => {
       this.ReviwList = res;
     });

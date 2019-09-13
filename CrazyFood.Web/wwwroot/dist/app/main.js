@@ -53,11 +53,11 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        loadChildren: () => Promise.all(/*! import() | list-of-restaurant-list-of-restaurant-module */[__webpack_require__.e("common"), __webpack_require__.e("list-of-restaurant-list-of-restaurant-module")]).then(__webpack_require__.bind(null, /*! ./list-of-restaurant/list-of-restaurant.module */ "./src/app/list-of-restaurant/list-of-restaurant.module.ts")).then(mod => mod.ListOfRestaurantModule)
+        loadChildren: () => __webpack_require__.e(/*! import() | list-of-restaurant-list-of-restaurant-module */ "list-of-restaurant-list-of-restaurant-module").then(__webpack_require__.bind(null, /*! ./list-of-restaurant/list-of-restaurant.module */ "./src/app/list-of-restaurant/list-of-restaurant.module.ts")).then(mod => mod.ListOfRestaurantModule)
     },
     {
         path: 'RestaurantDetails/:restaurantId',
-        loadChildren: () => Promise.all(/*! import() | restaurant-details-restaurant-details-module */[__webpack_require__.e("common"), __webpack_require__.e("restaurant-details-restaurant-details-module")]).then(__webpack_require__.bind(null, /*! ./restaurant-details/restaurant-details.module */ "./src/app/restaurant-details/restaurant-details.module.ts")).then(mod => mod.RestaurantDetailsModule)
+        loadChildren: () => Promise.all(/*! import() | restaurant-details-restaurant-details-module */[__webpack_require__.e("default~restaurant-details-restaurant-details-module~restaurant-restaurant-module"), __webpack_require__.e("common"), __webpack_require__.e("restaurant-details-restaurant-details-module")]).then(__webpack_require__.bind(null, /*! ./restaurant-details/restaurant-details.module */ "./src/app/restaurant-details/restaurant-details.module.ts")).then(mod => mod.RestaurantDetailsModule)
     },
     {
         path: 'Customer/:customerId',
@@ -65,7 +65,7 @@ const routes = [
     },
     {
         path: 'Admin',
-        loadChildren: () => Promise.all(/*! import() | restaurant-restaurant-module */[__webpack_require__.e("common"), __webpack_require__.e("restaurant-restaurant-module")]).then(__webpack_require__.bind(null, /*! ./restaurant/restaurant.module */ "./src/app/restaurant/restaurant.module.ts")).then(mod => mod.RestaurantModule)
+        loadChildren: () => __webpack_require__.e(/*! import() | restaurant-restaurant-module */ "default~restaurant-details-restaurant-details-module~restaurant-restaurant-module").then(__webpack_require__.bind(null, /*! ./restaurant/restaurant.module */ "./src/app/restaurant/restaurant.module.ts")).then(mod => mod.RestaurantModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -218,6 +218,7 @@ __webpack_require__.r(__webpack_exports__);
 let UserService = class UserService {
     constructor(http) {
         this.http = http;
+        //currentUser: UserAC;
         this.rootUrl = "https://localhost:44303/";
     }
     GetLoggedInUser() {

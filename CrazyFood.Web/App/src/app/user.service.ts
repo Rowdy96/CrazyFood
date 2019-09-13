@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserAC } from './Models/UserAC';
 import { Observable } from 'rxjs';
 import { error } from 'protractor';
+import { Window } from 'selenium-webdriver';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { error } from 'protractor';
 })
 export class UserService {
 
-  currentUser: UserAC;
+  //currentUser: UserAC;
   rootUrl = "https://localhost:44303/";
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,8 @@ export class UserService {
     var url = this.rootUrl + "api/Users/Logout";
     this.http.post(url, null).subscribe(
       res => {
-        console.log(res);
+        window.location.reload();
+
       },
       err => {
         console.log(err);

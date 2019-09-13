@@ -1,7 +1,10 @@
+import { MenuCategory } from './MenuCategory';
+
 export class DishAC{
 
   id: number;
   dishName: string;
-  dishPrice: number;
+  price: number;
   menuCategoryId: number;
+  menuCategory: MenuCategory;
 }

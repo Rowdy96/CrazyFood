@@ -119,6 +119,26 @@ namespace CrazyFood.Web
                     roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
+
+            var admin = await RoleManager.RoleExistsAsync("Admin");
+            if (!admin)
+            {
+                var user = new Users
+                {
+                    UserName = "Admin@Promact.com",
+                    Name = "Admin",
+                    Email = "Admin@Promact.com",
+                };
+
+                var password = "Admin@123";
+
+                var result = await serviceProvider.GetRequiredService<UserManager<Users>>().CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await serviceProvider.GetRequiredService<UserManager<Users>>().AddToRoleAsync(user, "Admin");
+                }
+                
+            }
         }
 
 

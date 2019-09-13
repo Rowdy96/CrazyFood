@@ -51,7 +51,7 @@ namespace CrazyFood.Repository.Menu
                     DishAC dishAC = new DishAC();
                     dishAC.Id = dish.Id;
                     dishAC.DishName = dish.DishName;
-                    dishAC.DishPrice = dish.Price;
+                    dishAC.Price = dish.Price;
                     dishAC.MenuCategoryId = dish.MenuCategoryId;
                     DishesOfMenu.Add(dishAC);
                 }
@@ -74,7 +74,7 @@ namespace CrazyFood.Repository.Menu
             {
                 DishAC dish = new DishAC();
                 dish.DishName = d.DishName;
-                dish.DishPrice = d.Price;
+                dish.Price = d.Price;
                 dishACs.Add(dish);
             }
             menuAC.Dishes = dishACs;

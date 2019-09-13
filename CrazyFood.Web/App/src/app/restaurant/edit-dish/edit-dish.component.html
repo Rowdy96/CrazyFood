@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Add Dish</h2>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal " [formGroup]="UpdateDishForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="addDishName">Dish Name:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="addDishName" formControlName="DishName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="addDishPrice">Dish Price:</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" id="addDishPrice" formControlName="DishPrice"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-12">
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-success" (click)="Back()">Back</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

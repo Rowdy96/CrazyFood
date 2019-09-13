@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","customer-customer-module":"customer-customer-module","list-of-restaurant-list-of-restaurant-module":"list-of-restaurant-list-of-restaurant-module","restaurant-details-restaurant-details-module":"restaurant-details-restaurant-details-module","restaurant-restaurant-module":"restaurant-restaurant-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","customer-customer-module":"customer-customer-module","default~restaurant-details-restaurant-details-module~restaurant-restaurant-module":"default~restaurant-details-restaurant-details-module~restaurant-restaurant-module","restaurant-details-restaurant-details-module":"restaurant-details-restaurant-details-module","list-of-restaurant-list-of-restaurant-module":"list-of-restaurant-list-of-restaurant-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

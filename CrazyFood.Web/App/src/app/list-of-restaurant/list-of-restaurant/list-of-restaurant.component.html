@@ -53,14 +53,14 @@
               </button>
             </div>
             <div class="btn-group" *ngIf="user?.roles.includes('Admin')">
-              <button type="button" class="btn btn-primary" (click)="GoToOrder(restaurant.restaurant.id)">
+              <a class="btn btn-primary" routerLink="/Admin/UpdateRestaurant/{{restaurant.restaurant.id}}">
                 Update Restaurant
-              </button>
+              </a>
             </div>
             <div class="btn-group" *ngIf="user?.roles.includes('Admin')">
-              <button type="button" class="btn btn-primary" (click)="GoToOrder(restaurant.restaurant.id)">
+              <a class="btn btn-primary" routerLink="/Admin/DeleteRestaurant/{{restaurant.restaurant.id}}">
                 Delete Restaurant
-              </button>
+              </a>
             </div>
           </div>
         </div>

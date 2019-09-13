@@ -36,7 +36,7 @@ namespace CrazyFood.Core.ApiControllers
 
         //api/Dishs/CreateDish/1
         [HttpPost("{menuId}")]
-        public async Task<IActionResult> CreateDish([FromRoute]int menuId,[FromBody] Dish dish)
+        public async Task<IActionResult> CreateDish([FromRoute]int menuId, [FromBody] Dish dish)
         {
             if (!ModelState.IsValid)
             {
@@ -48,8 +48,8 @@ namespace CrazyFood.Core.ApiControllers
         }
 
         //api/Dishs/UpdateDish/5
-        [HttpPost]
-        public async Task<IActionResult> UpdateRestaurant([FromRoute] int disID
+        [HttpPut("{dishID}")]
+        public async Task<IActionResult> UpdateDish([FromRoute] int dishID
                                                           , [FromBody] Dish dish)
         {
             if (!ModelState.IsValid)
@@ -57,7 +57,7 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            if (disID != dish.Id)
+            if (dishID != dish.Id)
             {
                 return BadRequest();
             }
@@ -70,7 +70,7 @@ namespace CrazyFood.Core.ApiControllers
 
             catch (DbUpdateConcurrencyException)
             {
-                if (!DishExists(disID))
+                if (!DishExists(dishID))
                 {
                     return NotFound();
                 }
@@ -92,8 +92,8 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            var updatedDish = await _unitOfWork.Dish.GetDish(dishId);
-            if (updatedDish == null)
+            var dish = await _unitOfWork.Dish.GetDish(dishId);
+            if (dish == null)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.Dish.DeleteDish(dishId);
             await _unitOfWork.Save();
 
-            return Ok(updatedDish);
+            return Ok(dish);
         }
 
         private bool DishExists(int dishId)

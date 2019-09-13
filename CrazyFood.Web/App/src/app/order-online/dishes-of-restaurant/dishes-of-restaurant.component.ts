@@ -81,7 +81,7 @@ export class DishesOfRestaurantComponent implements OnInit {
     else {
       this.SelectedItemList.push(dish);
       console.log(this.SelectedItemList);
-      this.totalPrice = this.totalPrice + dish.itemCount * dish.dishPrice;
+      this.totalPrice = this.totalPrice + dish.itemCount * dish.price;
     }
   }
 

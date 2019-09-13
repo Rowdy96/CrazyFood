@@ -30,7 +30,7 @@
                     <tr *ngFor="let dish of menu.dishes">
                       
                         <td>{{dish.dishName}}</td>
-                        <td>{{dish.dishPrice}}</td>
+                        <td>{{dish.price}}</td>
                         <td>{{dish.itemCount}}</td>
                         <td><button type="button" (click)="onAdd(dish)"><span class="glyphicon glyphicon-plus-sign"></span></button></td>
                         <td><button type="button" (click)="onRemove(dish)"><span class="glyphicon glyphicon-minus-sign"></span></button></td>

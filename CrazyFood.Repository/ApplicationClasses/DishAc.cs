@@ -8,7 +8,7 @@ namespace CrazyFood.Repository.ApplicationClasses
     {
         public int Id { get; set; }
         public string DishName { get; set; }
-        public string DishPrice { get; set; }
+        public string Price { get; set; }
         public int MenuCategoryId { get; set; }
     }
 }

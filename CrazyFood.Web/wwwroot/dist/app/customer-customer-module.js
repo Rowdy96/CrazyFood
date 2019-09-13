@@ -103,7 +103,7 @@ const routes = [
         component: _customer_customer_component__WEBPACK_IMPORTED_MODULE_3__["CustomerComponent"],
         children: [
             {
-                path: 'Reviews',
+                path: '',
                 component: _customer_review_customer_review_component__WEBPACK_IMPORTED_MODULE_4__["CustomerReviewComponent"]
             },
             {

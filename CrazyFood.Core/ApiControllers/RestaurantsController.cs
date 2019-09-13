@@ -69,7 +69,7 @@ namespace CrazyFood.Core.ApiControllers
         }
 
         //api/Restaurants/UpdateRestaurant/5
-        [HttpPost]
+        [HttpPut("{restaurantID}")]
         public async Task<IActionResult> UpdateRestaurant([FromRoute] int restaurantID
                                                           ,[FromBody] Restaurant restaurant)
         {

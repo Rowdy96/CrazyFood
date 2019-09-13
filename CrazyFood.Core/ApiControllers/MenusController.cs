@@ -37,6 +37,7 @@ namespace CrazyFood.Core.ApiControllers
             return await _unitOfWork.Menu.GetMenu(menuId);
         }
 
+        //api/Menus/CreateMenuCategory/1
         [HttpPost("{restaurantId}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMenuCategory([FromRoute] int restaurantId
@@ -86,6 +87,30 @@ namespace CrazyFood.Core.ApiControllers
 
             return NoContent();
         }
+
+
+        //api/Menus/DeleteMenuCategory/1
+        [HttpDelete("{menuId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteMenuCategory([FromRoute] int menuId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var menu = await _unitOfWork.Menu.GetMenu(menuId);
+            if (menu == null)
+            {
+                return NotFound();
+            }
+
+            await _unitOfWork.Menu.DeleteMenu(menuId);
+            await _unitOfWork.Save();
+
+            return Ok(menu);
+        }
+
 
         private bool MenuExists(int menuId)
         {

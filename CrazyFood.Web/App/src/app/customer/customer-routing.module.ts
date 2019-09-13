@@ -11,7 +11,7 @@ const routes: Routes = [
     component:CustomerComponent,
     children:[
       {
-        path:'Reviews',
+        path:'',
         component:CustomerReviewComponent
       },
       {
