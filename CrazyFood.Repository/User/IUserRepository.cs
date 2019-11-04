@@ -10,5 +10,8 @@ namespace CrazyFood.Repository.User
     public interface IUserRepository
     {
        UserAC GetUser(Users user);
+       Task FollowUser(Follow follow);
+       Task UnFollowUser(Follow follow);
+     
     }
 }

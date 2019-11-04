@@ -1,25 +1,25 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">{{RestaurantDetails?.restaurant?.name}}</div>
+    <div class="panel-heading">{{RestaurantDetails?.Restaurant?.Name}}</div>
     <div class="panel-body">
-      <h5>Average Rating: {{RestaurantDetails?.restaurant?.averageRating?.averageUserRating}}/5</h5>
-      <h5>Average Review: {{RestaurantDetails?.restaurant?.averageRating?.ratingText}}</h5>
+      <h5>Average Rating: {{RestaurantDetails?.Restaurant?.AverageRating?.AverageUserRating}}/5</h5>
+      <h5>Average Review: {{RestaurantDetails?.Restaurant?.AverageRating?.RatingText}}</h5>
     </div>
     <div class="panel-footer">
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
-          <a class="btn btn-primary" routerLink="/RestaurantDetails/{{RestaurantDetails?.restaurant?.id}}/Menu">Menu</a>
+          <a class="btn btn-primary" routerLink="/RestaurantDetails/{{RestaurantDetails?.Restaurant?.Id}}/Menu">Menu</a>
         </div>
         <div class="btn-group">
-          <a class="btn btn-primary" routerLink="/RestaurantDetails/{{RestaurantDetails?.restaurant?.id}}/Reviews">Reviews</a>
+          <a class="btn btn-primary" routerLink="/RestaurantDetails/{{RestaurantDetails?.Restaurant?.Id}}/Reviews">Reviews</a>
         </div>
         <div class="btn-group">
           <a class="btn btn-primary" routerLink="AddReview">Add Review</a>
         </div>
         <div class="btn-group">
-          <a class="btn btn-primary" routerLink="/RestaurantDetails/{{RestaurantDetails?.restaurant?.id}}/AddRating">Add Rating</a>
+          <a class="btn btn-primary" routerLink="/RestaurantDetails/{{RestaurantDetails?.Restaurant?.Id}}/AddRating">Add Rating</a>
         </div>
         <div class="btn-group">
-          <a class="btn btn-primary" routerLink="Order/{{RestaurantDetails?.restaurant?.id}}"> Order Online</a>
+          <a class="btn btn-primary" routerLink="Order/{{RestaurantDetails?.Restaurant?.Id}}"> Order Online</a>
         </div>
       </div>
     </div>

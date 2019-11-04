@@ -32,14 +32,14 @@ export class CreateRestaurantComponent implements OnInit {
   onSubmit() {
 
     var restaurant = new Restaurant();
-    restaurant.name = this.restaurantForm.value.Name;
-    restaurant.emailId = this.restaurantForm.value.Email;
-    restaurant.phoneNumber = this.restaurantForm.value.Phone;
-    restaurant.cityId =this.restaurantForm.value.City;
-    restaurant.averageCost = this.restaurantForm.value.Cost;
-    restaurant.openingHours = this.restaurantForm.value.Time;
-    restaurant.hasOnlineBooking = this.restaurantForm.value.OnlineBooking;
-    restaurant.restaurantLocation = this.restaurantForm.value.Address;
+    restaurant.Name = this.restaurantForm.value.Name;
+    restaurant.EmailId = this.restaurantForm.value.Email;
+    restaurant.PhoneNumber = this.restaurantForm.value.Phone;
+    restaurant.CityId =this.restaurantForm.value.City;
+    restaurant.AverageCost = this.restaurantForm.value.Cost;
+    restaurant.OpeningHours = this.restaurantForm.value.Time;
+    restaurant.HasOnlineBooking = this.restaurantForm.value.OnlineBooking;
+    restaurant.RestaurantLocation = this.restaurantForm.value.Address;
     console.log(restaurant);
 
     this.service.AddRestaurant(restaurant).subscribe(

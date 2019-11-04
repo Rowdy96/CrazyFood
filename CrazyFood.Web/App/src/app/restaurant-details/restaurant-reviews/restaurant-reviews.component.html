@@ -4,28 +4,28 @@
 
       <div class="panel panel-primary">
         <div class="panel-body">
-          <h4><a>{{review.userAC.name}}</a></h4>
-          <h5>Rated:{{review.rating}}/ 5</h5>
-          <h5>Review: {{review.reviewText}}</h5>
+          <h4><a routerLink="/Customer/{{review.userAC.Id}}">{{review.userAC.Name}}</a></h4>
+          <h5>Rated:{{review.Rating}}/ 5</h5>
+          <h5>Review: {{review.ReviewText}}</h5>
 
           <div>
             <a (click)="addLike(review)">
               <span class="glyphicon glyphicon-thumbs-up" style="font-size:40px;"></span>
             </a>
-            {{review.totalLike}}
+            {{review.TotalLike}}
             <a (click)="toggle(review)">
               <span class="glyphicon glyphicon-comment" style="font-size:40px;"></span>
             </a>
-            {{review.totalComment}}
+            {{review.TotalComment}}
           </div>
         </div>
       <div *ngIf="review.showComment">
           <div *ngIf="review.reviewCommnets">
             <div *ngFor="let comment of review.reviewCommnets">
               <div class="panel panel-primary">
-                <div class="panel-heading">{{comment.userName}}</div>
+                <div class="panel-heading">{{comment.UserName}}</div>
                 <div class="panel-body">
-                  <h5>{{comment.reviewCommentText}}</h5>
+                  <h5>{{comment.ReviewCommentText}}</h5>
                 </div>
               </div>
             </div>
@@ -33,7 +33,7 @@
       </div>
 
           <div >
-            <form [formGroup]="commentForm" (ngSubmit)="addComment(review.reviewId)">
+            <form [formGroup]="commentForm" (ngSubmit)="addComment(review.ReviewId)">
               <div class="input-group">
                   <input type="text" class="form-control" placeholder="Write Comment" formControlName="commentText">
                     <div class="input-group-btn">

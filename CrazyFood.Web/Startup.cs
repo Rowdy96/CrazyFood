@@ -1,18 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CrazyFood.DomainModel.Data;
 using CrazyFood.DomainModel.Models;
+using CrazyFood.Repository.AutoMapper;
 using CrazyFood.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,18 +42,27 @@ namespace CrazyFood.Web
                 configuration.RootPath = "wwwroot/app";
             });
 
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);  
+
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddJsonOptions(options => {
-                        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                        options.SerializerSettings.ContractResolver =  new DefaultContractResolver();
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     });
-
+            
             services.AddDbContext<CrazyFoodContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("CrazyFoodContext")));
             services.AddIdentity<Users, IdentityRole>().AddEntityFrameworkStores<CrazyFoodContext>();
             services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

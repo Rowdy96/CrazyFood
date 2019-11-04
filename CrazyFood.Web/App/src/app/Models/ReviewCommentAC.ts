@@ -1,9 +1,8 @@
 export class ReviewCommentAC {
   
-  reviewCommentId: number;
-  reviewCommentText: string;
-  userId: string;
-  userName: string;
-
+  ReviewCommentId: number;
+  ReviewCommentText: string;
+  UserId: string;
+  UserName: string;
 
 }

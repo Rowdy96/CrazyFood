@@ -28,12 +28,15 @@
     <None Remove="App\src\app\Models\Comment.ts" />
     <None Remove="App\src\app\Models\Dish.ts" />
     <None Remove="App\src\app\Models\DishAC.ts" />
+    <None Remove="App\src\app\Models\FollowAC.ts" />
     <None Remove="App\src\app\Models\MenuAC.ts" />
     <None Remove="App\src\app\Models\MenuCategory.ts" />
     <None Remove="App\src\app\Models\NewDish.ts" />
     <None Remove="App\src\app\Models\OrderAC.ts" />
     <None Remove="App\src\app\Models\OrderItem.ts" />
+    <None Remove="App\src\app\Models\OrderItemAC.ts" />
     <None Remove="App\src\app\Models\OrderMenuAC.ts" />
+    <None Remove="App\src\app\Models\OrderOfUserAC.ts" />
     <None Remove="App\src\app\Models\Review.ts" />
     <None Remove="App\src\app\Models\ReviewAC.ts" />
     <None Remove="App\src\app\Models\ReviewCommentAC.ts" />
@@ -48,6 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.1" />
   </ItemGroup>
 
@@ -72,12 +76,15 @@
     <TypeScriptCompile Include="App\src\app\Models\Comment.ts" />
     <TypeScriptCompile Include="App\src\app\Models\Dish.ts" />
     <TypeScriptCompile Include="App\src\app\Models\DishAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\FollowAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\MenuAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\MenuCategory.ts" />
     <TypeScriptCompile Include="App\src\app\Models\NewDish.ts" />
     <TypeScriptCompile Include="App\src\app\Models\OrderAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\OrderItem.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\OrderItemAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\OrderMenuAC.ts" />
+    <TypeScriptCompile Include="App\src\app\Models\OrderOfUserAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\Review.ts" />
     <TypeScriptCompile Include="App\src\app\Models\ReviewAC.ts" />
     <TypeScriptCompile Include="App\src\app\Models\ReviewCommentAC.ts" />

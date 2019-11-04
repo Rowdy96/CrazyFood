@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using CrazyFood.DomainModel.Data;
 using CrazyFood.Repository.Dishes;
+using CrazyFood.Repository.Follows;
 using CrazyFood.Repository.Menu;
 using CrazyFood.Repository.Orders;
 using CrazyFood.Repository.Restaurants;
@@ -17,6 +19,7 @@ namespace CrazyFood.Repository.UnitOfWork
         #region Private Variables
 
         #region Dependencies
+        private readonly IMapper _mapper;
         private readonly CrazyFoodContext _context;
         private IRestaurantRepositary _restaurant;
         private IMenuRepository _menu;
@@ -24,6 +27,7 @@ namespace CrazyFood.Repository.UnitOfWork
         private IReviewRepository _review;
         private IOrderRepository _orderRepository;
         private IUserRepository _userRepository;
+        private IFollowRepository _followRepository;
         #endregion
 
         #endregion
@@ -79,9 +83,19 @@ namespace CrazyFood.Repository.UnitOfWork
         {
             get
             {
-                _userRepository = new UserRepository(_context);
+                _userRepository = new UserRepository(_context,_mapper);
                 return _userRepository;
             }
+        }
+
+        public IFollowRepository FollowRepository
+        {
+            get
+            {
+                _followRepository = new FollowRepository(_context,_mapper);
+                return _followRepository;
+            }
+            
         }
         #endregion
 

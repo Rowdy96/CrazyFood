@@ -1,10 +1,10 @@
 export class Review {
 
-  id: number;
-  rating: number;
-  reviewText: string;
-  likes: number;
-  userId: string;
-  restaurantId: number;
+  Id: number;
+  Rating: number;
+  ReviewText: string;
+  Likes: number;
+  UserId: string;
+  RestaurantId: number;
 
 }

@@ -8,7 +8,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MenuCategory } from '../../Models/MenuCategory';
 import { RestuarantService } from '../../restaurant/restuarant.service';
 import { NewDish } from '../../Models/NewDish';
-import { ModalService } from '../../modal.service';
 
 @Component({
   selector: 'app-restaurant-menu',
@@ -19,19 +18,11 @@ export class RestaurantMenuComponent implements OnInit {
 
   MenuOfRestaurant: MenuAC[];
   CurrentUser: UserAC = new UserAC();
-  CategoryForm = new FormGroup({
-    Category: new FormControl('')
-  });
-
-  dishForm = new FormGroup({
-    Dish: new FormControl(''),
-    price: new FormControl('')
-  });
-
   Id: number;
   NewCategory: MenuCategory = new MenuCategory();
   NewDish: NewDish = new NewDish();
-
+  CategoryForm: FormGroup;
+  dishForm: FormGroup;
   constructor(private service: RestaurantDetailsService,
               private route: ActivatedRoute,
               private userService: UserService,
@@ -40,15 +31,16 @@ export class RestaurantMenuComponent implements OnInit {
               ){ }
 
   ngOnInit() {
+    this.CategoryForm = new FormGroup({
+      Category: new FormControl('')
+    });
 
+    this.dishForm = new FormGroup({
+      Dish: new FormControl(''),
+      price: new FormControl('')
+    });
     this.GetMenu();
-    this.userService.GetLoggedInUser().subscribe(
-      res => {
-        this.CurrentUser = res;
-      },
-      err => {
-        this.CurrentUser = null;
-      });
+    this.CurrentUser = this.userService.currentUser;
   }
 
   GetMenu(): void {
@@ -62,16 +54,16 @@ export class RestaurantMenuComponent implements OnInit {
   OnSubmit() {
 
     console.log(this.CategoryForm.value.Category);
-    this.NewCategory.menuCategoryName = this.CategoryForm.value.Category;
-    this.NewCategory.totalDishes = 0;
-    this.NewCategory.restaurantId = this.Id;
-    this.NewCategory.restaurant = null;
-    console.log(this.NewCategory);
+    this.NewCategory.MenuCategoryName = this.CategoryForm.value.Category;
+    this.NewCategory.TotalDishes = 0;
+    this.NewCategory.RestaurantId = this.Id;
+    this.NewCategory.Restaurant = null;
+    
     this.restaurantService
       .AddCategory(this.Id, this.NewCategory)
       .subscribe(res => {
-        alert("New Category added Successfully");
-        window.location.reload();
+        this.ngOnInit();
+        
       },
         err => {
           alert("error");

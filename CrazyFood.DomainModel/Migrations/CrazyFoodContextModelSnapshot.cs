@@ -49,6 +49,8 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<string>("CityName");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.HasKey("Id");
 
                     b.ToTable("City");
@@ -79,6 +81,8 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<string>("DishName");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<int>("MenuCategoryId");
 
                     b.Property<string>("Price");
@@ -96,11 +100,17 @@ namespace CrazyFood.DomainModel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("FollowedUserId");
+                    b.Property<string>("FollowedUserId");
 
-                    b.Property<int>("FollowingUserId");
+                    b.Property<string>("FollowingUserId");
+
+                    b.Property<bool>("IsFollowed");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FollowedUserId");
+
+                    b.HasIndex("FollowingUserId");
 
                     b.ToTable("Follow");
                 });
@@ -110,6 +120,8 @@ namespace CrazyFood.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("MenuCategoryName");
 
@@ -180,6 +192,8 @@ namespace CrazyFood.DomainModel.Migrations
 
                     b.Property<bool>("HasOnlineBooking");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("OpeningHours");
@@ -244,6 +258,8 @@ namespace CrazyFood.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsLiked");
 
                     b.Property<int>("ReviewId");
 
@@ -470,6 +486,17 @@ namespace CrazyFood.DomainModel.Migrations
                         .WithMany()
                         .HasForeignKey("MenuCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CrazyFood.DomainModel.Models.Follow", b =>
+                {
+                    b.HasOne("CrazyFood.DomainModel.Models.Users", "FollowedUser")
+                        .WithMany()
+                        .HasForeignKey("FollowedUserId");
+
+                    b.HasOne("CrazyFood.DomainModel.Models.Users", "FollowingUser")
+                        .WithMany()
+                        .HasForeignKey("FollowingUserId");
                 });
 
             modelBuilder.Entity("CrazyFood.DomainModel.Models.MenuCategory", b =>

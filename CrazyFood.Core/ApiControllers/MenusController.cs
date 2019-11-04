@@ -15,12 +15,35 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class MenusController : ControllerBase
     {
+        #region Private Variables 
+        #region Dependencies
         private IUnitOfWork _unitOfWork;
+
+        #endregion
+        #endregion
+
+        #region Constructors
         public MenusController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Private Methods
+        private bool MenuExists(int menuId)
+        {
+            if (_unitOfWork.Menu.GetMenu(menuId) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region Public Methods
         //api/Menus/MenuList/1
         [HttpGet("{id}")]
         public async Task<IEnumerable<MenuAC>> MenuList([FromRoute] int id)
@@ -110,18 +133,7 @@ namespace CrazyFood.Core.ApiControllers
 
             return Ok(menu);
         }
+        #endregion
 
-
-        private bool MenuExists(int menuId)
-        {
-            if (_unitOfWork.Menu.GetMenu(menuId) != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

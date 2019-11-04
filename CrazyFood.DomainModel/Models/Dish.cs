@@ -10,6 +10,8 @@ namespace CrazyFood.DomainModel.Models
         public int Id { get; set; }
         public string DishName { get; set; }
         public string Price { get; set; }
+        public bool IsDeleted { get; set; }
+
         #region Navigation Propertry
         public int MenuCategoryId { get; set; }
         public MenuCategory MenuCategory { get; set; }

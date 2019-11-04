@@ -1,9 +1,8 @@
-import { UserAC } from './UserAC';
 
 export class Comment {
 
-  id: number;
-  userId: string;
-  commentText: string;
-  reviewId: number;
+  Id: number;
+  UserId: string;
+  CommentText: string;
+  ReviewId: number;
 }

@@ -30,21 +30,15 @@ export class DishesOfRestaurantComponent implements OnInit {
   ngOnInit() {
     this.GetRestaurant();
     this.getMenuOfRestaurant();
-    this.getCurrentUser();
-  }
-
-  getCurrentUser() {
-    this.userService.GetLoggedInUser().subscribe(res => {
-      this.user= res;
-    });
+    this.user = this.userService.currentUser;
   }
 
   getMenuOfRestaurant():void { 
     this.service.GetMenuListOfRestaurant(this.Id).subscribe(res=>{
       this.OrderMenuList = res;
       for (var menu of this.OrderMenuList) {
-        for (var dish of menu.dishes) {
-          dish.itemCount = 0;
+        for (var dish of menu.Dishes) {
+          dish.ItemCount = 0;
         }
       }
     });
@@ -59,12 +53,12 @@ export class DishesOfRestaurantComponent implements OnInit {
 
   onAdd(dish: Dish) {
     if (this.SelectedItemList.includes(dish)) {
-      dish.itemCount = dish.itemCount + 1;
-      this.totalPrice = this.totalPrice + dish.price * 1;
+      dish.ItemCount = dish.ItemCount + 1;
+      this.totalPrice = this.totalPrice + dish.Price * 1;
     }
     else {
-      dish.itemCount = dish.itemCount + 1;
-      this.totalPrice = this.totalPrice + dish.price * 1;
+      dish.ItemCount = dish.ItemCount + 1;
+      this.totalPrice = this.totalPrice + dish.Price * 1;
       this.SelectedItemList.push(dish);
     }
     
@@ -76,9 +70,9 @@ export class DishesOfRestaurantComponent implements OnInit {
     }
     else {
       if (this.SelectedItemList.includes(dish)) {
-        dish.itemCount = dish.itemCount - 1;
-        this.totalPrice = this.totalPrice - dish.price * 1;
-        if (dish.itemCount == 0) {
+        dish.ItemCount = dish.ItemCount - 1;
+        this.totalPrice = this.totalPrice - dish.Price * 1;
+        if (dish.ItemCount == 0) {
           var index = this.SelectedItemList.indexOf(dish);
           this.SelectedItemList.splice(index, 1);
         }

@@ -21,7 +21,7 @@ namespace CrazyFood.Repository.ApplicationClasses
         public UserAC userAC { get; set; }
         public ICollection<ReviewCommentAC> ReviewCommnets { get; set; }
         public int RestaurantId { get; set; }
-        //public bool ShowComment = false;
+        public string RestaurantName { get; set; }
 
 
 

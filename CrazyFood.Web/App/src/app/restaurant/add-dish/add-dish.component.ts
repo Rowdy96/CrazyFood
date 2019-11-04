@@ -28,10 +28,10 @@ export class AddDishComponent implements OnInit {
     this.Id = +this.route.snapshot.paramMap.get('menuId');
   }
   onSubmit() {
-    this.NewDish.dishName = this.DishForm.value.DishName;
-    this.NewDish.price = this.DishForm.value.DishPrice;
-    this.NewDish.menuCategoryId = this.Id;
-    this.NewDish.menuCategory = null;
+    this.NewDish.DishName = this.DishForm.value.DishName;
+    this.NewDish.Price = this.DishForm.value.DishPrice;
+    this.NewDish.MenuCategoryId = this.Id;
+    this.NewDish.MenuCategory = null;
     this.restaurantService.AddDish(this.Id, this.NewDish).subscribe(
       res =>{
           this.location.back();

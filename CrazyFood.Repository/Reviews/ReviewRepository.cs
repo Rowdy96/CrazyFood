@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CrazyFood.Repository.Reviews
@@ -42,12 +41,14 @@ namespace CrazyFood.Repository.Reviews
         {
             reviewRating.Review.RestaurantId = restaurantId;
             await _context.Review.AddAsync(reviewRating.Review);
+            //AverageRatingOfResaturant(restaurantId);
         }
 
         public async Task AddReview(ReviewAC review)
         {
            /// review.Review.RestaurantId = restaurantId;
             await _context.Review.AddAsync(review.Review);
+            await AverageRatingOfResaturant(review.Review.RestaurantId);
         }
 
         public async Task AddReviewComment(int reviewId, ReviewAC reviewComment)
@@ -130,7 +131,7 @@ namespace CrazyFood.Repository.Reviews
                               .Include(r => r.Restaurant)
                               .ThenInclude(c => c.City)
                               .Include(r => r.User)
-                              .Where(r => r.UserId == userId && r.ReviewText!=null).Reverse()
+                              .Where(r => r.UserId == userId && r.ReviewText!=null)
                               .ToListAsync();
 
             foreach (var review in reviews)
@@ -140,6 +141,10 @@ namespace CrazyFood.Repository.Reviews
                                           .Include(r=> r.User)
                                           .Where(rc => rc.ReviewId == review.Id)
                                           .ToListAsync();
+                var totalReviewComments = _context
+                                          .ReviewComment
+                                          .Where(r => r.ReviewId == review.Id)
+                                          .Count();
                 var reviewLikes = _context
                                   .ReviewLike
                                   .Where(rl => rl.ReviewId == review.Id)
@@ -172,8 +177,9 @@ namespace CrazyFood.Repository.Reviews
                 reviewAC.userAC = user;
                 reviewAC.ReviewCommnets = ListOfComment;
                 reviewAC.TotalLike = reviewLikes;
+                reviewAC.TotalComment = totalReviewComments;
                 reviewAC.RestaurantId = review.RestaurantId;
-
+                reviewAC.RestaurantName = review.Restaurant.Name;
                 ReviewsOfUser.Add(reviewAC);
             }
 
@@ -237,6 +243,50 @@ namespace CrazyFood.Repository.Reviews
             return reviewAC;
         }
 
-       
+        public async Task AverageRatingOfResaturant(int restaurantId)
+        {
+            AverageRating averageRating = new AverageRating();
+
+            var AverageUserRating = (int)await _context
+                              .Review
+                              .Where(r => r.RestaurantId == restaurantId)
+                              .Select(r => r.Rating)
+                              .AverageAsync();
+
+            averageRating.AverageUserRating = AverageUserRating;
+
+            if (averageRating.AverageUserRating<=5 && averageRating.AverageUserRating > 4)
+            {
+                averageRating.RatingText = "Excellent";
+
+            }
+            else if(averageRating.AverageUserRating <= 4 && averageRating.AverageUserRating > 3)
+            {
+                averageRating.RatingText = "Very Good";
+            }
+            else if (averageRating.AverageUserRating <= 3 && averageRating.AverageUserRating > 2)
+            {
+                averageRating.RatingText = "Good";
+            }
+            else
+            {
+                averageRating.RatingText = "Bad";
+            }
+
+            averageRating.Votes = _context.Review.Where(r => r.RestaurantId == restaurantId).Count();
+
+            averageRating.RestaurantId = restaurantId;
+            var IsAverageRatingExists =await _context.AverageRating.Where(a => a.RestaurantId == restaurantId).FirstOrDefaultAsync();
+
+            if (IsAverageRatingExists == null)
+            {
+                _context.AverageRating.Add(averageRating);
+
+            }else if (IsAverageRatingExists!=null)
+            {
+                _context.AverageRating.Update(averageRating);
+            }
+            
+        }
     }
 }

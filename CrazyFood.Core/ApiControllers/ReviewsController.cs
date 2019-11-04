@@ -14,12 +14,22 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class ReviewsController : ControllerBase
     {
+        #region Private Variables
+
+        #region Dependencies
         private IUnitOfWork _unitOfWork;
+        #endregion
+
+        #endregion
+
+        #region Constructors
         public ReviewsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         //api/Reviews/GetReviewsOfRestaurant/1
         [HttpGet("{restaurantId}")]
         [AllowAnonymous]
@@ -47,7 +57,7 @@ namespace CrazyFood.Core.ApiControllers
         //api/Reviews/AddReviw/1
         [Authorize]
         [HttpPost("{restaurantId}")]
-        [Authorize(Roles = "Customer,Admin")]
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> AddReviw([FromBody] Review review )
         {
             if (!ModelState.IsValid)
@@ -126,5 +136,14 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.Save();
             return Ok(reviewRating);
         }
+
+        //api/Reviews/GetAverageRatingOfResaturant/1
+        //[HttpGet("{restaurantId}")]
+        //public async Task<int> GetAverageRatingOfResaturant([FromRoute] int restaurantId)
+        //{
+        //    return await _unitOfWork.Review.AverageRatingOfResaturant(restaurantId);
+        //}
+       
+        #endregion
     }
 }

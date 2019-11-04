@@ -41,31 +41,31 @@ export class UpdateRestaurantComponent implements OnInit {
     this.restaurantDetails.GetRestaurant(id).subscribe(res => {
       this.Restaurant = res;
       this.UpdateRestaurantForm.patchValue({
-        Name: this.Restaurant.restaurant.name,
-        Email: this.Restaurant.restaurant.emailId,
-        Phone: this.Restaurant.restaurant.phoneNumber,
-        City: this.Restaurant.restaurant.cityId,
-        OnlineBooking: this.Restaurant.restaurant.hasOnlineBooking,
-        Cost: this.Restaurant.restaurant.averageCost,
-        Time: this.Restaurant.restaurant.openingHours,
-        Address: this.Restaurant.restaurant.restaurantLocation,
+        Name: this.Restaurant.Restaurant.Name,
+        Email: this.Restaurant.Restaurant.EmailId,
+        Phone: this.Restaurant.Restaurant.PhoneNumber,
+        City: this.Restaurant.Restaurant.CityId,
+        OnlineBooking: this.Restaurant.Restaurant.HasOnlineBooking,
+        Cost: this.Restaurant.Restaurant.AverageCost,
+        Time: this.Restaurant.Restaurant.OpeningHours,
+        Address: this.Restaurant.Restaurant.RestaurantLocation,
       })
 
     });
   }
 
   UpdateRestaurant() {
-    this.Restaurant.restaurant.name = this.UpdateRestaurantForm.value.Name
-    this.Restaurant.restaurant.emailId = this.UpdateRestaurantForm.value.Email
-    this.Restaurant.restaurant.phoneNumber = this.UpdateRestaurantForm.value.Phone
-    this.Restaurant.restaurant.cityId = this.UpdateRestaurantForm.value.City
-    this.Restaurant.restaurant.hasOnlineBooking = this.UpdateRestaurantForm.value.OnlineBooking
-    this.Restaurant.restaurant.averageCost = this.UpdateRestaurantForm.value.Cost
-    this.Restaurant.restaurant.openingHours = this.UpdateRestaurantForm.value.Time
-    this.Restaurant.restaurant.restaurantLocation = this.UpdateRestaurantForm.value.Address
+    this.Restaurant.Restaurant.Name = this.UpdateRestaurantForm.value.Name
+    this.Restaurant.Restaurant.EmailId = this.UpdateRestaurantForm.value.Email
+    this.Restaurant.Restaurant.PhoneNumber = this.UpdateRestaurantForm.value.Phone
+    this.Restaurant.Restaurant.CityId = this.UpdateRestaurantForm.value.City
+    this.Restaurant.Restaurant.HasOnlineBooking = this.UpdateRestaurantForm.value.OnlineBooking
+    this.Restaurant.Restaurant.AverageCost = this.UpdateRestaurantForm.value.Cost
+    this.Restaurant.Restaurant.OpeningHours = this.UpdateRestaurantForm.value.Time
+    this.Restaurant.Restaurant.RestaurantLocation = this.UpdateRestaurantForm.value.Address
 
     this.restaurantService
-      .UpdateRestaurant(this.Restaurant.restaurant.id, this.Restaurant.restaurant)
+      .UpdateRestaurant(this.Restaurant.Restaurant.Id, this.Restaurant.Restaurant)
       .subscribe(
         res => {
         this.location.back();

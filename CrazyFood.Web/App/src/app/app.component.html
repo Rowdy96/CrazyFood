@@ -14,7 +14,7 @@
           <li><a routerLink="/">Home</a></li>
         </ul>
         <ul *ngIf="user" class="nav navbar-nav ml-auto">
-          <li><a routerLink="/Customer/{{user.id}}">{{user.email}}</a>
+          <li><a routerLink="/Customer/{{user.Id}}">{{user.Email}}</a>
           <li><a (click)="Logout()">Logout</a></li>
         </ul>
         

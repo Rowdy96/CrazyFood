@@ -19,7 +19,6 @@ export class CustomerOrderComponent implements OnInit {
   order: Order = new Order();
   OrderAC: OrderAC = new OrderAC();
   OrderItemList: OrderItem[] = new Array();
-
   constructor(private orderService: OrderOnlineService) { }
 
   ngOnInit() {
@@ -34,15 +33,15 @@ export class CustomerOrderComponent implements OnInit {
     }
     else
     {
-      this.order.userId = this.CurrentUser.id;
-      this.order.isOnTheWay = false;
-      this.order.isOderPreparing = false;
-      this.order.isOrderDelivered = false;
+      this.order.UserId = this.CurrentUser.Id;
+      this.order.IsOnTheWay = false;
+      this.order.IsOderPreparing = false;
+      this.order.IsOrderDelivered = false;
 
       for (var selectedItem of this.ItemList) {
         var item = new OrderItem();
-        item.dishId = selectedItem.id;
-        item.itemCount = selectedItem.itemCount;
+        item.DishId = selectedItem.Id;
+        item.ItemCount = selectedItem.ItemCount;
         this.OrderItemList.push(item);
       }
 

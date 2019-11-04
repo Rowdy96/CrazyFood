@@ -15,6 +15,7 @@ namespace CrazyFood.DomainModel.Models
         public string OpeningHours { get; set; }
         public string RestaurantLocation { get; set; }
         public bool HasOnlineBooking { get; set; }
+        public bool IsDeleted { get; set; }
 
         #region Navigation Propertry
         public int CityId { get; set; }

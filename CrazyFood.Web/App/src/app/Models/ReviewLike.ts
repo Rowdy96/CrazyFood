@@ -1,9 +1,9 @@
 import { UserAC } from './UserAC';
 
 export class ReviewLike {
-  id: number;
-  userId: string;
-  reviewId: number;
+  Id: number;
+  UserId: string;
+  ReviewId: number;
   //public Review Review{ get; set; }
-  user: UserAC;
+  User: UserAC;
 }

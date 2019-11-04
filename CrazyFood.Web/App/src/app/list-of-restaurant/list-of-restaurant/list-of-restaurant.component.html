@@ -1,20 +1,15 @@
 <div class="container">
   <div  class="col-md-2">
-    <form  [formGroup]="cityForm" (ngSubmit) = "onSubmit()">
-      <div class="form-group">
-        <label for="cityId">Filter</label>
-        <select class="form-control" id="cityId" name="city" formControlName="city">
+    <div class="form-group">
+      <label for="cityId">Filter</label>
+        <select class="form-control" id="cityId" (change)="onChange($event.target.value)">
           <option value="0" selected>All Restaurant</option>
           <option value="1">Vadodara</option>
           <option value="2">Ahmedabad</option>
         </select>
-      </div>
-      <div>
-        <input type="submit" value="Filter Restaurant"  class="btn btn-primary"/>
-      </div>
-    </form>
+    </div>
 
-    <div *ngIf="user?.roles.includes('Admin')">
+    <div *ngIf="user?.Roles.includes('Admin')">
       <a class="btn btn-primary" routerLink="/Admin">Add Restaurant</a>
     </div>
 
@@ -27,16 +22,15 @@
       <div class="panel panel-primary">
 
         <div class="panel-heading">
-          <a class="panel-title" routerLink="/RestaurantDetails/{{restaurant.restaurant.id}}">{{restaurant.restaurant.name}}</a>
+          <a class="panel-title" routerLink="/RestaurantDetails/{{restaurant.Restaurant.Id}}">{{restaurant.Restaurant.Name}}</a>
         </div>
 
-        <div class="panel-body">
-          <h4>City: {{restaurant.restaurant.city.cityName}}</h4>
-          <h4>Address: {{restaurant.restaurant.restaurantLocation}}</h4>
-         
+        <div class="panel-body preventcopy">
+          <h4>City: {{restaurant.Restaurant.City.CityName}}</h4>
+          <h4>Address: {{restaurant.Restaurant.RestaurantLocation}}</h4>
           <hr>
-          <h4>Cost for two:  {{restaurant.restaurant.averageCost}}</h4>
-          <h4>Opening hours: {{restaurant.restaurant.openingHours}}</h4>
+          <h4>Cost for two:  {{restaurant.Restaurant.AverageCost}}</h4>
+          <h4>Opening hours: {{restaurant.Restaurant.OpeningHours}}</h4>
         </div>
 
         <div class="panel-footer">
@@ -45,20 +39,20 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Phone</button>
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-primary" (click)="GoToMenu(restaurant.restaurant.id)">Menu</button>
+              <button type="button" class="btn btn-primary" (click)="GoToMenu(restaurant.Restaurant.Id)">Menu</button>
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-primary" [disabled]="!hasOnlineOrder(restaurant)" (click)="GoToOrder(restaurant.restaurant.id)">
+              <button type="button" class="btn btn-primary" [disabled]="!hasOnlineOrder(restaurant)" (click)="GoToOrder(restaurant.Restaurant.Id)">
                 Order Online
               </button>
             </div>
-            <div class="btn-group" *ngIf="user?.roles.includes('Admin')">
-              <a class="btn btn-primary" routerLink="/Admin/UpdateRestaurant/{{restaurant.restaurant.id}}">
+            <div class="btn-group" *ngIf="user?.Roles?.includes('Admin')">
+              <a class="btn btn-primary" routerLink="/Admin/UpdateRestaurant/{{restaurant.Restaurant.Id}}">
                 Update Restaurant
               </a>
             </div>
-            <div class="btn-group" *ngIf="user?.roles.includes('Admin')">
-              <a class="btn btn-primary" routerLink="/Admin/DeleteRestaurant/{{restaurant.restaurant.id}}">
+            <div class="btn-group" *ngIf="user?.Roles?.includes('Admin')">
+              <a class="btn btn-primary" routerLink="/Admin/DeleteRestaurant/{{restaurant.Restaurant.Id}}">
                 Delete Restaurant
               </a>
             </div>
@@ -75,7 +69,7 @@
               </div>
 
               <div class="modal-body">
-                {{restaurant.restaurant.phoneNumber}}
+                {{restaurant.Restaurant.PhoneNumber}}
               </div>
 
               <div class="modal-footer">

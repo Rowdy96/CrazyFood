@@ -221,10 +221,10 @@ let AddDishComponent = class AddDishComponent {
         this.Id = +this.route.snapshot.paramMap.get('menuId');
     }
     onSubmit() {
-        this.NewDish.dishName = this.DishForm.value.DishName;
-        this.NewDish.price = this.DishForm.value.DishPrice;
-        this.NewDish.menuCategoryId = this.Id;
-        this.NewDish.menuCategory = null;
+        this.NewDish.DishName = this.DishForm.value.DishName;
+        this.NewDish.Price = this.DishForm.value.DishPrice;
+        this.NewDish.MenuCategoryId = this.Id;
+        this.NewDish.MenuCategory = null;
         this.restaurantService.AddDish(this.Id, this.NewDish).subscribe(res => {
             this.location.back();
         }, err => {
@@ -301,14 +301,14 @@ let CreateRestaurantComponent = class CreateRestaurantComponent {
     }
     onSubmit() {
         var restaurant = new src_app_Models_Restaurant__WEBPACK_IMPORTED_MODULE_4__["Restaurant"]();
-        restaurant.name = this.restaurantForm.value.Name;
-        restaurant.emailId = this.restaurantForm.value.Email;
-        restaurant.phoneNumber = this.restaurantForm.value.Phone;
-        restaurant.cityId = this.restaurantForm.value.City;
-        restaurant.averageCost = this.restaurantForm.value.Cost;
-        restaurant.openingHours = this.restaurantForm.value.Time;
-        restaurant.hasOnlineBooking = this.restaurantForm.value.OnlineBooking;
-        restaurant.restaurantLocation = this.restaurantForm.value.Address;
+        restaurant.Name = this.restaurantForm.value.Name;
+        restaurant.EmailId = this.restaurantForm.value.Email;
+        restaurant.PhoneNumber = this.restaurantForm.value.Phone;
+        restaurant.CityId = this.restaurantForm.value.City;
+        restaurant.AverageCost = this.restaurantForm.value.Cost;
+        restaurant.OpeningHours = this.restaurantForm.value.Time;
+        restaurant.HasOnlineBooking = this.restaurantForm.value.OnlineBooking;
+        restaurant.RestaurantLocation = this.restaurantForm.value.Address;
         console.log(restaurant);
         this.service.AddRestaurant(restaurant).subscribe(res => {
             this.router.navigateByUrl('');
@@ -585,19 +585,18 @@ let EditDishComponent = class EditDishComponent {
         this.restaurantService.GetDish(id).subscribe(res => {
             this.Dish = res;
             this.UpdateDishForm.patchValue({
-                DishName: this.Dish.dishName,
-                DishPrice: this.Dish.price
+                DishName: this.Dish.DishName,
+                DishPrice: this.Dish.Price
             });
-            debugger;
         }, err => {
             alert("loading error");
         });
     }
     onSubmit() {
-        this.Dish.dishName = this.UpdateDishForm.value.DishName;
-        this.Dish.price = this.UpdateDishForm.value.DishPrice;
+        this.Dish.DishName = this.UpdateDishForm.value.DishName;
+        this.Dish.Price = this.UpdateDishForm.value.DishPrice;
         console.log(this.Dish);
-        this.restaurantService.UpdateDish(this.Dish.id, this.Dish).subscribe(res => {
+        this.restaurantService.UpdateDish(this.Dish.Id, this.Dish).subscribe(res => {
             this.location.back();
         }, error => {
             alert("Error");
@@ -887,28 +886,28 @@ let UpdateRestaurantComponent = class UpdateRestaurantComponent {
         this.restaurantDetails.GetRestaurant(id).subscribe(res => {
             this.Restaurant = res;
             this.UpdateRestaurantForm.patchValue({
-                Name: this.Restaurant.restaurant.name,
-                Email: this.Restaurant.restaurant.emailId,
-                Phone: this.Restaurant.restaurant.phoneNumber,
-                City: this.Restaurant.restaurant.cityId,
-                OnlineBooking: this.Restaurant.restaurant.hasOnlineBooking,
-                Cost: this.Restaurant.restaurant.averageCost,
-                Time: this.Restaurant.restaurant.openingHours,
-                Address: this.Restaurant.restaurant.restaurantLocation,
+                Name: this.Restaurant.Restaurant.Name,
+                Email: this.Restaurant.Restaurant.EmailId,
+                Phone: this.Restaurant.Restaurant.PhoneNumber,
+                City: this.Restaurant.Restaurant.CityId,
+                OnlineBooking: this.Restaurant.Restaurant.HasOnlineBooking,
+                Cost: this.Restaurant.Restaurant.AverageCost,
+                Time: this.Restaurant.Restaurant.OpeningHours,
+                Address: this.Restaurant.Restaurant.RestaurantLocation,
             });
         });
     }
     UpdateRestaurant() {
-        this.Restaurant.restaurant.name = this.UpdateRestaurantForm.value.Name;
-        this.Restaurant.restaurant.emailId = this.UpdateRestaurantForm.value.Email;
-        this.Restaurant.restaurant.phoneNumber = this.UpdateRestaurantForm.value.Phone;
-        this.Restaurant.restaurant.cityId = this.UpdateRestaurantForm.value.City;
-        this.Restaurant.restaurant.hasOnlineBooking = this.UpdateRestaurantForm.value.OnlineBooking;
-        this.Restaurant.restaurant.averageCost = this.UpdateRestaurantForm.value.Cost;
-        this.Restaurant.restaurant.openingHours = this.UpdateRestaurantForm.value.Time;
-        this.Restaurant.restaurant.restaurantLocation = this.UpdateRestaurantForm.value.Address;
+        this.Restaurant.Restaurant.Name = this.UpdateRestaurantForm.value.Name;
+        this.Restaurant.Restaurant.EmailId = this.UpdateRestaurantForm.value.Email;
+        this.Restaurant.Restaurant.PhoneNumber = this.UpdateRestaurantForm.value.Phone;
+        this.Restaurant.Restaurant.CityId = this.UpdateRestaurantForm.value.City;
+        this.Restaurant.Restaurant.HasOnlineBooking = this.UpdateRestaurantForm.value.OnlineBooking;
+        this.Restaurant.Restaurant.AverageCost = this.UpdateRestaurantForm.value.Cost;
+        this.Restaurant.Restaurant.OpeningHours = this.UpdateRestaurantForm.value.Time;
+        this.Restaurant.Restaurant.RestaurantLocation = this.UpdateRestaurantForm.value.Address;
         this.restaurantService
-            .UpdateRestaurant(this.Restaurant.restaurant.id, this.Restaurant.restaurant)
+            .UpdateRestaurant(this.Restaurant.Restaurant.Id, this.Restaurant.Restaurant)
             .subscribe(res => {
             this.location.back();
         }, err => {

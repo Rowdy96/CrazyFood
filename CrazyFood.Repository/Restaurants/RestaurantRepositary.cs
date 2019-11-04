@@ -30,7 +30,8 @@ namespace CrazyFood.Repository.Restaurants
         public async Task DeleteRestaurant(int restaurantId)
         {
             var restaurant = await _context.Restaurant.FindAsync(restaurantId);
-            _context.Restaurant.Remove(restaurant);
+            restaurant.IsDeleted = true;
+            //_context.Restaurant.Remove(restaurant);
         }
 
         public void UpadateRestaurant(Restaurant restaurant)
@@ -41,7 +42,11 @@ namespace CrazyFood.Repository.Restaurants
         public async Task<IEnumerable<RestaurantAC>> Restaurants()
         {
 
-            var restaurants = await _context.Restaurant.Include(r => r.City).ToListAsync();
+            var restaurants = await _context.Restaurant
+                                            .Where(r=>r.IsDeleted==false)
+                                            .Include(r => r.City)
+                                            .ToListAsync();
+
             foreach (var restaurant in restaurants)
             {
                 RestaurantAC restaurantinfo = new RestaurantAC();
@@ -62,6 +67,7 @@ namespace CrazyFood.Repository.Restaurants
         {
             var restaurants = await _context
                                     .Restaurant
+                                    .Where(r => r.IsDeleted == false)
                                     .Include(r => r.City)
                                     .Where(r => r.CityId == cityId)
                                     .ToListAsync();
@@ -83,14 +89,28 @@ namespace CrazyFood.Repository.Restaurants
         public async Task<RestaurantAC> GetRestaurantById(int restaurantId)
         {
             RestaurantAC restaurant = new RestaurantAC();
-            restaurant.Restaurant = await _context.Restaurant.Include(r => r.City).FirstOrDefaultAsync(r => r.Id == restaurantId);
-            restaurant.Restaurant.AverageRating = _context
-                                                   .AverageRating
-                                                   .Where(r => r.RestaurantId == restaurantId)
-                                                   .FirstOrDefault();
+            restaurant.Restaurant = await _context.Restaurant
+                                                  .Where(r => r.IsDeleted == false)
+                                                  .Include(r => r.City)
+                                                  .Include(r=>r.AverageRating)
+                                                  .FirstOrDefaultAsync(r => r.Id == restaurantId);
+
+            //restaurant.Restaurant.AverageRating.AverageUserRating = AverageRatingOfResaturant(restaurantId);
+
             return restaurant;
         }
 
-       
+        //public int AverageRatingOfResaturant(int restaurantId)
+        //{
+        //    var averageRating = (int)_context
+        //                      .Review
+        //                      .Where(r => r.RestaurantId == restaurantId)
+        //                      .Select(r => r.Rating)
+        //                      .Average();
+
+        //    return averageRating;
+
+        //}
+
     }
 }

@@ -13,13 +13,34 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class DishsController : ControllerBase
     {
+        #region  Private Variables
         private IUnitOfWork _unitOfWork;
+        #endregion
 
+        #region Constructor
         public DishsController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Private Methods
+        private bool DishExists(int dishId)
+        {
+
+            if (_unitOfWork.Dish.GetDish(dishId) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        #endregion
+
+        #region Public Methods
         //api/Dishs/GetDishesOfMenu/1
         [HttpGet("{menuId}")]
         public async Task<IEnumerable<Dish>> GetDishesOfMenu([FromRoute]int menuId)
@@ -104,18 +125,7 @@ namespace CrazyFood.Core.ApiControllers
             return Ok(dish);
         }
 
-        private bool DishExists(int dishId)
-        {
+        #endregion
 
-            if (_unitOfWork.Dish.GetDish(dishId) != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
     }
 }

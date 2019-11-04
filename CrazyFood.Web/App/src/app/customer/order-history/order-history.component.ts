@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap  } from '@angular/router';
 import { CustomerServiceService } from '../customer-service.service';
-import { OrderAC } from 'src/app/Models/OrderAC';
-import { switchMap } from 'rxjs/operators';
-import { concat } from 'rxjs';
+import { OrderOfUserAC } from '../../Models/OrderOfUserAC';
 
 @Component({
   selector: 'app-order-history',
@@ -12,7 +10,7 @@ import { concat } from 'rxjs';
 })
 export class OrderHistoryComponent implements OnInit {
 
-  Orders : OrderAC[] = new Array();
+  Orders: OrderOfUserAC[] = new Array();
   constructor(private route :ActivatedRoute,
               private customerService : CustomerServiceService) { }
 
@@ -24,7 +22,9 @@ export class OrderHistoryComponent implements OnInit {
     const customerId = this.route.parent.snapshot.paramMap.get('customerId');
     
     this.customerService.GetOrderHistory(customerId).subscribe(res=>{
-      this.Orders =  res;
+      this.Orders = res;
+      console.log(this.Orders);
+      debugger;
     },
     err=>{
       console.log(err);

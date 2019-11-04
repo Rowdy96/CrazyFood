@@ -15,10 +15,15 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class RestaurantsController:ControllerBase
     {
+        #region Private Variables
+        #region Dependencies
         private readonly IUnitOfWork _unitOfWork;
         private UserManager<Users> _userManager { get; set; }
         private SignInManager<Users> _signInManager { get; set; }
+        #endregion
+        #endregion
 
+        #region Constructors
         public RestaurantsController(IUnitOfWork unitOfWork,
                                      UserManager<Users> userManager,
                                      SignInManager<Users> signInManager)
@@ -27,7 +32,25 @@ namespace CrazyFood.Core.ApiControllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
+        #endregion
 
+        #region Private Methods
+        private bool RestaurantExists(int restaurantID)
+        {
+
+            if (_unitOfWork.restaurant.GetRestaurantById(restaurantID) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        #endregion
+
+        #region Public Methods
         //api/Restaurants/GetAll
         [HttpGet]
         public async Task<IEnumerable<RestaurantAC>> GetAll()
@@ -113,8 +136,8 @@ namespace CrazyFood.Core.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            var updatedRestaurant = await _unitOfWork.restaurant.GetRestaurantById(restaurantId);
-            if (updatedRestaurant == null)
+            var Restaurant = await _unitOfWork.restaurant.GetRestaurantById(restaurantId);
+            if (Restaurant == null)
             {
                 return NotFound();
             }
@@ -122,7 +145,7 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.restaurant.DeleteRestaurant(restaurantId);
             await _unitOfWork.Save();
 
-            return Ok(updatedRestaurant);
+            return Ok(Restaurant);
         }
 
         //api/Restaurants/GetCurrentUser
@@ -134,20 +157,7 @@ namespace CrazyFood.Core.ApiControllers
             return user;
         }
 
-       
+        #endregion
 
-        private bool RestaurantExists(int restaurantID)
-        {
-
-            if (_unitOfWork.restaurant.GetRestaurantById(restaurantID) != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
     }
 }

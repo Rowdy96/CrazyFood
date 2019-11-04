@@ -9,6 +9,7 @@ using CrazyFood.Repository.Dishes;
 using CrazyFood.Repository.Reviews;
 using CrazyFood.Repository.Orders;
 using CrazyFood.Repository.User;
+using CrazyFood.Repository.Follows;
 
 namespace CrazyFood.Repository.UnitOfWork
 {
@@ -21,6 +22,7 @@ namespace CrazyFood.Repository.UnitOfWork
         IReviewRepository Review { get; }
         IOrderRepository OrderRepository { get; }
         IUserRepository UserRepository { get;  }
+        IFollowRepository FollowRepository { get; }
         #endregion
 
         #region Method

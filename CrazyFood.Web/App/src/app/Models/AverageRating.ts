@@ -1,6 +1,6 @@
 export class AverageRating{
-    id:number
-    averageUserRating:number
+    Id:number
+    AverageUserRating:number
     RatingText:string
     Votes : number
     RestaurantId:number

@@ -31,9 +31,7 @@ export class RestaurantReviewsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userService.GetLoggedInUser().subscribe(res => {
-      this.user = res;
-    });
+    this.user = this.userService.currentUser;
     this.GetReviews();
   }
 
@@ -45,10 +43,10 @@ export class RestaurantReviewsComponent implements OnInit {
   }
 
   toggle(review: ReviewAC) {
-    if (!review.showComment) {
-      review.showComment = true;
+    if (!review.ShowComment) {
+      review.ShowComment = true;
     } else {
-      review.showComment = false;
+      review.ShowComment = false;
     }
     
   }
@@ -59,9 +57,9 @@ export class RestaurantReviewsComponent implements OnInit {
     }
     else {
       var like = new ReviewLike()
-      like.reviewId = review.reviewId;
-      like.userId = this.user.id;
-      this.reviewService.AddLike(like, like.reviewId).subscribe(res => {
+      like.ReviewId = review.ReviewId;
+      like.UserId = this.user.Id;
+      this.reviewService.AddLike(like, like.ReviewId).subscribe(res => {
 
         alert("Like Added");
         window.location.reload();
@@ -78,10 +76,10 @@ export class RestaurantReviewsComponent implements OnInit {
     }
     else
     {
-      this.comment.commentText = this.commentForm.value.commentText;
-      this.comment.reviewId = reviewId;
-      this.comment.userId = this.user.id;
-      debugger;
+      this.comment.CommentText = this.commentForm.value.commentText;
+      this.comment.ReviewId = reviewId;
+      this.comment.UserId = this.user.Id;
+   
       this.reviewService.AddComment(this.comment, reviewId).subscribe(
         res => {
           console.log("success");

@@ -13,16 +13,22 @@ namespace CrazyFood.Core.ApiControllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
+        #region Private Variables
         private IUnitOfWork _unitOfWork;
+        #endregion
+
+        #region Constructor
         public OrdersController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Public Methods
         //api/Orders/GetAllOrdersOfUser/1002
         [HttpGet("{userId}")]
-        [Authorize(Roles = "Admin, Customer")]
-        public async Task<IEnumerable<OrderAC>> GetAllOrdersOfUser([FromRoute]string userId)
+        //[Authorize(Roles = "Admin, Customer")]
+        public async Task<IEnumerable<OrderOfUserAC>> GetAllOrdersOfUser([FromRoute]string userId)
         {
             return await _unitOfWork.OrderRepository.GetAllOrderOfUser(userId);
         }
@@ -40,5 +46,6 @@ namespace CrazyFood.Core.ApiControllers
             await _unitOfWork.Save();
             return Ok(order);
         }
+        #endregion
     }
 }

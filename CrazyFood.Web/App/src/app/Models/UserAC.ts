@@ -1,9 +1,9 @@
 export class UserAC {
 
-  id: string;
-  name: string;
-  phone: string;
-  address: string;
-  email: string;
-  roles: string[];
+  Id: string;
+  Name: string;
+  Phone: string;
+  Address: string;
+  Email: string;
+  Roles: string[];
 }

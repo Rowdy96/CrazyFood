@@ -26,7 +26,7 @@ namespace CrazyFood.Repository.Menu
             var menusOfRestaurant = await _context
                             .MenuCategory
                             .Include(m=>m.Restaurant)
-                            .Where(m => m.RestaurantId == id)
+                            .Where(m => m.RestaurantId == id && m.IsDeleted ==false )
                             .ToListAsync();
             foreach (var menu in menusOfRestaurant)
             {
@@ -34,14 +34,14 @@ namespace CrazyFood.Repository.Menu
                 MenuAC menuAC = new MenuAC();
                 menuAC.MenuCategoryName = menu.MenuCategoryName;
                 menuAC.Id = menu.Id;
-                menuAC.TotalDishes = menu.TotalDishes;
+                menuAC.TotalDishes = this.CountTotalDishes(menu.Id);
                 menuAC.RestaurantId = menu.RestaurantId;
                 menuAC.RestaurantName = menu.Restaurant.Name;
                 menuAC.PhoneNumber = menu.Restaurant.PhoneNumber;
                 menuAC.EmailId = menu.Restaurant.EmailId;
                 var Dishes = await _context
                                           .Dish
-                                          .Where(d => d.MenuCategoryId == menu.Id)
+                                          .Where(d => d.MenuCategoryId == menu.Id && d.IsDeleted== false)
                                           .ToListAsync();
 
                 List<DishAC> DishesOfMenu = new List<DishAC>();
@@ -65,7 +65,9 @@ namespace CrazyFood.Repository.Menu
         public async Task<MenuAC> GetMenu(int menuId)
         {
             var category = await _context.MenuCategory.FindAsync(menuId);
-            var dishes = await _context.Dish.Where(d => d.MenuCategoryId == menuId).ToListAsync();
+            var dishes = await _context.Dish
+                                       .Where(d => d.MenuCategoryId == menuId && d.IsDeleted== false)
+                                       .ToListAsync();
 
             MenuAC menuAC = new MenuAC();
             menuAC.MenuCategoryName = category.MenuCategoryName;
@@ -90,8 +92,8 @@ namespace CrazyFood.Repository.Menu
         public async Task DeleteMenu(int id)
         {
             var menu =await _context.MenuCategory.FindAsync(id);
-            _context.MenuCategory.Remove(menu);
-
+            menu.IsDeleted = true;
+            //_context.MenuCategory.Remove(menu);
         }
 
         public void UpdateMenu(MenuCategory menu)
@@ -104,7 +106,7 @@ namespace CrazyFood.Repository.Menu
         {
             return _context
                    .Dish
-                   .Where(d => d.MenuCategoryId == menuId)
+                   .Where(d => d.MenuCategoryId == menuId && d.IsDeleted == false)
                    .Count();
         }
 

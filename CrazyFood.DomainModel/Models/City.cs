@@ -9,6 +9,7 @@ namespace CrazyFood.DomainModel.Models
         #region public propertry
         public int Id { get; set; }
         public string CityName { get; set; }
+        public bool IsDeleted { get; set; }
         #endregion
     }
 }

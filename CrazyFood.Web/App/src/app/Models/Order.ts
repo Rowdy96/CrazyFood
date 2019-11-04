@@ -1,7 +1,7 @@
-﻿export class Order {
-    id: number;
-    isOderPreparing: boolean;
-    isOnTheWay: boolean;
-    isOrderDelivered: boolean;
-    userId: string;
+export class Order {
+    Id: number;
+    IsOderPreparing: boolean;
+    IsOnTheWay: boolean;
+    IsOrderDelivered: boolean;
+    UserId: string;
 }

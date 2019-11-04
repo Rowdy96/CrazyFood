@@ -1,12 +1,10 @@
-﻿using CrazyFood.DomainModel.Models;
+﻿using AutoMapper;
+using CrazyFood.DomainModel.Models;
 using CrazyFood.Repository.ApplicationClasses;
 using CrazyFood.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CrazyFood.Core.ApiControllers
@@ -19,6 +17,7 @@ namespace CrazyFood.Core.ApiControllers
         private UserManager<Users> _userManager;
         private RoleManager<IdentityRole> _roleManager;
         private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
         public UsersController(SignInManager<Users> signInManager
                               , UserManager<Users> userManager
                               , RoleManager<IdentityRole> roleManager
@@ -60,10 +59,10 @@ namespace CrazyFood.Core.ApiControllers
             return Ok();
         }
 
-        //api/Users/GetUserDetails
+        //api/Users/GetUserDetails/userId
         [HttpGet("{userId}")]
-        [Authorize(Roles = "Admin,Customer")]
-        public async Task<IActionResult> GetUserDetails(string userId)
+        [AllowAnonymous]
+        public async Task<IActionResult> GetUserDetails([FromRoute]string userId)
         {
             Users user = await _userManager.FindByIdAsync(userId);
            
@@ -72,9 +71,12 @@ namespace CrazyFood.Core.ApiControllers
             {
                 return NoContent();
             }
-
+            
             UserAC userAC = _unitOfWork.UserRepository.GetUser(user);
+            
             return Ok(userAC);
         }
+
+        
     }
 }

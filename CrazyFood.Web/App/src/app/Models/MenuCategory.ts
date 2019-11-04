@@ -1,9 +1,9 @@
 import { Restaurant } from './Restaurant';
 
 export class MenuCategory {
-  id: number;
-  menuCategoryName: string;
-  totalDishes: number;
-  restaurantId: number;
-  restaurant: Restaurant;
+  Id: number;
+  MenuCategoryName: string;
+  TotalDishes: number;
+  RestaurantId: number;
+  Restaurant: Restaurant;
 }

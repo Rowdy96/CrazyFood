@@ -1,16 +1,21 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">{{User.name}}</div>
+    <div class="panel-heading">{{User.Name}}</div>
     <div class="panel-body">
-      <h5>Phone: {{User.phone}}</h5>
-      <h5>Email: {{User.email}}</h5>
-      <h5>Address: {{User.address}}</h5>
+      <h5>Phone: {{User.Phone}}</h5>
+      <h5>Email: {{User.Email}}</h5>
+      <h5>Address: {{User.Address}}</h5>
+      <button *ngIf="!IsFollowed" class="btn btn-primary" (click)="FollowUser(User.Id)">Follow</button>
+      <button *ngIf="IsFollowed" class="btn btn-primary" (click)="UnFollowUser(User.Id)">UnFollow</button>
     </div>
     <div class="panel-footer">
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
           <a class="btn btn-primary" routerLink="Reviews">Reviews</a>
         </div>
-        <div class="btn-group">
+        <div class="btn-group" >
+          <a class="btn btn-primary" routerLink="Followers"> Followers</a>
+        </div>
+        <div class="btn-group" *ngIf="customerId==loggedInUserId">
           <a class="btn btn-primary" routerLink="OrderHistory"> Order history</a>
         </div>
       </div>

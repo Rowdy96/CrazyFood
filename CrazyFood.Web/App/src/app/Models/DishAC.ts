@@ -2,9 +2,9 @@ import { MenuCategory } from './MenuCategory';
 
 export class DishAC{
 
-  id: number;
-  dishName: string;
-  price: number;
-  menuCategoryId: number;
-  menuCategory: MenuCategory;
+  Id: number;
+  DishName: string;
+  Price: number;
+  MenuCategoryId: number;
+  MenuCategory: MenuCategory;
 }

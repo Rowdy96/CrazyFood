@@ -38,12 +38,12 @@ export class AddRatingComponent implements OnInit {
     }
     else
     {
-      this.Review.rating = this.ratingForm.value.rating;
-      this.Review.userId = this.user.id;
-      this.Review.restaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
+      this.Review.Rating = this.ratingForm.value.rating;
+      this.Review.UserId = this.user.Id;
+      this.Review.RestaurantId = +this.route.parent.snapshot.paramMap.get('restaurantId');
       debugger;
-      this.reviewService.AddReview(this.Review, this.Review.restaurantId).subscribe(res => {
-        this.router.navigateByUrl("/RestaurantDetails/" + this.Review.restaurantId + "/Reviews");
+      this.reviewService.AddReview(this.Review, this.Review.RestaurantId).subscribe(res => {
+        this.router.navigateByUrl("/RestaurantDetails/" + this.Review.RestaurantId + "/Reviews");
       },
         err => {
           console.log("error");

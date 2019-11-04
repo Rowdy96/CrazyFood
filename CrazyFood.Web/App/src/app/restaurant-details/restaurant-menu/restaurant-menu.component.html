@@ -1,38 +1,38 @@
  <div class="col-md-8">
     <div *ngFor="let menu of MenuOfRestaurant">
       <div class="panel panel-primary">
-        <div class="panel-heading">{{menu.menuCategoryName}}</div>
+        <div class="panel-heading">{{menu.MenuCategoryName}}</div>
         <div class="panel-body">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Name Of The Dish</th>
                 <th>Price</th>
-                <th *ngIf="CurrentUser?.roles?.includes('Admin')">Edit</th>
-                <th *ngIf="CurrentUser?.roles?.includes('Admin')">Delete</th>
+                <th *ngIf="CurrentUser?.Roles?.includes('Admin')">Edit</th>
+                <th *ngIf="CurrentUser?.Roles?.includes('Admin')">Delete</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let dish of menu.dishes">
-                <td>{{dish.dishName}}</td>
-                <td>{{dish.price}}</td>
-                <th *ngIf="CurrentUser?.roles?.includes('Admin')"><a routerLink="/Admin/UpdateDish/{{dish.id}}"><span class="glyphicon glyphicon-pencil"></span></a></th>
-                <th *ngIf="CurrentUser?.roles?.includes('Admin')"><a routerLink="/Admin/DeleteDish/{{dish.id}}"><span style="color:red" class="glyphicon glyphicon-trash"></span></a></th>
+              <tr *ngFor="let dish of menu.Dishes">
+                <td>{{dish.DishName}}</td>
+                <td>{{dish.Price}}</td>
+                <th *ngIf="CurrentUser?.Roles?.includes('Admin')"><a routerLink="/Admin/UpdateDish/{{dish.Id}}"><span class="glyphicon glyphicon-pencil"></span></a></th>
+                <th *ngIf="CurrentUser?.Roles?.includes('Admin')"><a routerLink="/Admin/DeleteDish/{{dish.Id}}"><span style="color:red" class="glyphicon glyphicon-trash"></span></a></th>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="panel-footer" *ngIf="CurrentUser?.roles?.includes('Admin')">
+        <div class="panel-footer" *ngIf="CurrentUser?.Roles?.includes('Admin')">
 
           <div class="btn-group btn-group-justified">
             <div class="btn-group">
-              <a  class="btn btn-primary" routerLink="/Admin/CreateDish/{{menu.id}}">
+              <a  class="btn btn-primary" routerLink="/Admin/CreateDish/{{menu.Id}}">
                 Add Dish
               </a>
             </div>
 
             <div class="btn-group">
-              <a class="btn btn-primary" routerLink="/Admin/DeleteMenuCategory/{{menu.id}}">
+              <a class="btn btn-primary" routerLink="/Admin/DeleteMenuCategory/{{menu.Id}}">
                 Delete Category
               </a>
             </div>
@@ -42,7 +42,7 @@
       </div>
     </div>
 </div>
-    <div class="col-md-4 " *ngIf="CurrentUser?.roles?.includes('Admin')">
+    <div class="col-md-4 " *ngIf="CurrentUser?.Roles?.includes('Admin')">
 
       <div class="panel panel-primary">
         <div class="panel panel-heading">Add Menu To List</div>

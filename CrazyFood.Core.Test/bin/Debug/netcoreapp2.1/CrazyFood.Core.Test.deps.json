@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "bf64b0b33b2a59ead1cfce4d0cbe52ab5111da30"
+    "signature": "dcd3ca075fce4c9c0edb0335f2bbfa13a08c21e0"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,6 +12,18 @@
         },
         "runtime": {
           "CrazyFood.Core.Test.dll": {}
+        }
+      },
+      "AutoMapper/9.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
         }
       },
       "Libuv/1.10.0": {
@@ -4144,6 +4156,7 @@
       },
       "CrazyFood.Repository/1.0.0": {
         "dependencies": {
+          "AutoMapper": "9.0.0",
           "CrazyFood.DomainModel": "1.0.0",
           "CrazyFood.Util": "1.0.0"
         },
@@ -4163,6 +4176,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xCqvoxT4HIrNY/xlXG9W+BA/awdrhWvMTKTK/igkGSRbhOhpl3Q8O8Gxlhzjc9JsYqE7sS6AxgyuUUvZ6R5/Bw==",
+      "path": "automapper/9.0.0",
+      "hashPath": "automapper.9.0.0.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 import { AddDishComponent } from './add-dish/add-dish.component';
-import { componentFactoryName } from '@angular/compiler';
 import { EditDishComponent } from './edit-dish/edit-dish.component';
 import { DeleteDishComponent } from './delete-dish/delete-dish.component';
 import { UpdateRestaurantComponent } from './update-restaurant/update-restaurant.component';

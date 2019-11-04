@@ -1,0 +1,18 @@
+<div class="panel">
+  <div>
+    <table class="table-striped">
+      <thead>
+        <tr>
+          <th> Name</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let follower of AllFollowers">
+          <td>{{follower.FollowedUser.Email}}</td>
+          <td><button class="btn btn-primary" type="button" (click)="OnClick(follower.FollowedUser.Id)">Unfollow</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

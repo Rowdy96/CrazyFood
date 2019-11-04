@@ -19,5 +19,6 @@ namespace CrazyFood.Repository.Reviews
         void UpdateReview(Review review);
         Task<ReviewComment> GetComment(int commentId);
         Task<ReviewAC> GetReview(int reviewId);
+        Task AverageRatingOfResaturant(int restaurantId);
     }
 }

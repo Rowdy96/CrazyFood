@@ -31,10 +31,9 @@ export class EditDishComponent implements OnInit {
     this.restaurantService.GetDish(id).subscribe(res => {
       this.Dish = res;
       this.UpdateDishForm.patchValue({
-        DishName: this.Dish.dishName,
-        DishPrice: this.Dish.price
+        DishName: this.Dish.DishName,
+        DishPrice: this.Dish.Price
       })
-      debugger;
     },
     err => {
       alert("loading error");
@@ -42,10 +41,10 @@ export class EditDishComponent implements OnInit {
   }
 
   onSubmit() {
-    this.Dish.dishName = this.UpdateDishForm.value.DishName
-    this.Dish.price = this.UpdateDishForm.value.DishPrice;
+    this.Dish.DishName = this.UpdateDishForm.value.DishName
+    this.Dish.Price = this.UpdateDishForm.value.DishPrice;
     console.log(this.Dish);
-    this.restaurantService.UpdateDish(this.Dish.id, this.Dish).subscribe(res =>
+    this.restaurantService.UpdateDish(this.Dish.Id, this.Dish).subscribe(res =>
     {
           this.location.back();
     },

@@ -1,8 +1,8 @@
 export class Dish {
 
-  id: number;
-  dishName: string;
-  price: number;
-  menuCategoryId: number;
-  itemCount: number = 0;
+  Id: number;
+  DishName: string;
+  Price: number;
+  MenuCategoryId: number;
+  ItemCount: number = 0;
 }

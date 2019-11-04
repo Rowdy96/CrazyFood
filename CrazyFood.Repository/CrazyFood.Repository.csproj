@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CrazyFood.DomainModel\CrazyFood.DomainModel.csproj" />
     <ProjectReference Include="..\CrazyFood.Util\CrazyFood.Util.csproj" />
   </ItemGroup>

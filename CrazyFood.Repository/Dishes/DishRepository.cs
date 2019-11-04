@@ -27,14 +27,15 @@ namespace CrazyFood.Repository.Dishes
         public async Task DeleteDish(int dishId)
         {
             var dish = await _context.Dish.FindAsync(dishId);
-            _context.Dish.Remove(dish);
+            dish.IsDeleted = true;
+           // _context.Dish.Remove(dish);
         }
 
         public async Task<IEnumerable<Dish>> GetAllDishOfMenu(int menuId)
         {
             return await _context
                         .Dish
-                        .Where(d => d.MenuCategoryId == menuId)
+                        .Where(d => d.MenuCategoryId == menuId && d.IsDeleted == false )
                         .ToListAsync();
         }
 
@@ -42,7 +43,8 @@ namespace CrazyFood.Repository.Dishes
         {
             return await _context
                          .Dish
-                         .FindAsync(dishId);
+                         .Where(d => d.IsDeleted == false)
+                         .FirstOrDefaultAsync(d => d.Id == dishId);
         }
 
         public void UpdateDish(Dish dish)

@@ -3,7 +3,6 @@ import { RestaurantAC } from 'src/app/Models/RestaurantAC';
 import { ListOfRestaurantService } from '../list-of-restaurant.service';
 import { Restaurant } from '../../Models/Restaurant';
 import { Route, Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
 import { UserAC } from '../../Models/UserAC';
 import { UserService } from '../../user.service';
 
@@ -15,13 +14,9 @@ import { UserService } from '../../user.service';
 export class ListOfRestaurantComponent implements OnInit {
 
   RestaurantList: RestaurantAC[];
-  restaurant = new Restaurant();
+  Restaurant = new Restaurant();
   cityId: number;
   user: UserAC;
-  
-  cityForm = new FormGroup({
-    city: new FormControl('')
-  });
 
   constructor(private service: ListOfRestaurantService,
               private router: Router,
@@ -31,6 +26,7 @@ export class ListOfRestaurantComponent implements OnInit {
     this.GetRestaurants();
     this.GetCurrentUSer();
   }
+
   GetCurrentUSer() {
     this.userService.GetLoggedInUser().subscribe(res => {
       this.user = res
@@ -56,8 +52,8 @@ export class ListOfRestaurantComponent implements OnInit {
 
   hasOnlineOrder(restaurant: RestaurantAC): boolean {
 
-    this.restaurant = restaurant.restaurant;
-    return this.restaurant.hasOnlineBooking;
+    this.Restaurant = restaurant.Restaurant
+    return this.Restaurant.HasOnlineBooking;
   }
 
   GoToMenu(id: number) {
@@ -66,16 +62,13 @@ export class ListOfRestaurantComponent implements OnInit {
   GoToOrder(id: number) {
     this.router.navigateByUrl('/RestaurantDetails/' + id + '/Order/' + id);
   }
-  onSubmit(){
-    this.cityId = this.cityForm.value.city;
-    debugger;
-    if (this.cityId == 0) {
+
+  onChange(deviceValue) {
+    if (deviceValue == 0) {
       this.GetRestaurants();
     }
-    else
-    {
-      this.GetRestaurantOfCity(this.cityId);
-      debugger;
+    else {
+      this.GetRestaurantOfCity(deviceValue);
     }
   }
 }

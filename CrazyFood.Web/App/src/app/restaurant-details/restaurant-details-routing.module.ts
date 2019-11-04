@@ -7,7 +7,6 @@ import { RestaurantReviewsComponent } from './restaurant-reviews/restaurant-revi
 import { AddReviewComponent } from '../add-review/add-review/add-review.component';
 import { AddReviewModule } from '../add-review/add-review.module';
 import { AddRatingComponent } from '../add-review/add-rating/add-rating.component';
-import { DishesOfRestaurantComponent } from '../order-online/dishes-of-restaurant/dishes-of-restaurant.component';
 
 
 const routes: Routes = [
